@@ -4,9 +4,6 @@
     {
         public int Id { get; set; }
         string DishName { get; set; }
-
-        public ICollection<Specification> Specification { get; set; }
-
-        
+          
     }
 }

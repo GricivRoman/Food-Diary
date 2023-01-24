@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
         public User User { get; set; }
-        public int UserId { get; set; }
+        
         public RelevanseType Relevanse { get; set; }
         public DateTime DateStart { get; set; }
 

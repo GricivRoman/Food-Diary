@@ -14,20 +14,24 @@ namespace FoodDiary.Data
         }
 
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.Entity<Specification>()
-            //    .HasOne(a => a.DishValue)
-            //    .WithOne(a => a.Specification)
-            //    .HasForeignKey<DishValue>(c => c.SpecificationId);
+           
 
-            
 
-            
         }
 
-        //public DbSet<User> Users { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<UserMenu> UserMenu { get; set; }
+
+        public DbSet<Specification> Specification { get; set; }
+
+        public DbSet<Product> Product { get; set; }
+        
+
         //public DbSet<Dish> Dishes { get; set; }
 
         //public DbSet<Product> Products { get; set; } -- удалил Entity

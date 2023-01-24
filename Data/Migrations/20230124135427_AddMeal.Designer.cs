@@ -4,6 +4,7 @@ using FoodDiary.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodDiary.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20230124135427_AddMeal")]
+    partial class AddMeal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +48,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("SpecificationId");
 
-                    b.ToTable("CompositionItem", (string)null);
+                    b.ToTable("CompositionItem");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.DailyRate", b =>
@@ -76,7 +79,7 @@ namespace FoodDiary.Migrations
                     b.HasIndex("TargetId")
                         .IsUnique();
 
-                    b.ToTable("DailyRate", (string)null);
+                    b.ToTable("DailyRate");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.Dish", b =>
@@ -94,7 +97,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("UserMenuId");
 
-                    b.ToTable("Dish", (string)null);
+                    b.ToTable("Dish");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.DishValue", b =>
@@ -125,7 +128,7 @@ namespace FoodDiary.Migrations
                     b.HasIndex("SpecificationId")
                         .IsUnique();
 
-                    b.ToTable("DishValue", (string)null);
+                    b.ToTable("DishValue");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.Meal", b =>
@@ -147,7 +150,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Meal", (string)null);
+                    b.ToTable("Meal");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.MealItem", b =>
@@ -173,7 +176,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("MealId");
 
-                    b.ToTable("MealItem", (string)null);
+                    b.ToTable("MealItem");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.Product", b =>
@@ -198,7 +201,7 @@ namespace FoodDiary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.Specification", b =>
@@ -222,7 +225,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("DishId");
 
-                    b.ToTable("Specification", (string)null);
+                    b.ToTable("Specification");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.Target", b =>
@@ -253,7 +256,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Target", (string)null);
+                    b.ToTable("Target");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.User", b =>
@@ -348,7 +351,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserMenu", (string)null);
+                    b.ToTable("UserMenu");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.WeightCondition", b =>
@@ -373,7 +376,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("WeightCondition", (string)null);
+                    b.ToTable("WeightCondition");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

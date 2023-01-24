@@ -4,6 +4,7 @@ using FoodDiary.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodDiary.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20230124133834_AddSpecisication")]
+    partial class AddSpecisication
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,32 +24,6 @@ namespace FoodDiary.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("FoodDiary.Data.Entities.CompositionItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("ProductWeightG")
-                        .HasColumnType("float");
-
-                    b.Property<int>("SpecificationId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("SpecificationId");
-
-                    b.ToTable("CompositionItem", (string)null);
-                });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.DailyRate", b =>
                 {
@@ -76,7 +53,7 @@ namespace FoodDiary.Migrations
                     b.HasIndex("TargetId")
                         .IsUnique();
 
-                    b.ToTable("DailyRate", (string)null);
+                    b.ToTable("DailyRate");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.Dish", b =>
@@ -94,111 +71,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("UserMenuId");
 
-                    b.ToTable("Dish", (string)null);
-                });
-
-            modelBuilder.Entity("FoodDiary.Data.Entities.DishValue", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double>("Calories")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Carbohydrate")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Fat")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Protein")
-                        .HasColumnType("float");
-
-                    b.Property<int>("SpecificationId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SpecificationId")
-                        .IsUnique();
-
-                    b.ToTable("DishValue", (string)null);
-                });
-
-            modelBuilder.Entity("FoodDiary.Data.Entities.Meal", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("MealTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Meal", (string)null);
-                });
-
-            modelBuilder.Entity("FoodDiary.Data.Entities.MealItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("DishId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("DishWeightG")
-                        .HasColumnType("float");
-
-                    b.Property<int>("MealId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DishId");
-
-                    b.HasIndex("MealId");
-
-                    b.ToTable("MealItem", (string)null);
-                });
-
-            modelBuilder.Entity("FoodDiary.Data.Entities.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double>("Calories")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Carbohydrate")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Fat")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Protein")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("Dish");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.Specification", b =>
@@ -222,7 +95,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("DishId");
 
-                    b.ToTable("Specification", (string)null);
+                    b.ToTable("Specification");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.Target", b =>
@@ -253,7 +126,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Target", (string)null);
+                    b.ToTable("Target");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.User", b =>
@@ -348,7 +221,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserMenu", (string)null);
+                    b.ToTable("UserMenu");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.WeightCondition", b =>
@@ -373,7 +246,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("WeightCondition", (string)null);
+                    b.ToTable("WeightCondition");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -509,25 +382,6 @@ namespace FoodDiary.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("FoodDiary.Data.Entities.CompositionItem", b =>
-                {
-                    b.HasOne("FoodDiary.Data.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FoodDiary.Data.Entities.Specification", "Specification")
-                        .WithMany("Composition")
-                        .HasForeignKey("SpecificationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Specification");
-                });
-
             modelBuilder.Entity("FoodDiary.Data.Entities.DailyRate", b =>
                 {
                     b.HasOne("FoodDiary.Data.Entities.Target", "Target")
@@ -544,47 +398,6 @@ namespace FoodDiary.Migrations
                     b.HasOne("FoodDiary.Data.Entities.UserMenu", null)
                         .WithMany("Dishes")
                         .HasForeignKey("UserMenuId");
-                });
-
-            modelBuilder.Entity("FoodDiary.Data.Entities.DishValue", b =>
-                {
-                    b.HasOne("FoodDiary.Data.Entities.Specification", "Specification")
-                        .WithOne("DishValue")
-                        .HasForeignKey("FoodDiary.Data.Entities.DishValue", "SpecificationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Specification");
-                });
-
-            modelBuilder.Entity("FoodDiary.Data.Entities.Meal", b =>
-                {
-                    b.HasOne("FoodDiary.Data.Entities.User", "User")
-                        .WithMany("Meals")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("FoodDiary.Data.Entities.MealItem", b =>
-                {
-                    b.HasOne("FoodDiary.Data.Entities.Dish", "Dish")
-                        .WithMany()
-                        .HasForeignKey("DishId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FoodDiary.Data.Entities.Meal", "Meal")
-                        .WithMany("MealItems")
-                        .HasForeignKey("MealId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Dish");
-
-                    b.Navigation("Meal");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.Specification", b =>
@@ -682,19 +495,6 @@ namespace FoodDiary.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FoodDiary.Data.Entities.Meal", b =>
-                {
-                    b.Navigation("MealItems");
-                });
-
-            modelBuilder.Entity("FoodDiary.Data.Entities.Specification", b =>
-                {
-                    b.Navigation("Composition");
-
-                    b.Navigation("DishValue")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("FoodDiary.Data.Entities.Target", b =>
                 {
                     b.Navigation("DailyRate")
@@ -703,8 +503,6 @@ namespace FoodDiary.Migrations
 
             modelBuilder.Entity("FoodDiary.Data.Entities.User", b =>
                 {
-                    b.Navigation("Meals");
-
                     b.Navigation("Targets");
 
                     b.Navigation("WeightConditions");
