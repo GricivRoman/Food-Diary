@@ -43,7 +43,7 @@ namespace FoodDiary
                 });
 
 
-            //services.AddTransient<MyAppSeeder>(); - - удалил
+            services.AddTransient<DbSeeder>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);

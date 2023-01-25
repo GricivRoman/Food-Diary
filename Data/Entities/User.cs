@@ -9,11 +9,11 @@ namespace FoodDiary.Data.Entities
         public int Age { get; set; }
         public string Gender { get; set; }
 
-        public ICollection<WeightCondition> WeightConditions { get; set; }
+        public ICollection<WeightCondition>? WeightConditions { get; set; } 
 
-        public ICollection<Target> Targets { get; set; }
-        
-        public ICollection<Meal> Meals { get; set; }
+        public ICollection<Target>? Targets { get; set; } 
+
+        public ICollection<Meal>? Meals { get; set; } 
 
         public UserMenu UserMenu { get; set; }
         public int UserMenuId { get; set; }
