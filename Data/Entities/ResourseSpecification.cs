@@ -1,6 +1,6 @@
 ﻿namespace FoodDiary.Data.Entities
 {
-    public class Specification
+    public class ResourseSpecification
     {
         public int Id { get; set; }
 
@@ -11,7 +11,6 @@
 
         public double OutputDishWeightG { get; set; }
 
-        public DishValue DishValue { get; set; }
-        public bool MainSpecification { get; set; }
+        public DishValue DishValue { get; set; }        
     }
 }

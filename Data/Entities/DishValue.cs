@@ -3,8 +3,8 @@
     public class DishValue
     {
         public int Id { get; set; }
-        public Specification Specification { get; set; }
-        public int SpecificationId { get; set; }
+        public ResourseSpecification ResourseSpecification { get; set; }
+        public int ResourseSpecificationId { get; set; }
 
         public double Calories { get; set; }
         public double Carbohydrate { get; set; }

@@ -38,6 +38,7 @@
   <ItemGroup>
     <Folder Include="client\src\app\pages\diaryPage\" />
     <Folder Include="client\src\app\views\" />
+    <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\img\" />
   </ItemGroup>
 

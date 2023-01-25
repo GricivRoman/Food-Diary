@@ -3,7 +3,7 @@
     public class CompositionItem
     {
         public int Id { get; set; }
-        public Specification Specification { get; set; }
+        public ResourseSpecification ResourseSpecification { get; set; }
 
         public Product Product { get; set; }
 

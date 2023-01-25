@@ -14,5 +14,8 @@ namespace FoodDiary.Data.Entities
         public ICollection<Target> Targets { get; set; }
         
         public ICollection<Meal> Meals { get; set; }
+
+        public UserMenu UserMenu { get; set; }
+        public int UserMenuId { get; set; }
     }
 }
