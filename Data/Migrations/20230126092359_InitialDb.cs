@@ -31,6 +31,7 @@ namespace FoodDiary.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Calories = table.Column<double>(type: "float", nullable: false),
                     Carbohydrate = table.Column<double>(type: "float", nullable: false),
                     Fat = table.Column<double>(type: "float", nullable: false),
@@ -48,7 +49,7 @@ namespace FoodDiary.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DishId = table.Column<int>(type: "int", nullable: false),
-                    OutputDishWeightG = table.Column<double>(type: "float", nullable: false)
+                    OutputDishWeightG = table.Column<double>(type: "float", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -121,7 +122,8 @@ namespace FoodDiary.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserMenuId = table.Column<int>(type: "int", nullable: false),
+                    DishName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserMenuId = table.Column<int>(type: "int", nullable: true),
                     ResourseSpecificationId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

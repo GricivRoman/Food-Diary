@@ -50,7 +50,7 @@ namespace FoodDiary
 
             services.AddTransient<IMailService, NullMailService>();
 
-            //services.AddScoped<IMyAppRepository, MyAppRepository>();  - - удалил
+            services.AddScoped<IMyAppRepository, MyAppRepository>();
 
 
 

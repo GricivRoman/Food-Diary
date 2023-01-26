@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodDiary.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20230125102814_InitialDb")]
+    [Migration("20230126092359_InitialDb")]
     partial class InitialDb
     {
         /// <inheritdoc />
@@ -105,10 +105,14 @@ namespace FoodDiary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("DishName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ResourseSpecificationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserMenuId")
+                    b.Property<int?>("UserMenuId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -215,6 +219,10 @@ namespace FoodDiary.Migrations
                     b.Property<double>("Fat")
                         .HasColumnType("float");
 
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("Protein")
                         .HasColumnType("float");
 
@@ -234,7 +242,7 @@ namespace FoodDiary.Migrations
                     b.Property<int>("DishId")
                         .HasColumnType("int");
 
-                    b.Property<double>("OutputDishWeightG")
+                    b.Property<double?>("OutputDishWeightG")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -719,8 +727,7 @@ namespace FoodDiary.Migrations
                     b.Navigation("Dish")
                         .IsRequired();
 
-                    b.Navigation("DishValue")
-                        .IsRequired();
+                    b.Navigation("DishValue");
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.Target", b =>

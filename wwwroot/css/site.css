@@ -7,154 +7,19 @@
     margin-right: 4px;
 }
 
-
-/*footer, header {
-    text-align: center;
-}
-
-header{
-    margin-top:15px;
-}
-
-header p {
-       font-weight:500;
-       block-size:0px;
-}
-
-footer p {    
-    font-size: 10px;
-}
-
-header menu{
-    display:inline-block;
-    block-size: 10px;
-    margin-left: -70px;
-    align-items:center;
-}
-#pageTitle {
-    font-weight: 500;
-    text-align: center;
-}
-
-
-
-menu li {
-    display: inline;
-}
-
-    menu li::after {
-        content: " |";
-    }
-
-    menu li:last-of-type::after {
-        content: "";
-    }
-
-
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
-}
-
-input, textarea {
-    font-size: medium;
-    width: 200px;    
-}
-
-
-label {
-    font-size: medium;
-    
-}
-
-#theForm input {
-    border-radius: 5px;
-    border: 1px solid grey;
-}
-
-#theForm input[type=submit]{
-    background-color: green;
-    color: white;
-    width: 200px;
-    margin: 0px 0px 0px 2px;
-
-}
-
-#theForm textarea{
+#mainFooter p {
     margin:0px;
 }
-#theForm label{
-    display: table;
+
+#mainFooter a::after{
+    content: " |";
+}
+#mainFooter a:last-of-type::after {
+    content: "";
 }
 
-ul.product-props {
-    font-size:small;
-
-}
-
-ul.product-props li {
-    list-style-type: none;
-}
-
-div.product-info{
-    border: 1px solid grey;
-    display: inline-block;
-    padding: 5px 3px 5px 3px;
-    margin: 5px; 
-    width: 450px;
-    background-color: gainsboro;
-    border-radius: 10px;
-}
-
-    div.product-info img {
-        margin: 3px;
-        float: left;
-        border: solid black;        
-        max-width: 150px;
-        padding: 0px;
-    }
-
-#loginToggle{
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 500;
-    width: fit-content;
+#secondNavbar ul {
+    margin-left: 3px;
     
 }
 
-.popup-form{
-    margin: 5px 0px 0px 0px;
-    padding: 5px;
-    border: 2px black inset;
-    display: inline-block;
-}
-
-.popup-form input{
-    width: 200px;
-    display: inline-block;
-    margin:2px;
-    border: 1px solid grey;
-    border-radius: 5px;
-}
-.popup-form label{
-    width: 150px;
-    display: inline-block;
-    margin:2px;
-    
-}
-.popup-form input[type=checkbox]{
-    width: 15px;
-}
-.popup-form input[type=submit]{
-    width: 365px;
-    color: black;
-    background-color: #ffffff;
-    cursor: pointer;
-}
-
-span {
-    margin: 0px;
-    font-size:12px;
-    color: red;
-    display: table;
-}*/

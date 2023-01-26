@@ -45,20 +45,9 @@ namespace FoodDiary.Data
         }
 
         public DbSet<User> User { get; set; }
-        //public DbSet<UserMenu> UserMenu { get; set; }
-
         
         public DbSet<Product> Product { get; set; }
-        
 
-        //public DbSet<Dish> Dishes { get; set; }
-
-        //public DbSet<Product> Products { get; set; } -- удалил Entity
-        //public DbSet<Order> Orders { get; set; } -- удалил Entity
-
-
-
-
-
+        public DbSet<Dish> Dish { get; set; }
     }
 }
