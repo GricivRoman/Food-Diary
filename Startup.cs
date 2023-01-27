@@ -82,8 +82,7 @@ namespace FoodDiary
                 cfg.MapControllerRoute("Default",
                     "/{controller}/{action}/{id?}",
                     new { controller = "App", action = "Index" });
-            });
-                                  
+            });                  
         }
     }
 }

@@ -10,6 +10,7 @@ import { AuthActivator } from './services/authActivator.servese';
 import { FormsModule } from '@angular/forms';
 import { Diary } from './services/diary.servise';
 import { DiaryPage } from './pages/diaryPage/diaryPage.component';
+import { ProductPage } from './pages/productPage/producPage.component';
 
 
 
@@ -17,7 +18,8 @@ import { DiaryPage } from './pages/diaryPage/diaryPage.component';
   declarations: [
         AppComponent,
         LoginPage,
-        DiaryPage
+        DiaryPage,
+        ProductPage
   ],
   imports: [
       BrowserModule,
@@ -29,6 +31,6 @@ import { DiaryPage } from './pages/diaryPage/diaryPage.component';
       Diary,
       AuthActivator
     ],
-  bootstrap: [AppComponent]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
