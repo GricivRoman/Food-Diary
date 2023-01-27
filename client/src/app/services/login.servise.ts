@@ -6,7 +6,7 @@ import { LoginRequest, LoginResults } from "../shared/LoginResults";
 
 @Injectable()
 
-export class Diary {
+export class Login {
 
     constructor(private http: HttpClient) {
 

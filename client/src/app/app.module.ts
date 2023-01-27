@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 
@@ -8,9 +9,12 @@ import router from './router';
 import { LoginPage } from './pages/loginPage/loginPage.component';
 import { AuthActivator } from './services/authActivator.servese';
 import { FormsModule } from '@angular/forms';
-import { Diary } from './services/diary.servise';
+import { Login } from './services/login.servise';
 import { DiaryPage } from './pages/diaryPage/diaryPage.component';
 import { ProductPage } from './pages/productPage/producPage.component';
+import { ProductService } from './services/product.service';
+import { CreateProduct } from './pages/productPage/createProduct.component';
+
 
 
 
@@ -19,7 +23,9 @@ import { ProductPage } from './pages/productPage/producPage.component';
         AppComponent,
         LoginPage,
         DiaryPage,
-        ProductPage
+        ProductPage,
+        CreateProduct
+        
   ],
   imports: [
       BrowserModule,
@@ -27,9 +33,11 @@ import { ProductPage } from './pages/productPage/producPage.component';
       router,
       FormsModule
   ],
-  providers: [
-      Diary,
-      AuthActivator
+    providers: [
+      { provide: LocationStrategy, useClass: HashLocationStrategy },
+      Login,
+      AuthActivator,
+      ProductService
     ],
     bootstrap: [AppComponent]
 })

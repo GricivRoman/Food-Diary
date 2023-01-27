@@ -1,0 +1,38 @@
+﻿<div class="row">
+    <div class="col-md-6 offset-1">
+        <form class="card card-body bg-light">
+            <div class="mb-3">
+                <label>Название продукта</label>
+                <input class="form-control" name="productName" [(ngModel)]="product.productName" #productName="ngModel" required />
+                <div class="text-danger" *ngIf="productName.touched && productName.invalid && productName.errors?.required">Required</div>
+            </div>
+
+            <div class="mb-3">
+                <label>Калорий на 100г продукта</label>
+                <input class="form-control" name="calories" [(ngModel)]="product.calories" #calories="ngModel" required />
+                <div class="text-danger" *ngIf="calories.touched && calories.invalid && calories.errors?.required">Required</div>
+            </div>
+            <div class="mb-3">
+                <label>Белков на 100г продукта</label>
+                <input class="form-control" name="protein" [(ngModel)]="product.protein" #protein="ngModel" required />
+                <div class="text-danger" *ngIf="protein.touched && protein.invalid && protein.errors?.required">Required</div>
+            </div>
+            <div class="mb-3">
+                <label>Жиров на 100г продукта</label>
+                <input class="form-control" name="fat" [(ngModel)]="product.fat" #fat="ngModel" required />
+                <div class="text-danger" *ngIf="fat.touched && fat.invalid && fat.errors?.required">Required</div>
+            </div>
+            <div class="mb-3">
+                <label>Углеводов на 100г продукта</label>
+                <input class="form-control" name="carbohydrate" [(ngModel)]="product.carbohydrate" #carbohydrate="ngModel" required />
+                <div class="text-danger" *ngIf="carbohydrate.touched && carbohydrate.invalid && carbohydrate.errors?.required">Required</div>
+            </div>
+            
+            <div class="mb-3">
+                <input (click)="onCreate(); productService.loadProducts()" routerLink="/product" type="submit" class="btn btn-success" value="Добавить продукт" [disabled]="productName.invalid || calories.invalid || carbohydrate.invalid || fat.invalid || protein.invalid" />
+            </div>
+
+
+        </form>
+    </div>
+</div>

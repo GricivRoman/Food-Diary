@@ -26,10 +26,10 @@
             <div id="theMenu" class="navbar-collapse collapse">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link">Главная страница</a>
+                        <a class="nav-link" routerLink="">Главная страница</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link">Библиотека продуктов</a>
+                        <a class="nav-link" routerLink="product">Библиотека продуктов</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link">Библиотека блюд</a>
@@ -62,7 +62,8 @@
             <div class="col-md-10">
                 <section>
                     <h3 id="pageTitle" class="text-center"></h3>
-                    <h3>Место для вашей страницы</h3>           
+                   
+                    <router-outlet></router-outlet>        
                            
                 </section>
             </div>
@@ -73,8 +74,8 @@
         <hr>
         <div id="mainFooter" class="text-center">
             <p>Copyright 2023 Griciv.R.</p>
-            <a asp-controller="App" asp-action="About">О проекте</a>
-            <a asp-controller="App" asp-action="Contact">Обратная связь</a>
+            <a>О проекте</a>
+            <a>Обратная связь</a>
         </div>
 
     </footer>

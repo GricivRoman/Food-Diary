@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { Diary } from "../../services/diary.servise";
+import { Login } from "../../services/login.servise";
 import { LoginRequest } from "../../shared/LoginResults";
 
 @Component({
@@ -10,7 +10,7 @@ import { LoginRequest } from "../../shared/LoginResults";
 })
 
 export class LoginPage {
-    constructor(private diary: Diary, private router: Router) {
+    constructor(private diary: Login, private router: Router) {
 
     }
     public creds: LoginRequest = {

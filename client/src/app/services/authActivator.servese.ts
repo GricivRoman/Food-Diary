@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
 import { Observable } from "rxjs";
-import { Diary } from "./diary.servise";
+import { Login } from "./login.servise";
 
 @Injectable()
 export class AuthActivator implements CanActivate {
 
-    constructor(private diary: Diary, private router: Router) {
+    constructor(private diary: Login, private router: Router) {
 
     }
 
