@@ -34,7 +34,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("UserMenuId");
 
-                    b.ToTable("DishUserMenu");
+                    b.ToTable("DishUserMenu", (string)null);
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.CompositionItem", b =>
@@ -60,7 +60,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("ResourseSpecificationId");
 
-                    b.ToTable("CompositionItem");
+                    b.ToTable("CompositionItem", (string)null);
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.DailyRate", b =>
@@ -91,7 +91,7 @@ namespace FoodDiary.Migrations
                     b.HasIndex("TargetId")
                         .IsUnique();
 
-                    b.ToTable("DailyRate");
+                    b.ToTable("DailyRate", (string)null);
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.Dish", b =>
@@ -117,7 +117,7 @@ namespace FoodDiary.Migrations
                     b.HasIndex("ResourseSpecificationId")
                         .IsUnique();
 
-                    b.ToTable("Dish");
+                    b.ToTable("Dish", (string)null);
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.DishValue", b =>
@@ -148,7 +148,7 @@ namespace FoodDiary.Migrations
                     b.HasIndex("ResourseSpecificationId")
                         .IsUnique();
 
-                    b.ToTable("DishValue");
+                    b.ToTable("DishValue", (string)null);
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.Meal", b =>
@@ -170,7 +170,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Meal");
+                    b.ToTable("Meal", (string)null);
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.MealItem", b =>
@@ -196,7 +196,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("MealId");
 
-                    b.ToTable("MealItem");
+                    b.ToTable("MealItem", (string)null);
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.Product", b =>
@@ -225,7 +225,7 @@ namespace FoodDiary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Product");
+                    b.ToTable("Product", (string)null);
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.ResourseSpecification", b =>
@@ -244,7 +244,7 @@ namespace FoodDiary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ResourseSpecification");
+                    b.ToTable("ResourseSpecification", (string)null);
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.Target", b =>
@@ -275,7 +275,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Target");
+                    b.ToTable("Target", (string)null);
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.User", b =>
@@ -370,7 +370,7 @@ namespace FoodDiary.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserMenu");
+                    b.ToTable("UserMenu", (string)null);
                 });
 
             modelBuilder.Entity("FoodDiary.Data.Entities.WeightCondition", b =>
@@ -395,7 +395,7 @@ namespace FoodDiary.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("WeightCondition");
+                    b.ToTable("WeightCondition", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -51,7 +51,8 @@ namespace FoodDiary.Controllers
             try
             {
                 var result = repository.GetAllProducts();
-                return Ok(mapper.Map<List<ProductViewModel>>(result));
+                //return Ok(mapper.Map<List<ProductViewModel>>(result));
+                return Ok(result);
             }
             catch
             {

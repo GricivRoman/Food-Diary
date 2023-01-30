@@ -8,7 +8,7 @@ namespace FoodDiary.Data
         public Product FindProductByName(string ProductName);
 
         void AddEntity(object model);
-
+        
         public IEnumerable<Product> GetAllProducts();
 
         public Dish FindDishByName(string DishName);

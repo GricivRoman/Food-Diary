@@ -1,0 +1,50 @@
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="row align-items-center">
+            <div class="col-md-4">
+                <h4>Продукт</h4>
+            </div>
+            <div class="col-md-2">
+                <h4>Ккал</h4>
+            </div>
+            <div class="col-md-2">
+                <h4>Белки</h4>
+            </div>
+            <div class="col-md-2">
+                <h4>Жиры</h4>
+            </div>
+            <div class="col-md-2">
+                <h4>Углеводы</h4>
+            </div>
+        </div>
+        <hr />
+        <div *ngFor="let p of libraryService.dishes">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <p>{{p.dishName}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p>{{p.resourseSpecification.dishValue.calories}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p>{{p.resourseSpecification.dishValue.protein}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p>{{p.resourseSpecification.dishValue.fat}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p>{{p.resourseSpecification.dishValue.carbohydrate}}</p>
+                </div>
+            </div>
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 offset-6">
+            <a id="addButton" class="btn btn-success" (click)="setEmptyDish()" routerLink="create">Добавить блюдо</a>
+        </div>
+    </div>
+
+</div>
+

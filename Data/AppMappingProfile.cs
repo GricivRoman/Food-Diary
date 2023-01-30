@@ -18,7 +18,10 @@ namespace FoodDiary.Data
                 .ReverseMap();
 
             CreateMap<CompositionItem, CompositionItemViewModel>()
-                .ReverseMap();
+                .ReverseMap()
+                //.ForMember(m => m.ProductId, opt => opt.Ignore())
+                .ForMember(m => m.Product, opt => opt.Ignore());
+
             CreateMap<DishValue, DishValueViewModel>()
                 .ReverseMap();         
 

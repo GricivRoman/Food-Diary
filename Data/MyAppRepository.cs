@@ -18,7 +18,7 @@ namespace FoodDiary.Data
         {
             context.Add(model);
         }
-
+               
         public bool SaveAll()
         {
             return context.SaveChanges() > 0;
@@ -45,7 +45,7 @@ namespace FoodDiary.Data
 
         public IEnumerable<Product> GetAllProducts()
         {
-            return context.Product.ToList();
+            return context.Product.OrderBy(n => n.ProductName).ToList();
         }
 
         public Dish FindDishByName(string DishName)

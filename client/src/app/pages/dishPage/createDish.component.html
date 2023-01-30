@@ -1,0 +1,83 @@
+
+
+<!--<form class="card card-body bg-light">
+    <div class="mb-3 col-md-4">
+        <label>Название блюда</label>
+        <input class="form-control" type="text" />
+    </div>
+    <div>
+        <h3>Состав блюда</h3>
+        <div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Ингридиент</h4>
+                </div>
+                <div class="col-md-2">
+                    <h4>Вес, грамм</h4>
+                </div>
+            </div>
+            <div class="row" *ngFor="let p of libraryService.dish.resourseSpecification.composition">
+                <div class="col-md-4">
+                    <h4>{{p | json}}</h4>
+                </div>
+                <div class="col-md-2">                    
+                    <input value="{{p.productWeightG}}"/>
+                </div>
+            </div>
+            <a class="btn btn-info" routerLink="additem">Добавить ингридиент</a>
+        </div>
+    </div>
+</form>-->
+
+<div class="row">
+    <div class="col-md-7">
+        <h3 class="text-md-center">Добавить блюдо</h3>
+        <form class="card card-body bg-light">
+            <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+            <h5>Название блюда</h5>
+            <div class="mb-3 col-md-6">
+                <input class="form-control" name="dishName" value="{{dishName}}" [(ngModel)]="dishName" />
+            </div>
+            <h5>Вес блюда на выходе</h5>
+            <div class="mb-3 col-md-6">
+
+                <input class="form-control" type="number" name="outputDishWeightG" value="{{outputDishWeightG}}" [(ngModel)]="outputDishWeightG" />
+            </div>
+            <div>
+                <h3 class="text-center">Состав блюда</h3>
+                <div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Ингридиент</h5>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Вес, г.</h5>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="row align-items-md-center" *ngFor="let p of composition; let index = index;">
+                        <div id="productNameContainer" class="col-md-6">
+                            <p>{{p.product.productName}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <input class="form-control d-inline" type="number" value="{{p.productWeightG}}" name=a{{index}} [(ngModel)]="composition[index].productWeightG" />
+                        </div>
+                        <div class="col-md-1">
+                            <a class="btn btn-danger" (click)="deleteComponent(index)"><i class="fas fa-trash"></i></a>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 offset-10">
+                            <a class="btn btn-info" (click)="updateComposition()" routerLink="additem"><i class="fas fa-plus-circle"></i></a>
+
+                        </div>
+
+                        <hr />
+                    </div>
+                </div>
+            </div>
+            <a class="btn btn-success col-md-6 mt-md-2" (click)="onCreate()">Добавить блюдо</a>
+        </form>
+    </div>
+</div>

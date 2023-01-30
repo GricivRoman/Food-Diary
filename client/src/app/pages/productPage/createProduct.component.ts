@@ -1,5 +1,8 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component } from "@angular/core";
-import { ProductService } from "../../services/product.service";
+import { Router } from "@angular/router";
+import { LibraryService } from "../../services/library.service";
+
 import { Product } from "../../shared/Product";
 
 @Component({
@@ -10,23 +13,22 @@ import { Product } from "../../shared/Product";
 
 export class CreateProduct {
 
-    constructor(public productService: ProductService) {
+    constructor(public libraryService: LibraryService, private router: Router) {
 
     }
+       
+    product: Product = new Product();
 
-   
-    product: Product = {
-        productName: "",
-        calories: 0,
-        carbohydrate: 0,
-        fat: 0,
-        protein: 0
-    };
+    errorMessage: string = ``;
 
     onCreate() {
-        this.productService.createProduct(this.product)
+        this.libraryService.createProduct(this.product)
             .subscribe(() => {
+                this.router.navigate(["product"]);
+            }, err => {
+                this.errorMessage = `${(err as HttpErrorResponse).error}`;
             });
     }
 
+   
 }

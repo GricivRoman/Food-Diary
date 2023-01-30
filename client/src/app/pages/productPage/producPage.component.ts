@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ProductService } from "../../services/product.service";
+import { LibraryService } from "../../services/library.service";
 import { Product } from "../../shared/Product";
 
 @Component({
@@ -10,15 +10,15 @@ import { Product } from "../../shared/Product";
 
 export class ProductPage implements OnInit{
 
-    constructor(public productService: ProductService) {
+    constructor(public libraryService: LibraryService) {
 
     }
 
     ngOnInit(): void {
-        this.productService.loadProducts()
+        this.libraryService.loadProducts()
             .subscribe();
     }
 
-    prod = this.productService.products;
+    prod = this.libraryService.products;
     
 }

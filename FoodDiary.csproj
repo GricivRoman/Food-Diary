@@ -37,6 +37,7 @@
 
   <ItemGroup>
     <Folder Include="client\src\app\pages\diaryPage\" />
+    <Folder Include="client\src\app\pages\dishPage\addCompositionItem\" />
     <Folder Include="wwwroot\img\" />
   </ItemGroup>
 

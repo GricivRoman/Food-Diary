@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from "@angular/router";
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
@@ -12,8 +13,12 @@ import { FormsModule } from '@angular/forms';
 import { Login } from './services/login.servise';
 import { DiaryPage } from './pages/diaryPage/diaryPage.component';
 import { ProductPage } from './pages/productPage/producPage.component';
-import { ProductService } from './services/product.service';
+import { LibraryService } from './services/library.service';
 import { CreateProduct } from './pages/productPage/createProduct.component';
+import { DishPage } from './pages/dishPage/dishPage.component';
+import { CreateDish } from './pages/dishPage/createDish.component';
+import { AddCompositionItem } from './pages/dishPage/addCompositionItem/addCompositionItem.component';
+
 
 
 
@@ -24,7 +29,11 @@ import { CreateProduct } from './pages/productPage/createProduct.component';
         LoginPage,
         DiaryPage,
         ProductPage,
-        CreateProduct
+        CreateProduct,
+        DishPage,
+        CreateDish,
+        AddCompositionItem
+        
         
   ],
   imports: [
@@ -37,7 +46,8 @@ import { CreateProduct } from './pages/productPage/createProduct.component';
       { provide: LocationStrategy, useClass: HashLocationStrategy },
       Login,
       AuthActivator,
-      ProductService
+      LibraryService
+      
     ],
     bootstrap: [AppComponent]
 })

@@ -4,8 +4,8 @@ namespace FoodDiary.ViewModels
 {
     public class CompositionItemViewModel
     {
-        public ProductViewModel Product { get; set; }
-
+        public Product Product { get; set; }
+        
         public double ProductWeightG { get; set; }
     }
 }

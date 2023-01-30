@@ -35,29 +35,8 @@ namespace FoodDiary.Controllers
             }
             else
             {
-                
-                var composition = new List<CompositionItemViewModel>();
 
-                foreach (var item in model.ResourseSpecification.Composition)
-                {
-                    var product = mapper.Map<ProductViewModel>(repository.FindProductByName(item.Product.ProductName));
-                    if (product == null)
-                    {
-                        return BadRequest("Имя одного или нескольких продуктов введены некорректно");
-                    }
-                    else
-                    {
-                        composition.Add(new CompositionItemViewModel()
-                        {
-                            Product = product,
-                            ProductWeightG = item.ProductWeightG
-                        });
-                    }
-                }
-
-                model.ResourseSpecification.Composition = composition;
-
-                var inputNutritionValue = (from i in composition
+                var inputNutritionValue = (from i in model.ResourseSpecification.Composition
                                            select new
                                            {
                                                Calories = (double)(i.Product.Calories * i.ProductWeightG / 100),
@@ -77,8 +56,7 @@ namespace FoodDiary.Controllers
 
                 model.ResourseSpecification.DishValue = dishValue;
 
-                //Далее на страницах через формы будут формироваться сразу уже готовые объекты, можно будет просто маппить. Хотя с dishValue не уверен
-
+                
                 var dish = mapper.Map<Dish>(model);
 
                 repository.AddEntity(dish);

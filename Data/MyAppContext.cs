@@ -30,6 +30,8 @@ namespace FoodDiary.Data
                 b.Navigation("ResourseSpecification");
             });
 
+
+
             modelBuilder.Entity("FoodDiary.Data.Entities.User", b =>
             {
                 b.HasOne("FoodDiary.Data.Entities.UserMenu", "UserMenu")

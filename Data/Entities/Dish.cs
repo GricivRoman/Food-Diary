@@ -9,7 +9,7 @@
         public int? UserMenuId { get; set; }
 
         public ResourseSpecification ResourseSpecification { get; set; }
-        public int ResourseSpecificationId { get; set;}       
+        public int ResourseSpecificationId { get; set; }
 
 
     }

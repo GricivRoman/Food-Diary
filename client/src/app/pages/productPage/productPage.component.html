@@ -27,7 +27,7 @@
     </div>
 </div>-->
 
-<div class="row">
+<div class="row align-items-center">
     <div class="col-md-8">
         <div class="row">
             <div class="col-md-4">
@@ -45,24 +45,27 @@
             <div class="col-md-2">
                 <h4>Углеводы</h4>
             </div>
-            <hr />
         </div>
-        <div id="productTable" class="row" *ngFor="let p of productService.products">
-            <div class="col-md-4">
-                <p>{{p.productName}}</p>
+        <hr />
+        <div *ngFor="let p of libraryService.products">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <p>{{p.productName}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p>{{p.calories}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p>{{p.protein}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p>{{p.fat}}</p>
+                </div>
+                <div class="col-md-2">
+                    <p>{{p.carbohydrate}}</p>
+                </div>
             </div>
-            <div class="col-md-2">
-                <p>{{p.calories}}</p>
-            </div>
-            <div class="col-md-2">
-                <p>{{p.protein}}</p>
-            </div>
-            <div class="col-md-2">
-                <p>{{p.fat}}</p>
-            </div>
-            <div class="col-md-2">
-                <p>{{p.carbohydrate}}</p>
-            </div>
+
             <hr />
         </div>
     </div>
