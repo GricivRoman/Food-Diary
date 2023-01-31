@@ -74,6 +74,7 @@ namespace FoodDiary.Controllers
                         
             model.ResourseSpecification.DishValue = dishValueCalculator.CalculateDishValue(model.ResourseSpecification);
 
+
             dishToUpdate = mapper.Map<Dish>(model);
 
 

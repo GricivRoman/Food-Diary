@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FoodDiary.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialDb : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -26,6 +26,39 @@ namespace FoodDiary.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DailyRate",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TargetId = table.Column<int>(type: "int", nullable: false),
+                    CaloriesRate = table.Column<double>(type: "float", nullable: false),
+                    CarbohydrateRate = table.Column<double>(type: "float", nullable: false),
+                    FatRate = table.Column<double>(type: "float", nullable: false),
+                    ProteinRate = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DailyRate", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DishValue",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Calories = table.Column<double>(type: "float", nullable: false),
+                    Carbohydrate = table.Column<double>(type: "float", nullable: false),
+                    Fat = table.Column<double>(type: "float", nullable: false),
+                    Protein = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DishValue", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Product",
                 columns: table => new
                 {
@@ -40,20 +73,6 @@ namespace FoodDiary.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Product", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ResourseSpecification",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DishId = table.Column<int>(type: "int", nullable: false),
-                    OutputDishWeightG = table.Column<double>(type: "float", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ResourseSpecification", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,6 +104,62 @@ namespace FoodDiary.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ResourseSpecification",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DishId = table.Column<int>(type: "int", nullable: false),
+                    OutputDishWeightG = table.Column<double>(type: "float", nullable: false),
+                    DishValueId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ResourseSpecification", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ResourseSpecification_DishValue_DishValueId",
+                        column: x => x.DishValueId,
+                        principalTable: "DishValue",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserMenuId = table.Column<int>(type: "int", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_UserMenu_UserMenuId",
+                        column: x => x.UserMenuId,
+                        principalTable: "UserMenu",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -133,88 +208,6 @@ namespace FoodDiary.Migrations
                         name: "FK_Dish_ResourseSpecification_ResourseSpecificationId",
                         column: x => x.ResourseSpecificationId,
                         principalTable: "ResourseSpecification",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DishValue",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ResourseSpecificationId = table.Column<int>(type: "int", nullable: false),
-                    Calories = table.Column<double>(type: "float", nullable: false),
-                    Carbohydrate = table.Column<double>(type: "float", nullable: false),
-                    Fat = table.Column<double>(type: "float", nullable: false),
-                    Protein = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DishValue", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DishValue_ResourseSpecification_ResourseSpecificationId",
-                        column: x => x.ResourseSpecificationId,
-                        principalTable: "ResourseSpecification",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUsers",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Age = table.Column<int>(type: "int", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserMenuId = table.Column<int>(type: "int", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetUsers_UserMenu_UserMenuId",
-                        column: x => x.UserMenuId,
-                        principalTable: "UserMenu",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DishUserMenu",
-                columns: table => new
-                {
-                    DishesId = table.Column<int>(type: "int", nullable: false),
-                    UserMenuId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DishUserMenu", x => new { x.DishesId, x.UserMenuId });
-                    table.ForeignKey(
-                        name: "FK_DishUserMenu_Dish_DishesId",
-                        column: x => x.DishesId,
-                        principalTable: "Dish",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DishUserMenu_UserMenu_UserMenuId",
-                        column: x => x.UserMenuId,
-                        principalTable: "UserMenu",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -334,7 +327,8 @@ namespace FoodDiary.Migrations
                     Relevanse = table.Column<int>(type: "int", nullable: false),
                     DateStart = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateFinish = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TargetBodyWeight = table.Column<double>(type: "float", nullable: false)
+                    TargetBodyWeight = table.Column<double>(type: "float", nullable: false),
+                    DailyRateId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -343,6 +337,12 @@ namespace FoodDiary.Migrations
                         name: "FK_Target_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Target_DailyRate_DailyRateId",
+                        column: x => x.DailyRateId,
+                        principalTable: "DailyRate",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -364,6 +364,30 @@ namespace FoodDiary.Migrations
                         name: "FK_WeightCondition_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DishUserMenu",
+                columns: table => new
+                {
+                    DishesId = table.Column<int>(type: "int", nullable: false),
+                    UserMenuId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DishUserMenu", x => new { x.DishesId, x.UserMenuId });
+                    table.ForeignKey(
+                        name: "FK_DishUserMenu_Dish_DishesId",
+                        column: x => x.DishesId,
+                        principalTable: "Dish",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DishUserMenu_UserMenu_UserMenuId",
+                        column: x => x.UserMenuId,
+                        principalTable: "UserMenu",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -391,29 +415,6 @@ namespace FoodDiary.Migrations
                         name: "FK_MealItem_Meal_MealId",
                         column: x => x.MealId,
                         principalTable: "Meal",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DailyRate",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TargetId = table.Column<int>(type: "int", nullable: false),
-                    CaloriesRate = table.Column<double>(type: "float", nullable: false),
-                    CarbohydrateRate = table.Column<double>(type: "float", nullable: false),
-                    FatRate = table.Column<double>(type: "float", nullable: false),
-                    ProteinRate = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DailyRate", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DailyRate_Target_TargetId",
-                        column: x => x.TargetId,
-                        principalTable: "Target",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -474,12 +475,6 @@ namespace FoodDiary.Migrations
                 column: "ResourseSpecificationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DailyRate_TargetId",
-                table: "DailyRate",
-                column: "TargetId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Dish_ResourseSpecificationId",
                 table: "Dish",
                 column: "ResourseSpecificationId",
@@ -489,12 +484,6 @@ namespace FoodDiary.Migrations
                 name: "IX_DishUserMenu_UserMenuId",
                 table: "DishUserMenu",
                 column: "UserMenuId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DishValue_ResourseSpecificationId",
-                table: "DishValue",
-                column: "ResourseSpecificationId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Meal_UserId",
@@ -510,6 +499,18 @@ namespace FoodDiary.Migrations
                 name: "IX_MealItem_MealId",
                 table: "MealItem",
                 column: "MealId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ResourseSpecification_DishValueId",
+                table: "ResourseSpecification",
+                column: "DishValueId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Target_DailyRateId",
+                table: "Target",
+                column: "DailyRateId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Target_UserId",
@@ -544,16 +545,13 @@ namespace FoodDiary.Migrations
                 name: "CompositionItem");
 
             migrationBuilder.DropTable(
-                name: "DailyRate");
-
-            migrationBuilder.DropTable(
                 name: "DishUserMenu");
 
             migrationBuilder.DropTable(
-                name: "DishValue");
+                name: "MealItem");
 
             migrationBuilder.DropTable(
-                name: "MealItem");
+                name: "Target");
 
             migrationBuilder.DropTable(
                 name: "WeightCondition");
@@ -565,19 +563,22 @@ namespace FoodDiary.Migrations
                 name: "Product");
 
             migrationBuilder.DropTable(
-                name: "Target");
-
-            migrationBuilder.DropTable(
                 name: "Dish");
 
             migrationBuilder.DropTable(
                 name: "Meal");
 
             migrationBuilder.DropTable(
+                name: "DailyRate");
+
+            migrationBuilder.DropTable(
                 name: "ResourseSpecification");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "DishValue");
 
             migrationBuilder.DropTable(
                 name: "UserMenu");

@@ -18,6 +18,7 @@ namespace FoodDiary.Services
 
             DishValueViewModel dishValue = new DishValueViewModel()
             {
+                Id = resourseSpecification.DishValue.Id,
                 Calories = Math.Round((from i in inputNutritionValue select i.Calories).Sum() / (double)resourseSpecification.OutputDishWeightG * 100, 2),
                 Protein = Math.Round((from i in inputNutritionValue select i.Protein).Sum() / (double)resourseSpecification.OutputDishWeightG * 100, 2),
                 Fat = Math.Round((from i in inputNutritionValue select i.Fat).Sum() / (double)resourseSpecification.OutputDishWeightG * 100, 2),

@@ -9,19 +9,19 @@ namespace FoodDiary.Data
         public AppMappingProfile() 
         {
             CreateMap<Product, ProductViewModel>()
-                .ReverseMap();           
-            
-            CreateMap<Dish, DishViewModel>() 
-                .ReverseMap()
-                .ForMember(m => m.ResourseSpecificationId, opt => opt.Ignore());
+                .ReverseMap();
+
+            CreateMap<Dish, DishViewModel>()
+                .ReverseMap();
+
 
             CreateMap<ResourseSpecification, ResourseSpecificationViewModel>()
                 .ReverseMap();
                 
+                
 
             CreateMap<CompositionItem, CompositionItemViewModel>()
                 .ReverseMap()
-                //.ForMember(m => m.ProductId, opt => opt.Ignore())
                 .ForMember(m => m.Product, opt => opt.Ignore());
 
             CreateMap<DishValue, DishValueViewModel>()

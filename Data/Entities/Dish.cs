@@ -1,4 +1,6 @@
-﻿namespace FoodDiary.Data.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FoodDiary.Data.Entities
 {
     public class Dish
     {
@@ -9,6 +11,8 @@
         public int? UserMenuId { get; set; }
 
         public ResourseSpecification ResourseSpecification { get; set; }
+        
+        [ForeignKey(nameof(ResourseSpecification))]
         public int ResourseSpecificationId { get; set; }
 
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodDiary.Data.Entities
 {
@@ -16,6 +17,8 @@ namespace FoodDiary.Data.Entities
         public ICollection<Meal>? Meals { get; set; } 
 
         public UserMenu UserMenu { get; set; }
+        
+        [ForeignKey(nameof(UserMenu))]
         public int UserMenuId { get; set; }
     }
 }

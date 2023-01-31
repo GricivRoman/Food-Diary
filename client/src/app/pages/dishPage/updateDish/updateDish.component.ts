@@ -36,6 +36,8 @@ export class UpdateDish {
     }
 
     onUpdate() {
+        this.updateComposition();
+
         this.libraryService.updateDish()
             .subscribe(() => {
                 this.router.navigate(["dish"]);

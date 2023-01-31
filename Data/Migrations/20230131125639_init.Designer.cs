@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodDiary.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    [Migration("20230126092359_InitialDb")]
-    partial class InitialDb
+    [Migration("20230131125639_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,9 +91,6 @@ namespace FoodDiary.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TargetId")
-                        .IsUnique();
-
                     b.ToTable("DailyRate");
                 });
 
@@ -143,13 +140,7 @@ namespace FoodDiary.Migrations
                     b.Property<double>("Protein")
                         .HasColumnType("float");
 
-                    b.Property<int>("ResourseSpecificationId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ResourseSpecificationId")
-                        .IsUnique();
 
                     b.ToTable("DishValue");
                 });
@@ -242,10 +233,16 @@ namespace FoodDiary.Migrations
                     b.Property<int>("DishId")
                         .HasColumnType("int");
 
-                    b.Property<double?>("OutputDishWeightG")
+                    b.Property<int>("DishValueId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("OutputDishWeightG")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DishValueId")
+                        .IsUnique();
 
                     b.ToTable("ResourseSpecification");
                 });
@@ -257,6 +254,9 @@ namespace FoodDiary.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DailyRateId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateFinish")
                         .HasColumnType("datetime2");
@@ -275,6 +275,9 @@ namespace FoodDiary.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DailyRateId")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -568,33 +571,11 @@ namespace FoodDiary.Migrations
                     b.Navigation("ResourseSpecification");
                 });
 
-            modelBuilder.Entity("FoodDiary.Data.Entities.DailyRate", b =>
-                {
-                    b.HasOne("FoodDiary.Data.Entities.Target", "Target")
-                        .WithOne("DailyRate")
-                        .HasForeignKey("FoodDiary.Data.Entities.DailyRate", "TargetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Target");
-                });
-
             modelBuilder.Entity("FoodDiary.Data.Entities.Dish", b =>
                 {
                     b.HasOne("FoodDiary.Data.Entities.ResourseSpecification", "ResourseSpecification")
                         .WithOne("Dish")
                         .HasForeignKey("FoodDiary.Data.Entities.Dish", "ResourseSpecificationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ResourseSpecification");
-                });
-
-            modelBuilder.Entity("FoodDiary.Data.Entities.DishValue", b =>
-                {
-                    b.HasOne("FoodDiary.Data.Entities.ResourseSpecification", "ResourseSpecification")
-                        .WithOne("DishValue")
-                        .HasForeignKey("FoodDiary.Data.Entities.DishValue", "ResourseSpecificationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -631,13 +612,32 @@ namespace FoodDiary.Migrations
                     b.Navigation("Meal");
                 });
 
+            modelBuilder.Entity("FoodDiary.Data.Entities.ResourseSpecification", b =>
+                {
+                    b.HasOne("FoodDiary.Data.Entities.DishValue", "DishValue")
+                        .WithOne("ResourseSpecification")
+                        .HasForeignKey("FoodDiary.Data.Entities.ResourseSpecification", "DishValueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DishValue");
+                });
+
             modelBuilder.Entity("FoodDiary.Data.Entities.Target", b =>
                 {
+                    b.HasOne("FoodDiary.Data.Entities.DailyRate", "DailyRate")
+                        .WithOne("Target")
+                        .HasForeignKey("FoodDiary.Data.Entities.Target", "DailyRateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FoodDiary.Data.Entities.User", "User")
                         .WithMany("Targets")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("DailyRate");
 
                     b.Navigation("User");
                 });
@@ -715,6 +715,18 @@ namespace FoodDiary.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("FoodDiary.Data.Entities.DailyRate", b =>
+                {
+                    b.Navigation("Target")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FoodDiary.Data.Entities.DishValue", b =>
+                {
+                    b.Navigation("ResourseSpecification")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("FoodDiary.Data.Entities.Meal", b =>
                 {
                     b.Navigation("MealItems");
@@ -725,14 +737,6 @@ namespace FoodDiary.Migrations
                     b.Navigation("Composition");
 
                     b.Navigation("Dish")
-                        .IsRequired();
-
-                    b.Navigation("DishValue");
-                });
-
-            modelBuilder.Entity("FoodDiary.Data.Entities.Target", b =>
-                {
-                    b.Navigation("DailyRate")
                         .IsRequired();
                 });
 

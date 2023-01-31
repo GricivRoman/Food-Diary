@@ -15,33 +15,33 @@ namespace FoodDiary.Data
 
 
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity("FoodDiary.Data.Entities.Dish", b =>
-            {
-                b.HasOne("FoodDiary.Data.Entities.ResourseSpecification", "ResourseSpecification")
-                    .WithOne("Dish")
-                    .HasForeignKey("FoodDiary.Data.Entities.Dish", "ResourseSpecificationId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+            //modelBuilder.Entity("FoodDiary.Data.Entities.Dish", b =>
+            //{
+            //    b.HasOne("FoodDiary.Data.Entities.ResourseSpecification", "ResourseSpecification")
+            //        .WithOne("Dish")
+            //        .HasForeignKey("FoodDiary.Data.Entities.Dish", "ResourseSpecificationId")
+            //        .OnDelete(DeleteBehavior.Cascade)
+            //        .IsRequired();
 
-                b.Navigation("ResourseSpecification");
-            });
+            //    b.Navigation("ResourseSpecification");
+            //});
 
 
 
-            modelBuilder.Entity("FoodDiary.Data.Entities.User", b =>
-            {
-                b.HasOne("FoodDiary.Data.Entities.UserMenu", "UserMenu")
-                    .WithOne("User")
-                    .HasForeignKey("FoodDiary.Data.Entities.User", "UserMenuId")
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .IsRequired();
+            //modelBuilder.Entity("FoodDiary.Data.Entities.User", b =>
+            //{
+            //    b.HasOne("FoodDiary.Data.Entities.UserMenu", "UserMenu")
+            //        .WithOne("User")
+            //        .HasForeignKey("FoodDiary.Data.Entities.User", "UserMenuId")
+            //        .OnDelete(DeleteBehavior.Cascade)
+            //        .IsRequired();
 
-                b.Navigation("UserMenu");
-            });
+            //    b.Navigation("UserMenu");
+            //});
 
             //modelBuilder.Entity("FoodDiary.Data.Entities.ResourseSpecification", b =>
             //{
@@ -56,7 +56,7 @@ namespace FoodDiary.Data
             //});
 
 
-        }
+        //}
 
         public DbSet<User> User { get; set; }
         
