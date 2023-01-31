@@ -1,4 +1,6 @@
-﻿namespace FoodDiary.Data.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FoodDiary.Data.Entities
 {
     public class ResourseSpecification
     {
@@ -11,6 +13,11 @@
 
         public double? OutputDishWeightG { get; set; }
 
-        public DishValue? DishValue { get; set; }        
+        public DishValue? DishValue { get; set; }
+
+        //public int? DishValueId { get; set; }
+
+
+
     }
 }

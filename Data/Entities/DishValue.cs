@@ -1,4 +1,6 @@
-﻿namespace FoodDiary.Data.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FoodDiary.Data.Entities
 {
     public class DishValue
     {

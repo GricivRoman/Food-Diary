@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { LibraryService } from "../../services/library.service";
-import { Product } from "../../shared/Product";
+
 
 @Component({
     selector: "product-list",

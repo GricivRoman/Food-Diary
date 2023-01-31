@@ -1,11 +1,8 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { LibraryService } from "../../services/library.service";
-import { CompositionItem } from "../../shared/CompositionItem";
-
-import { Dish } from "../../shared/Dish";
-import { Product } from "../../shared/Product";
+import { LibraryService } from "../../../services/library.service";
+import { CompositionItem } from "../../../shared/CompositionItem";
 
 @Component({
     selector: "create-dish",
@@ -31,7 +28,6 @@ export class CreateDish{
 
         this.libraryService.dish.dishName = this.dishName;
         this.libraryService.dish.resourseSpecification.outputDishWeightG = this.outputDishWeightG;
-        
     }
 
     onCreate() {
@@ -46,5 +42,5 @@ export class CreateDish{
     deleteComponent(index: number) {
         this.libraryService.dish.resourseSpecification.composition.splice(index,1)
     }
-    
+
 }

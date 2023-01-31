@@ -5,7 +5,7 @@ using FoodDiary.Data;
 using FoodDiary.Data.Entities;
 using AutoMapper;
 using System.Text.RegularExpressions;
-
+using FoodDiary.Services;
 
 namespace FoodDiary.Controllers
 {
@@ -17,54 +17,17 @@ namespace FoodDiary.Controllers
         private readonly IMyAppRepository repository;
         private readonly ILogger<DishController> logger;
         private readonly IMapper mapper;
+        private readonly IDishValueCalculator dishValueCalculator;
 
-        public DishController(IMyAppRepository repository, ILogger<DishController> logger, IMapper mapper)
+        public DishController(IMyAppRepository repository, 
+            ILogger<DishController> logger,
+            IMapper mapper,
+            IDishValueCalculator dishValueCalculator)
         {
             this.repository = repository;
             this.logger = logger;
             this.mapper = mapper;
-        }
-
-
-        [HttpPost]
-        public IActionResult Post([FromBody]DishViewModel model)
-        {
-            if (repository.FindDishByName(model.DishName) != null)
-            { 
-                return BadRequest("Блюдо с таким именем уже существует");
-            }
-            else
-            {
-
-                var inputNutritionValue = (from i in model.ResourseSpecification.Composition
-                                           select new
-                                           {
-                                               Calories = (double)(i.Product.Calories * i.ProductWeightG / 100),
-                                               Protein = (double)(i.Product.Protein * i.ProductWeightG / 100),
-                                               Fat = (double)(i.Product.Fat * i.ProductWeightG / 100),
-                                               Carbohydrate = (double)(i.Product.Carbohydrate * i.ProductWeightG / 100)
-                                           });
-
-
-                DishValueViewModel dishValue = new DishValueViewModel()
-                {
-                    Calories = Math.Round((from i in inputNutritionValue select i.Calories).Sum() / (double)model.ResourseSpecification.OutputDishWeightG * 100, 2),
-                    Protein = Math.Round((from i in inputNutritionValue select i.Protein).Sum() / (double)model.ResourseSpecification.OutputDishWeightG * 100, 2),
-                    Fat = Math.Round((from i in inputNutritionValue select i.Fat).Sum() / (double)model.ResourseSpecification.OutputDishWeightG * 100, 2),
-                    Carbohydrate = Math.Round((from i in inputNutritionValue select i.Carbohydrate).Sum() / (double)model.ResourseSpecification.OutputDishWeightG * 100, 2),
-                };
-
-                model.ResourseSpecification.DishValue = dishValue;
-
-                
-                var dish = mapper.Map<Dish>(model);
-
-                repository.AddEntity(dish);
-                repository.SaveAll();
-
-                return Created("", mapper.Map<DishViewModel>(dish));
-                
-            }
+            this.dishValueCalculator = dishValueCalculator;
         }
 
         [HttpGet]
@@ -81,7 +44,45 @@ namespace FoodDiary.Controllers
 
                 return BadRequest();
             }
-            
+
         }
+
+        [HttpPost]
+        public IActionResult Post([FromBody]DishViewModel model)
+        {
+            if (repository.FindDishByName(model.DishName) != null)
+            { 
+                return BadRequest("Блюдо с таким именем уже существует");
+            }
+            else
+            {
+                model.ResourseSpecification.DishValue = dishValueCalculator.CalculateDishValue(model.ResourseSpecification);
+                var dish = mapper.Map<Dish>(model);
+
+                repository.AddEntity(dish);
+                repository.SaveAll();
+
+                return Created("", mapper.Map<DishViewModel>(dish));
+                
+            }
+        }
+
+        [HttpPut]
+        public IActionResult Put([FromBody]DishViewModel model)
+        {
+            Dish dishToUpdate = repository.FindDishById(model.Id);
+                        
+            model.ResourseSpecification.DishValue = dishValueCalculator.CalculateDishValue(model.ResourseSpecification);
+
+            dishToUpdate = mapper.Map<Dish>(model);
+
+
+            repository.UpdateEntity(dishToUpdate);
+            repository.SaveAll();
+
+            return Created("", mapper.Map<DishViewModel>(dishToUpdate));
+        }
+
+       
     }
 }

@@ -15,6 +15,8 @@ export class LibraryService {
        
     products: Product[] = [];
     dishes: Dish[] = [];
+    dish: Dish = new Dish();
+    dishToUpdate: Dish = new Dish();
 
    
 
@@ -35,13 +37,8 @@ export class LibraryService {
             .pipe(map(data => {
                 this.dishes = data;
                 return;
-            }));        
+            }));
     }
-
-
-    dish: Dish = new Dish();
-
-
 
     addCompositionItem(product: Product) {
 
@@ -55,15 +52,30 @@ export class LibraryService {
         }
 
     }
-        
-
-   
-
     createDish() {
         return this.http.post("/api/dish", this.dish)
             .pipe(map(() => {
                 this.dish = new Dish();
             }));
     }
+    updateAddCompositionItem(product: Product) {
+
+        if (this.dishToUpdate.resourseSpecification.composition.find(c => c.product.productName == product.productName) != null) {
+
+        } else {
+            let compositionItem = new CompositionItem();
+            compositionItem.product = product;
+
+            this.dishToUpdate.resourseSpecification.composition.push(compositionItem);
+        }
+    }
+    updateDish() {
+        return this.http.put("/api/dish", this.dishToUpdate)
+            .pipe(map(() => {
+                this.dishToUpdate = new Dish();
+            }));
+    }
+
+   
     
 }

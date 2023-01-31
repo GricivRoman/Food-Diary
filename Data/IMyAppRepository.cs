@@ -5,13 +5,16 @@ namespace FoodDiary.Data
     public interface IMyAppRepository
     {
         public bool SaveAll();
-        public Product FindProductByName(string ProductName);
+        public Product FindProductByName(string productName);
 
-        void AddEntity(object model);
-        
+        public void AddEntity(object model);
+        public void UpdateEntity(object model);
+
+
         public IEnumerable<Product> GetAllProducts();
 
-        public Dish FindDishByName(string DishName);
+        public Dish FindDishByName(string dishName);
+        public Dish FindDishById(int dishId);
 
         public IEnumerable<Dish> GetAllDishes();
     }

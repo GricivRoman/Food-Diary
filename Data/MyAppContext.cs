@@ -43,6 +43,18 @@ namespace FoodDiary.Data
                 b.Navigation("UserMenu");
             });
 
+            //modelBuilder.Entity("FoodDiary.Data.Entities.ResourseSpecification", b =>
+            //{
+            //    b.HasOne("FoodDiary.Data.Entities.DishValue", "DishValue")
+            //        .WithOne("ResourseSpecification")
+            //        .HasForeignKey("FoodDiary.Data.Entities.ResourseSpecification", "DishValueId")
+            //        .OnDelete(DeleteBehavior.Cascade)
+            //        .IsRequired();
+                    
+
+            //    b.Navigation("DishValue");
+            //});
+
 
         }
 
@@ -51,5 +63,6 @@ namespace FoodDiary.Data
         public DbSet<Product> Product { get; set; }
 
         public DbSet<Dish> Dish { get; set; }
+        public DbSet<DishValue> DishValue { get; set; }
     }
 }

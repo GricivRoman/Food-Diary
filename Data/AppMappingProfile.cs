@@ -12,10 +12,12 @@ namespace FoodDiary.Data
                 .ReverseMap();           
             
             CreateMap<Dish, DishViewModel>() 
-                .ReverseMap();
-            
+                .ReverseMap()
+                .ForMember(m => m.ResourseSpecificationId, opt => opt.Ignore());
+
             CreateMap<ResourseSpecification, ResourseSpecificationViewModel>()
                 .ReverseMap();
+                
 
             CreateMap<CompositionItem, CompositionItemViewModel>()
                 .ReverseMap()

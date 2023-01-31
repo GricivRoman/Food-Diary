@@ -52,7 +52,7 @@ namespace FoodDiary
 
             services.AddScoped<IMyAppRepository, MyAppRepository>();
 
-
+            services.AddTransient<IDishValueCalculator, DishValueCalculator>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation().AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddRazorPages();

@@ -19,8 +19,8 @@
             </div>
         </div>
         <hr />
-        <div *ngFor="let p of libraryService.dishes">
-            <div class="row align-items-center">
+        <div *ngFor="let p of libraryService.dishes; let index = index">
+            <div id="dishConteiner" class="row align-items-center" (click)="getDishToUpdate(index)" routerLink="update">
                 <div class="col-md-4">
                     <p>{{p.dishName}}</p>
                 </div>

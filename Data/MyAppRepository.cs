@@ -16,9 +16,13 @@ namespace FoodDiary.Data
 
         public void AddEntity(object model)
         {
-            context.Add(model);
+            context.Add(model);            
         }
-               
+        public void UpdateEntity(object model)
+        {
+            context.Update(model);
+        }
+
         public bool SaveAll()
         {
             return context.SaveChanges() > 0;
@@ -68,6 +72,7 @@ namespace FoodDiary.Data
 
         public IEnumerable<Dish> GetAllDishes()
         {
+
             return context.Dish
                 .Include(r => r.ResourseSpecification)
                 .ThenInclude(c => c.Composition)
@@ -75,6 +80,12 @@ namespace FoodDiary.Data
                 .Include(r => r.ResourseSpecification)
                 .ThenInclude(v => v.DishValue)
                 .ToList();
+                
+        }
+
+        public Dish FindDishById(int dishId)
+        {
+            return context.Dish.Where(d => d.Id == dishId).AsNoTracking().FirstOrDefault();
         }
     }
 }

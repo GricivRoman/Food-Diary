@@ -3,6 +3,7 @@
 <div >
     <div class="row align-items-center" *ngFor="let p of libraryService.products">
         <div class="col-md-1 align-content-center">
+            
             <a (click)="libraryService.addCompositionItem(p)" routerLink="/dish/create" class="btn btn-sm btn-info"><i class="fas fa-plus"></i></a>
         </div>
         <div class="col-md-4">

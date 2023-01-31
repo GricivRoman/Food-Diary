@@ -1,47 +1,24 @@
-
-
-<!--<form class="card card-body bg-light">
-    <div class="mb-3 col-md-4">
-        <label>Название блюда</label>
-        <input class="form-control" type="text" />
-    </div>
-    <div>
-        <h3>Состав блюда</h3>
-        <div>
-            <div class="row">
-                <div class="col-md-4">
-                    <h4>Ингридиент</h4>
-                </div>
-                <div class="col-md-2">
-                    <h4>Вес, грамм</h4>
-                </div>
-            </div>
-            <div class="row" *ngFor="let p of libraryService.dish.resourseSpecification.composition">
-                <div class="col-md-4">
-                    <h4>{{p | json}}</h4>
-                </div>
-                <div class="col-md-2">                    
-                    <input value="{{p.productWeightG}}"/>
-                </div>
-            </div>
-            <a class="btn btn-info" routerLink="additem">Добавить ингридиент</a>
-        </div>
-    </div>
-</form>-->
-
+﻿
 <div class="row">
     <div class="col-md-7">
-        <h3 class="text-md-center">Добавить блюдо</h3>
+        <h3 class="text-md-center">Карточка блюда</h3>
         <form class="card card-body bg-light">
             <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
-            <h5>Название блюда</h5>
-            <div class="mb-3 col-md-6">
-                <input class="form-control" name="dishName" value="{{dishName}}" [(ngModel)]="dishName" />
-            </div>
-            <h5>Вес блюда на выходе</h5>
-            <div class="mb-3 col-md-6">
+            <div class="row">
+                <div class="col-md-9">
+                    <h5>Название блюда</h5>
+                    <div class="mb-3 col-md-6">
+                        <input class="form-control" name="dishName" value="{{dishName}}" [(ngModel)]="dishName" />
+                    </div>
+                    <h5>Вес блюда на выходе</h5>
+                    <div class="mb-3 col-md-6">
 
-                <input class="form-control" type="number" name="outputDishWeightG" value="{{outputDishWeightG}}" [(ngModel)]="outputDishWeightG" />
+                        <input class="form-control" type="number" name="outputDishWeightG" value="{{outputDishWeightG}}" [(ngModel)]="outputDishWeightG" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-outline-secondary" routerLink="/dish">Назад</a>
+                </div>
             </div>
             <div>
                 <h3 class="text-center">Состав блюда</h3>
@@ -77,7 +54,12 @@
                     </div>
                 </div>
             </div>
-            <a class="btn btn-success col-md-6 mt-md-2" (click)="onCreate()">Добавить блюдо</a>
+            <div class="row">                
+                <div class="col-md-3 offset-9 mt-md-2">
+                    <a class="btn btn-success" (click)="onUpdate()">Сохранить</a>
+                </div>
+
+            </div>
         </form>
     </div>
 </div>
