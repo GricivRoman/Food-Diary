@@ -7,7 +7,7 @@ namespace FoodDiary.Data.Entities
         public int Id { get; set; }
         public User User { get; set; }        
         
-        public RelevanseType Relevanse { get; set; }
+        public bool relevance { get; set; }
         public DateTime DateStart { get; set; }
 
         public DateTime DateFinish { get; set; }

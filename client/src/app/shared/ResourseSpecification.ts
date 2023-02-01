@@ -6,6 +6,6 @@ export class ResourseSpecification {
     id: number = 0;
     composition: CompositionItem[] = [];
     outputDishWeightG: number = 0;
-    dishValue: DishValue = new DishValue;
+    dishValue: DishValue = new DishValue();
     
 }

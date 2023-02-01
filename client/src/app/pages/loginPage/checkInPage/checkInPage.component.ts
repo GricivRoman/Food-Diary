@@ -25,23 +25,25 @@ export class CheckInPage {
     public errorMessage: string = "";
 
     onCheckIn() {
+
+        const loginCreds: LoginRequest = {
+            username: this.checkInCreds.username,
+            password: this.checkInCreds.password
+        }
         
         this.loginService.checkIn(this.checkInCreds)
             .subscribe(() => {
-
-                const loginCreds: LoginRequest = {
-                    username: this.checkInCreds.username,
-                    password: this.checkInCreds.password
-                }
-                
                 this.loginService.login(loginCreds)
                     .subscribe(() => {
-                        this.router.navigate([""])
+                        this.loginService.getUser(loginCreds)
+                            .subscribe(() => {
+                                this.router.navigate([""])
+                                })
                     });
-                                                
+
             }, error => {
                 console.log(error);
                 this.errorMessage = `${(error as HttpErrorResponse).error}`;
-            })
+            });
     }
 }

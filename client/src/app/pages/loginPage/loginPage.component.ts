@@ -16,17 +16,20 @@ export class LoginPage {
     public creds: LoginRequest = {
         username: "",
         password: ""
-    }
+    };
 
     public errorMessage: string = "";
 
     onLogin() {
         this.loginService.login(this.creds)
             .subscribe(() => {
-                this.router.navigate([""])                
+                this.loginService.getUser(this.creds)
+                    .subscribe(() => {
+                        this.router.navigate([""])
+                    })    
             }, error => {
                 console.log(error);
                 this.errorMessage = "Fail to login";
-            })
+            });
     }
 }

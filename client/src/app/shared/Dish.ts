@@ -4,7 +4,7 @@ export class Dish {
 
     id: number = 0;
     dishName: string = "";
-    resourseSpecification: ResourseSpecification = new ResourseSpecification;
+    resourseSpecification: ResourseSpecification = new ResourseSpecification();
 
 }
 
