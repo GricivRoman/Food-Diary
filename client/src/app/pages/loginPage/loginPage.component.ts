@@ -10,7 +10,7 @@ import { LoginRequest } from "../../shared/LoginResults";
 })
 
 export class LoginPage {
-    constructor(private diary: Login, private router: Router) {
+    constructor(private loginService: Login, private router: Router) {
 
     }
     public creds: LoginRequest = {
@@ -21,10 +21,9 @@ export class LoginPage {
     public errorMessage: string = "";
 
     onLogin() {
-        this.diary.login(this.creds)
+        this.loginService.login(this.creds)
             .subscribe(() => {
-                this.router.navigate([""])
-                //Succesfully logged in
+                this.router.navigate([""])                
             }, error => {
                 console.log(error);
                 this.errorMessage = "Fail to login";

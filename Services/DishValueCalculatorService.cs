@@ -2,7 +2,7 @@
 
 namespace FoodDiary.Services
 {
-    public class DishValueCalculator : IDishValueCalculator
+    public class DishValueCalculatorService : IDishValueCalculatorService
     {
         public DishValueViewModel CalculateDishValue(ResourseSpecificationViewModel resourseSpecification)
         {

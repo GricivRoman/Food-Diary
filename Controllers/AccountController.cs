@@ -1,4 +1,5 @@
 ﻿using FoodDiary.Data.Entities;
+using FoodDiary.Services;
 using FoodDiary.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,21 +10,44 @@ using System.Text;
 
 namespace FoodDiary.Controllers
 {
+        
     public class AccountController : Controller
     {
         private readonly ILogger<AccountController> _logger;
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _config;
+        private readonly IUserCreaterService userCreaterService;
 
-        public AccountController(ILogger<AccountController> logger, SignInManager<User> signInManager, UserManager<User> userManager
-            , IConfiguration config)
+        public AccountController(ILogger<AccountController> logger, 
+            SignInManager<User> signInManager, 
+            UserManager<User> userManager,
+            IConfiguration config, 
+            IUserCreaterService userCreaterService)
         {
             _logger = logger;
             _signInManager = signInManager;
             _userManager = userManager;
             _config = config;
+            this.userCreaterService = userCreaterService;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CheckIn([FromBody] UserViewModel model)
+        {
+            string createResult = await userCreaterService.CreateUserAsync(model);
+
+            if(createResult == "Successful")
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(createResult);
+            }
+           
+        }
+
 
         [HttpGet]
         public IActionResult Login()
@@ -71,7 +95,7 @@ namespace FoodDiary.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByEmailAsync(model.UserName);
+                var user = await _userManager.FindByNameAsync(model.UserName);
                 if (user!=null)
                 {
                     var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);

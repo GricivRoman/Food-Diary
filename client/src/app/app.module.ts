@@ -17,6 +17,7 @@ import { CreateDish } from './pages/dishPage/createDish/createDish.component';
 import { AddCompositionItem } from './pages/dishPage/createDish/addCompositionItem/addCompositionItem.component';
 import { UpdateDish } from './pages/dishPage/updateDish/updateDish.component';
 import { UpdateAddCompositionItem } from './pages/dishPage/updateDish/updateAddCompositionItem/updateAddCompositionItem';
+import { CheckInPage } from './pages/loginPage/checkInPage/checkInPage.component';
 
 
 
@@ -25,7 +26,6 @@ import { UpdateAddCompositionItem } from './pages/dishPage/updateDish/updateAddC
 @NgModule({
   declarations: [
         AppComponent,
-        LoginPage,
         DiaryPage,
         ProductPage,
         CreateProduct,
@@ -33,7 +33,10 @@ import { UpdateAddCompositionItem } from './pages/dishPage/updateDish/updateAddC
         CreateDish,
         AddCompositionItem,
         UpdateDish,
-        UpdateAddCompositionItem
+        UpdateAddCompositionItem,
+        LoginPage,
+        CheckInPage
+        
         
         
   ],

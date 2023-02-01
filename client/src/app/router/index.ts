@@ -10,6 +10,7 @@ import { AuthActivator } from "../services/authActivator.servese";
 import { AddCompositionItem } from "../pages/dishPage/createDish/addCompositionItem/addCompositionItem.component";
 import { UpdateDish } from "../pages/dishPage/updateDish/updateDish.component";
 import { UpdateAddCompositionItem } from "../pages/dishPage/updateDish/updateAddCompositionItem/updateAddCompositionItem";
+import { CheckInPage } from "../pages/loginPage/checkInPage/checkInPage.component";
 
 const routes = [
     { path: "", component: DiaryPage/*, canActivate: [AuthActivator] */}, 
@@ -21,6 +22,7 @@ const routes = [
     { path: "dish/update", component: UpdateDish },
     { path: "dish/update/additem", component: UpdateAddCompositionItem },
     { path: "login", component: LoginPage },
+    { path: "login/checkIn", component: CheckInPage },
     { path: "**", redirectTo: "/"}
 ];
 

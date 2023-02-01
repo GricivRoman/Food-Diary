@@ -23,11 +23,14 @@ namespace FoodDiary
         {
            
             services.AddDbContext<MyAppContext>(options => options.UseSqlServer(_config["ConnectionStrings:MyAppContextDb"]));
+            services.AddTransient<IUserCreaterService, UserCreaterService>();
 
             services.AddIdentity<User, IdentityRole>(cfg =>
             {
                 cfg.User.RequireUniqueEmail= true;
-               
+                cfg.Password.RequireDigit = false;
+                cfg.Password.RequireNonAlphanumeric = false;
+
             }).AddEntityFrameworkStores<MyAppContext>();
 
             services.AddAuthentication()
@@ -43,16 +46,17 @@ namespace FoodDiary
                 });
 
 
-            services.AddTransient<DbSeeder>();
+            
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 
             services.AddTransient<IMailService, NullMailService>();
 
+
             services.AddScoped<IMyAppRepository, MyAppRepository>();
 
-            services.AddTransient<IDishValueCalculator, DishValueCalculator>();
+            services.AddTransient<IDishValueCalculatorService, DishValueCalculatorService>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation().AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddRazorPages();

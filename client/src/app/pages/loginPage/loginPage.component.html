@@ -1,22 +1,37 @@
 <div class="row">
-    <div class="col-md-4 offset-4">
+    <div class="col-md-4 offset-1">
         <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
-        <form (submit) ="onLogin()">
-            <div class="mb-3">
-                <label>Username</label>
-                <input type="text" class="form-control" name="username" [(ngModel)]="creds.username" #username="ngModel" required/>
-                <div class="text-danger" *ngIf="username.touched && username.invalid && username.errors?.required">Required</div>
+        <div class="row">
+            <div class="col-md-7 p-0">
+                <h4>Вход в аккаунт</h4>
             </div>
-            <div class="mb-3">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password" [(ngModel)]="creds.password" #password="ngModel" required/>
-                <div class="text-danger" *ngIf="password.touched && password.invalid && password.errors?.required">Required</div>
+            <div class="col-md-4">
+                <a routerLink="checkIn" class="btn btn-outline-secondary">Регистрация</a>
             </div>
-            <div class="mb-3">
-                <input type="submit" class="btn btn-success" value="login" [disabled]="username.invalid || password.invalid"/>
-                <a routerLink="" class="btn btn-primary">Cancel</a>
+        </div>
+
+        <form>
+            <div class="row">
+                <label>Имя пользователя</label>
+                <input type="text" class="form-control" name="username" [(ngModel)]="creds.username" #username="ngModel" required />
+                <div class="text-danger" *ngIf="username.touched && username.invalid && username.errors?.required">Обязательное поле</div>
+            </div>
+            <div class="row mt-md-2">
+                <label>Пароль</label>
+                <input type="password" class="form-control" name="password" [(ngModel)]="creds.password" #password="ngModel" required />
+                <div class="text-danger" *ngIf="password.touched && password.invalid && password.errors?.required">Обязательное поле</div>
             </div>
         </form>
-        {{creds | json}}
+
+        <div class="row mt-2">
+
+            <div class="col-md-2 p-0">
+                <a class="btn btn-primary" routerLink="">Закрыть</a>
+            </div>
+            <div class="col-md-3 offset-md-7">
+                <input type="submit" (click)="onLogin()" class="btn btn-success" value="Войти" [disabled]="username.invalid || password.invalid" />
+            </div>
+        </div>
+
     </div>
 </div>

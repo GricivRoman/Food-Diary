@@ -1,6 +1,7 @@
 import { HttpClient} from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
+import { CheckInRequest } from "../shared/CheckInRequest";
 import { LoginRequest, LoginResults } from "../shared/LoginResults";
 
 @Injectable()
@@ -26,5 +27,10 @@ export class Login {
                 this.expiration = data.expiration;
             }));
     }
+
+    checkIn(checkInCreds: CheckInRequest) {
+        return this.http.post("/account/checkin", checkInCreds);
+    }
+
     
 }

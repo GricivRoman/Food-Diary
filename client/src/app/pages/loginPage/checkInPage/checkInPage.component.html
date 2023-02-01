@@ -1,0 +1,42 @@
+﻿<div class="row">
+    <div class="col-md-4 offset-1">
+        <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+        <div class="row">
+            <div class="col-md-7 p-0">
+                <h4>Регистрация</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <form>
+                <div class="row">
+                    <label>Имя пользователя</label>
+                    <input type="text" class="form-control" name="username" [(ngModel)]="checkInCreds.username" #username="ngModel" required />
+                    <div class="text-danger" *ngIf="username.touched && username.invalid && username.errors?.required">Обязательное поле</div>
+                </div>
+                <div class="row">
+                    <label>E-mail</label>
+                    <input type="email" class="form-control" name="email" [(ngModel)]="checkInCreds.email" #email="ngModel" required email />
+                    <div class="text-danger" *ngIf="email.touched && email.invalid && email.errors?.required">Обязательное поле</div>
+                    <div class="text-danger" *ngIf="email.touched && email.invalid && email.errors?.forbiddenName">Недопустимый формат</div>
+                </div>
+                <div class="row mt-md-2">
+                    <label>Пароль</label>
+                    <input type="password" class="form-control" name="password" [(ngModel)]="checkInCreds.password" #password="ngModel" required />
+                    <div class="text-danger" *ngIf="password.touched && password.invalid && password.errors?.required">Обязательное поле</div>
+                </div>
+            </form>
+        </div>
+
+        <div class="row mt-2">
+
+            <div class="col-md-2 p-0">
+                <a class="btn btn-primary" routerLink="/login">Закрыть</a>
+            </div>
+            <div class="col-md-7 offset-md-2">
+                <input type="submit" (click)="onCheckIn()" class="btn btn-success" value="Зарегистрироваться" [disabled]="username.invalid || password.invalid || email.invalid" />
+            </div>
+        </div>
+
+    </div>
+</div>

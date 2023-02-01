@@ -17,12 +17,12 @@ namespace FoodDiary.Controllers
         private readonly IMyAppRepository repository;
         private readonly ILogger<DishController> logger;
         private readonly IMapper mapper;
-        private readonly IDishValueCalculator dishValueCalculator;
+        private readonly IDishValueCalculatorService dishValueCalculator;
 
         public DishController(IMyAppRepository repository, 
             ILogger<DishController> logger,
             IMapper mapper,
-            IDishValueCalculator dishValueCalculator)
+            IDishValueCalculatorService dishValueCalculator)
         {
             this.repository = repository;
             this.logger = logger;
