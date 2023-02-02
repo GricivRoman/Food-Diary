@@ -35,7 +35,7 @@ export class CheckInPage {
             .subscribe(() => {
                 this.loginService.login(loginCreds)
                     .subscribe(() => {
-                        this.loginService.getUser(loginCreds)
+                        this.loginService.getUserWithIdentity()
                             .subscribe(() => {
                                 this.router.navigate([""])
                                 })

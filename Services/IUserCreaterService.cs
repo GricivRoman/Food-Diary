@@ -1,4 +1,4 @@
-﻿using FoodDiary.ViewModels;
+﻿using FoodDiary.ViewModels.User;
 
 namespace FoodDiary.Services
 {

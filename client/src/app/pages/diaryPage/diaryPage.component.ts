@@ -9,5 +9,7 @@ import { Login } from "../../services/login.servise";
 export class DiaryPage {
     constructor(public loginService: Login) {
     }
+        
+
 
 }

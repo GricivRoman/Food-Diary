@@ -1,6 +1,6 @@
 ﻿using FoodDiary.Data;
 using FoodDiary.Data.Entities;
-using FoodDiary.ViewModels;
+using FoodDiary.ViewModels.User;
 using Microsoft.AspNetCore.Identity;
 
 namespace FoodDiary.Services

@@ -1,0 +1,41 @@
+<p>{{loginService.user | json}}</p>
+
+<p>{{loginService.user.weightConditions | json}}</p>
+<p>{{loginService.user.targets | json}}</p>
+<p>{{loginService.user.meals | json}}</p>
+
+
+<h3>Diary page</h3>
+
+
+<form class="card card-body">
+    <div >
+        <div>
+            <label>Имя</label>
+            <input class="form-control" name="name" [(ngModel)]="loginService.user.name" value="{{loginService.user.name}}" />
+        </div>
+        <div>
+            <label>Возраст</label>
+            <input class="form-control" name="age" [(ngModel)]="loginService.user.age" value="{{loginService.user.age}}" />
+        </div>
+        <div>
+            <label>Гендер</label>
+            <input class="form-control" name="gender" [(ngModel)]="loginService.user.gender" value="{{loginService.user.gender}}" />
+        </div>
+        <div class="card card-body mt-5">
+            <p>Статистика веса</p>
+            <div *ngFor="let p of loginService.user.weightConditions; let index = index">
+                <div>
+                    <label>Дата</label>
+                    <input class="form-control" name="date" [(ngModel)]="p.date" value="{{p.date}}" />
+                </div>
+                <div>
+                    <label>Вес, кг.</label>
+                    <input class="form-control" name="bodyWeight" [(ngModel)]="p.bodyWeight" value="{{p.bodyWeight}}" />
+                </div>
+            </div>
+            <a class="btn btn-info" routerLink="addbodyweight">Добавить замер</a>
+        </div>
+    </div>
+</form>
+<a class="btn btn-success">Сохранить</a>

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FoodDiary.Data.Entities;
 using FoodDiary.ViewModels;
+using FoodDiary.ViewModels.User;
 
 namespace FoodDiary.Data
 {
@@ -25,9 +26,22 @@ namespace FoodDiary.Data
                 .ForMember(m => m.Product, opt => opt.Ignore());
 
             CreateMap<DishValue, DishValueViewModel>()
-                .ReverseMap();         
+                .ReverseMap();
 
-            
+            CreateMap<User, UserViewModel>()
+                .ForMember(m=> m.Password, opt => opt.Ignore())
+                .ReverseMap();
+
+            CreateMap<WeightCondition, WeightConditionViewModel>()
+                .ReverseMap();
+            CreateMap<Target, TargetViewModel>()
+                .ReverseMap();
+            CreateMap<DailyRate, DailyRateViewModel>()
+                .ReverseMap();
+            CreateMap<Meal, MealViewModel>()
+                .ReverseMap();
+            CreateMap<MealItem, MealItemViewModel>()
+                .ReverseMap();
         }
 
     }

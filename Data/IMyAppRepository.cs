@@ -17,5 +17,7 @@ namespace FoodDiary.Data
         public Dish FindDishById(int dishId);
 
         public IEnumerable<Dish> GetAllDishes();
+
+        public Task<User> FindUserByNameAsync(string userName);
     }
 }

@@ -87,5 +87,15 @@ namespace FoodDiary.Data
         {
             return context.Dish.Where(d => d.Id == dishId).AsNoTracking().FirstOrDefault();
         }
+
+        public async Task<User> FindUserByNameAsync(string userName)
+        {
+            return context.User.Where(n => n.UserName == userName)
+                .Include(w => w.WeightConditions)
+                .Include(t => t.Targets)
+                .Include(m => m.Meals)
+                .ThenInclude(mi => mi.MealItems)
+                .AsNoTracking().FirstOrDefault();
+        }
     }
 }

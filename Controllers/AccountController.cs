@@ -1,6 +1,7 @@
 ﻿using FoodDiary.Data.Entities;
 using FoodDiary.Services;
 using FoodDiary.ViewModels;
+using FoodDiary.ViewModels.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -10,7 +11,8 @@ using System.Text;
 
 namespace FoodDiary.Controllers
 {
-        
+
+    
     public class AccountController : Controller
     {
         private readonly ILogger<AccountController> _logger;
@@ -33,7 +35,8 @@ namespace FoodDiary.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CheckIn([FromBody] UserViewModel model)
+        [Route("/account/checkin")]
+        public async Task<IActionResult> CheckInAsync([FromBody] UserViewModel model)
         {
             string createResult = await userCreaterService.CreateUserAsync(model);
 
@@ -48,57 +51,16 @@ namespace FoodDiary.Controllers
            
         }
 
-
-        //[HttpGet]
-        //public IActionResult Login()
-        //{
-        //    if (this.User.Identity.IsAuthenticated)
-        //    {
-        //        return RedirectToAction("Index", "App");
-        //    }
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> Login(LoginViewModel model)
-        //{
-        //   if(ModelState.IsValid)
-        //    {
-        //        var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
-
-        //        if (result.Succeeded)
-        //        {
-        //            if (Request.Query.Keys.Contains("ReturnUrl"))
-        //            {
-        //                return Redirect(Request.Query["ReturnUrl"].First());
-        //            }
-        //            else
-        //            {
-        //                return RedirectToAction("Shop", "App");
-        //            }                    
-        //        }                
-        //    }
-
-        //   ModelState.AddModelError("", "Faild to login");
-        //   return View();
-        //}
-
-        //[HttpGet]
-        //public async Task<IActionResult> Logout()
-        //{
-        //    await _signInManager.SignOutAsync();
-        //    return RedirectToAction("Index", "App");
-        //}
-
         [HttpPost]
-        public async Task<IActionResult> CreateToken([FromBody] LoginViewModel model)
+        [Route("/account/createtoken")]
+        public async Task<IActionResult> CreateTokenAsync([FromBody] LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByNameAsync(model.UserName);
                 if (user!=null)
                 {
-                    var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
+                    var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);                    
                     if (result.Succeeded) 
                     {
                         //Create the token
@@ -129,20 +91,9 @@ namespace FoodDiary.Controllers
                 }                
             }
 
-            return BadRequest();
+            return BadRequest("Неправильный логин или пароль");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> GetUser([FromBody]LoginViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = await _userManager.FindByNameAsync(model.UserName);
-
-                return Ok(user);
-            }
-
-            return BadRequest("Not found");
-        }
+        
     }
 }

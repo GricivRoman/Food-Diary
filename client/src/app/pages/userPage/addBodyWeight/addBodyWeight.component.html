@@ -1,0 +1,13 @@
+﻿<h3>{{weightCondidion | json}}</h3>
+
+<form>
+    <div>
+        <label>Дата</label>
+        <input type="date" class="form-control" name="date" [(ngModel)]="weightCondidion.date" />
+    </div>
+    <div>
+        <label>Вес</label>
+        <input type="number" class="form-control" name="bodyWeight" [(ngModel)]="weightCondidion.bodyWeight" value="{{weightCondidion.bodyWeight}}" />
+    </div>
+    <a class="btn btn-info" (click)="onAddWeightCondition()">Добавить замер</a>
+</form>

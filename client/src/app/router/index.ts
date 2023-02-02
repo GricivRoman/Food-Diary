@@ -11,9 +11,11 @@ import { AddCompositionItem } from "../pages/dishPage/createDish/addCompositionI
 import { UpdateDish } from "../pages/dishPage/updateDish/updateDish.component";
 import { UpdateAddCompositionItem } from "../pages/dishPage/updateDish/updateAddCompositionItem/updateAddCompositionItem";
 import { CheckInPage } from "../pages/loginPage/checkInPage/checkInPage.component";
+import { UserPage } from "../pages/userPage/userPage.component";
+import { AddBodyWeight } from "../pages/userPage/addBodyWeight/addBodyWeight.component";
 
 const routes = [
-    { path: "", component: DiaryPage/*, canActivate: [AuthActivator] */}, 
+    { path: "", component: DiaryPage}, 
     { path: "product", component: ProductPage },
     { path: "product/create", component: CreateProduct },
     { path: "dish", component: DishPage },
@@ -23,6 +25,8 @@ const routes = [
     { path: "dish/update/additem", component: UpdateAddCompositionItem },
     { path: "login", component: LoginPage },
     { path: "login/checkIn", component: CheckInPage },
+    { path: "user", component: UserPage/*, canActivate: [AuthActivator]*/ },
+    { path: "user/addbodyweight", component: AddBodyWeight},
     { path: "**", redirectTo: "/"}
 ];
 

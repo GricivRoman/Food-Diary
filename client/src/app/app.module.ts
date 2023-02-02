@@ -18,6 +18,8 @@ import { AddCompositionItem } from './pages/dishPage/createDish/addCompositionIt
 import { UpdateDish } from './pages/dishPage/updateDish/updateDish.component';
 import { UpdateAddCompositionItem } from './pages/dishPage/updateDish/updateAddCompositionItem/updateAddCompositionItem';
 import { CheckInPage } from './pages/loginPage/checkInPage/checkInPage.component';
+import { UserPage } from './pages/userPage/userPage.component';
+import { AddBodyWeight } from './pages/userPage/addBodyWeight/addBodyWeight.component';
 
 
 
@@ -35,8 +37,11 @@ import { CheckInPage } from './pages/loginPage/checkInPage/checkInPage.component
         UpdateDish,
         UpdateAddCompositionItem,
         LoginPage,
-        CheckInPage
-        
+        CheckInPage,
+        UserPage,
+        AddBodyWeight
+
+
         
         
   ],

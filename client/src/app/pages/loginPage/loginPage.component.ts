@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { Login } from "../../services/login.servise";
@@ -29,7 +30,7 @@ export class LoginPage {
                     })    
             }, error => {
                 console.log(error);
-                this.errorMessage = "Fail to login";
+                this.errorMessage = `${(error as HttpErrorResponse).error}`;;
             });
     }
 }
