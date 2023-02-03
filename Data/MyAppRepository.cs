@@ -91,8 +91,9 @@ namespace FoodDiary.Data
         public async Task<User> FindUserByNameAsync(string userName)
         {
             return context.User.Where(n => n.UserName == userName)
-                .Include(w => w.WeightConditions)
-                .Include(t => t.Targets)
+                .Include(w => w.WeightConditions.OrderByDescending(d=>d.Date))
+                .Include(t => t.Targets.OrderByDescending(i => i.Id))
+                .ThenInclude(d => d.DailyRate)
                 .Include(m => m.Meals)
                 .ThenInclude(mi => mi.MealItems)
                 .AsNoTracking().FirstOrDefault();

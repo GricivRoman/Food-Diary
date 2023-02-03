@@ -11,6 +11,7 @@ namespace FoodDiary.Data.Entities
         public DateTime DateStart { get; set; }
 
         public DateTime DateFinish { get; set; }
+        public double CurrentBodyWeight { get; set; }
         public double TargetBodyWeight { get; set; }
 
         public DailyRate DailyRate { get; set; }

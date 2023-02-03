@@ -1,41 +1,117 @@
-<p>{{loginService.user | json}}</p>
 
-<p>{{loginService.user.weightConditions | json}}</p>
-<p>{{loginService.user.targets | json}}</p>
-<p>{{loginService.user.meals | json}}</p>
-
-
-<h3>Diary page</h3>
-
-
-<form class="card card-body">
-    <div >
-        <div>
-            <label>Имя</label>
-            <input class="form-control" name="name" [(ngModel)]="loginService.user.name" value="{{loginService.user.name}}" />
+<form class="card card-body col-md-10">
+    <div class="row">
+        <div class="col-md-4">
+            <div>
+                <label class="fs-5 fw-bold">Имя</label>
+                <input class="form-control" name="name" [(ngModel)]="loginService.user.name" value="{{loginService.user.name}}" />
+            </div>
+            <div>
+                <label class="fs-5 fw-bold">Возраст</label>
+                <input class="form-control" name="age" [(ngModel)]="loginService.user.age" value="{{loginService.user.age}}" />
+            </div>
+            <div>
+                <label class="fs-5 fw-bold">Гендер</label>
+                <input class="form-control" name="gender" [(ngModel)]="loginService.user.gender" value="{{loginService.user.gender}}" />
+            </div>
         </div>
-        <div>
-            <label>Возраст</label>
-            <input class="form-control" name="age" [(ngModel)]="loginService.user.age" value="{{loginService.user.age}}" />
-        </div>
-        <div>
-            <label>Гендер</label>
-            <input class="form-control" name="gender" [(ngModel)]="loginService.user.gender" value="{{loginService.user.gender}}" />
-        </div>
-        <div class="card card-body mt-5">
-            <p>Статистика веса</p>
-            <div *ngFor="let p of loginService.user.weightConditions; let index = index">
-                <div>
-                    <label>Дата</label>
-                    <input class="form-control" name="date" [(ngModel)]="p.date" value="{{p.date}}" />
+        <div class="col-md-6 offset-1 align-items-center">
+            <h3 class="text-center">Текущая дневная норма</h3>
+            <div class="card card-body row p-2">
+                <div class="row pe-0 ps-4 me-0">
+                    <div class="col-md-4 offset-4 px-0">
+                        <h4 class="text-center m-0">Ккал: {{target.dailyRate.caloriesRate}}</h4>
+                    </div>
                 </div>
-                <div>
-                    <label>Вес, кг.</label>
-                    <input class="form-control" name="bodyWeight" [(ngModel)]="p.bodyWeight" value="{{p.bodyWeight}}" />
+                <div class="row mt-2 pe-0 ps-4 me-0">
+                    <div class="col-md-4 px-0">
+                        <h5 class="text-center m-0">Белки:</h5>
+                        <p class="card text-center m-0">{{target.dailyRate.proteinRate}}</p>
+                    </div>
+                    <div class="col-md-4 px-0">
+                        <h5 class="text-center m-0">Жиры:</h5>
+                        <p class="card text-center m-0">{{target.dailyRate.fatRate}}</p>
+                    </div>
+                    <div class="col-md-4 px-0">
+                        <h5 class="text-center m-0">Углеводы:</h5>
+                        <p class="card text-center m-0">{{target.dailyRate.carbohydrateRate}}</p>
+                    </div>
+
                 </div>
             </div>
-            <a class="btn btn-info" routerLink="addbodyweight">Добавить замер</a>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <h3 class="text-center m-0 mb-1 p-0">Мои цели</h3>
+            <div class="card card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-2">
+                        <h5 class="text-center m-0 mb-1">Старт</h5>
+                    </div>
+                    <div class="col-md-3">
+                        <h5 class="text-center m-0 mb-1">Финиш</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="text-center m-0 mb-1">Результат, кг</h5>
+                    </div>
+                    <div class="col-md-3">
+                        <h5 class="text-center m-0 mb-1">Актуально</h5>
+                    </div>
+                    <hr />
+                </div>
+
+                <div *ngFor="let p of loginService.user.targets; let index = index">
+                    <div class="row align-items-center">
+                        <div class="col-md-2">
+                            <p class="text-center m-0 mb-1">{{p.dateStart | date:'dd.MM.YY'}}</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="text-center m-0 mb-1">{{p.dateFinish | date:'dd.MM.YY'}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="text-center m-0 mb-1">{{p.targetBodyWeight}}</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p *ngIf="p.relevance" class="text-center m-0 mb-1"><i class="fas fa-check"></i></p>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+                <a class="btn btn-info" routerLink="addtarget">Добавить цель</a>
+                
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h3 class="text-center m-0 mb-1 p-0">Статистика веса</h3>
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="text-center m-0 mb-1">Дата</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="text-center m-0 mb-1">Вес, кг</h5>
+                    </div>
+                    <hr />
+                </div>
+
+                <div *ngFor="let p of loginService.user.weightConditions; let index = index">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="text-center m-0 mb-1">{{p.date | date:'dd.MM.YY'}}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-center m-0 mb-1">{{p.bodyWeight}}</p>
+                        </div>
+                        <hr />
+                    </div>
+
+                </div>
+                <a class="btn btn-info" routerLink="addbodyweight">Добавить взвешивание</a>
+            </div>
         </div>
     </div>
 </form>
-<a class="btn btn-success">Сохранить</a>
+<div class="col-md-4 offset-4"> 
+    <a class="btn btn-success mt-1" (click)="setUserParameters()">Сохранить и закрыть</a>
+</div>

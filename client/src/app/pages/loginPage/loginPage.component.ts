@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from "@angular/common/http";
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Login } from "../../services/login.servise";
 import { LoginRequest } from "../../shared/LoginResults";
+import { Location } from '@angular/common';
 
 @Component({
     selector: "login-page",
@@ -10,23 +11,38 @@ import { LoginRequest } from "../../shared/LoginResults";
     styleUrls: []
 })
 
-export class LoginPage {
-    constructor(private loginService: Login, private router: Router) {
+export class LoginPage implements OnInit {
+    constructor(private loginService: Login,
+        private router: Router,
+        private route: ActivatedRoute,
+        private location:Location ) {
 
     }
+    
     public creds: LoginRequest = {
         username: "",
         password: ""
     };
+    public returnUrl: string = "";
 
     public errorMessage: string = "";
+
+    ngOnInit(): void {
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
+    }
 
     onLogin() {
         this.loginService.login(this.creds)
             .subscribe(() => {
                 this.loginService.getUser(this.creds)
                     .subscribe(() => {
-                        this.router.navigate([""])
+                        this.router.navigateByUrl(this.returnUrl);
+                        if (this.returnUrl == "") {
+                            this.location.back();
+                        } else {
+                            this.router.navigateByUrl(this.returnUrl); 
+                        }
+                        
                     })    
             }, error => {
                 console.log(error);

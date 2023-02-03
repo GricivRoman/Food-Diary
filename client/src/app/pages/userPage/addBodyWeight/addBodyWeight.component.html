@@ -1,13 +1,21 @@
-﻿<h3>{{weightCondidion | json}}</h3>
-
+﻿
 <form>
-    <div>
-        <label>Дата</label>
-        <input type="date" class="form-control" name="date" [(ngModel)]="weightCondidion.date" />
+    <h4>Добавить взвешивание</h4>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Дата</label>
+                <input type="date" class="form-control" name="date" [(ngModel)]="weightCondidion.date" />
+            </div>
+            <div class="col-md-6">
+                <label>Вес</label>
+                <input type="number" class="form-control" name="bodyWeight" [(ngModel)]="weightCondidion.bodyWeight" value="{{weightCondidion.bodyWeight}}" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-8 mt-2">
+                <a class="btn btn-info" (click)="onAddWeightCondition()">Добавить</a>
+            </div>
+        </div>
     </div>
-    <div>
-        <label>Вес</label>
-        <input type="number" class="form-control" name="bodyWeight" [(ngModel)]="weightCondidion.bodyWeight" value="{{weightCondidion.bodyWeight}}" />
-    </div>
-    <a class="btn btn-info" (click)="onAddWeightCondition()">Добавить замер</a>
 </form>

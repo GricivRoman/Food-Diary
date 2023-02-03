@@ -1,4 +1,6 @@
+
 import { Component } from '@angular/core';
+import { Router, RouterStateSnapshot } from '@angular/router';
 import { Login } from './services/login.servise';
 
 @Component({
@@ -10,9 +12,9 @@ import { Login } from './services/login.servise';
 export class AppComponent {
 
     constructor(public loginService: Login) {
-
+       
     }
 
-
+   
 
 }

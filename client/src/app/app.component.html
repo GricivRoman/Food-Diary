@@ -37,7 +37,7 @@
                     <li class="nav-item">
                         <a *ngIf="loginService.token; else loggOut" class="nav-link" (click)="loginService.logOut()">Выйти</a>
                         <ng-template #loggOut>
-                            <a class="nav-link" routerLink="login">Войти</a>
+                            <a class="nav-link btn" routerLink="login">Войти</a>
                         </ng-template>
                     </li>
                 </ul>

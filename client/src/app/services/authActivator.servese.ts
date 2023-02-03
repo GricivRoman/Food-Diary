@@ -15,7 +15,7 @@ export class AuthActivator implements CanActivate {
         boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
         if (this.diary.loginRequired) {
-            this.router.navigate(["login"])
+            this.router.navigate(["login"], { queryParams: { returnUrl: state.url } })
             return false;
         } else {
             return true;

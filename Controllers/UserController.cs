@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using FoodDiary.Data;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using FoodDiary.Services.UserTargetDailyRateCalculator;
 
 namespace FoodDiary.Controllers
 {
@@ -20,17 +21,20 @@ namespace FoodDiary.Controllers
         private readonly IMapper mapper;
         private readonly IMyAppRepository repository;
         private readonly ILogger<UserController> logger;
+        private readonly IUserDailyRateCalculator userDailyRateCalculator;
 
         public UserController(UserManager<User> userManager,
             IMapper mapper,
             IMyAppRepository repository,
-            ILogger<UserController> logger
+            ILogger<UserController> logger,
+            IUserDailyRateCalculator userDailyRateCalculator
             )
         {
             this.userManager = userManager;
             this.mapper = mapper;
             this.repository = repository;
             this.logger = logger;
+            this.userDailyRateCalculator = userDailyRateCalculator;
         }
 
         [HttpPost]
@@ -66,18 +70,21 @@ namespace FoodDiary.Controllers
         
         public async Task<IActionResult> UpdateUserAsync([FromBody]UserViewModel model)
         {
-            var a = User.Identity.Name;
-            var user1 = await repository.FindUserByNameAsync(User.Identity.Name);
+            
+            var user = await repository.FindUserByNameAsync(User.Identity.Name);
+                      
 
-            var user = user1;
+            //user = mapper.Map<User>(model); // to do настроить маппинг
 
-            //user = mapper.Map<User>(model); // Убрать в маппере лишние поля
-
+            user.Name = model.Name;
+            user.Age = model.Age;
+            user.Gender= model.Gender;
             user.WeightConditions = mapper.Map<List<WeightCondition>>(model.WeightConditions);
+            user.Targets = userDailyRateCalculator.GetTargetsWithDailyRate(model);
 
             try
             {
-                repository.UpdateEntity(user); // не создается WeightCondition
+                repository.UpdateEntity(user);
                 repository.SaveAll();
             }
             catch (Exception ex)

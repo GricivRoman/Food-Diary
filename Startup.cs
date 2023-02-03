@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using FoodDiary.Services;
+using FoodDiary.Services.UserTargetDailyRateCalculator;
 
 namespace FoodDiary
 {
@@ -60,6 +61,7 @@ namespace FoodDiary
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation().AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddRazorPages();
+            services.AddTransient<IUserDailyRateCalculator, UserDailyRateCalculator>();
         }
 
 

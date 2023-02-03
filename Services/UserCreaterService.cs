@@ -10,7 +10,8 @@ namespace FoodDiary.Services
         private readonly MyAppContext context;
         private readonly UserManager<User> userManager;
 
-        public UserCreaterService(MyAppContext context, UserManager<User> userManager)
+        public UserCreaterService(MyAppContext context, 
+            UserManager<User> userManager)
         {
             this.context = context;
             this.userManager = userManager;

@@ -20,6 +20,8 @@ import { UpdateAddCompositionItem } from './pages/dishPage/updateDish/updateAddC
 import { CheckInPage } from './pages/loginPage/checkInPage/checkInPage.component';
 import { UserPage } from './pages/userPage/userPage.component';
 import { AddBodyWeight } from './pages/userPage/addBodyWeight/addBodyWeight.component';
+import { AddTarget } from './pages/userPage/addTarget/addTarget.component';
+
 
 
 
@@ -39,7 +41,8 @@ import { AddBodyWeight } from './pages/userPage/addBodyWeight/addBodyWeight.comp
         LoginPage,
         CheckInPage,
         UserPage,
-        AddBodyWeight
+        AddBodyWeight,
+        AddTarget
 
 
         
@@ -56,6 +59,7 @@ import { AddBodyWeight } from './pages/userPage/addBodyWeight/addBodyWeight.comp
       Login,
       AuthActivator,
       LibraryService
+     
       
     ],
     bootstrap: [AppComponent]

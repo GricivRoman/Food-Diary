@@ -13,6 +13,7 @@ import { UpdateAddCompositionItem } from "../pages/dishPage/updateDish/updateAdd
 import { CheckInPage } from "../pages/loginPage/checkInPage/checkInPage.component";
 import { UserPage } from "../pages/userPage/userPage.component";
 import { AddBodyWeight } from "../pages/userPage/addBodyWeight/addBodyWeight.component";
+import { AddTarget } from "../pages/userPage/addTarget/addTarget.component";
 
 const routes = [
     { path: "", component: DiaryPage}, 
@@ -25,8 +26,9 @@ const routes = [
     { path: "dish/update/additem", component: UpdateAddCompositionItem },
     { path: "login", component: LoginPage },
     { path: "login/checkIn", component: CheckInPage },
-    { path: "user", component: UserPage/*, canActivate: [AuthActivator]*/ },
-    { path: "user/addbodyweight", component: AddBodyWeight},
+    { path: "user", component: UserPage, canActivate: [AuthActivator] },
+    { path: "user/addbodyweight", component: AddBodyWeight, canActivate: [AuthActivator] },
+    { path: "user/addtarget", component: AddTarget, canActivate: [AuthActivator] },
     { path: "**", redirectTo: "/"}
 ];
 

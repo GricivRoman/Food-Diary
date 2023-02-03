@@ -1,0 +1,32 @@
+﻿<div class="col-md-5">
+    <h3 class="text-center">Добавить цель</h3>
+    <form>
+        <div class="card card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Дата начала</label>
+                    <input type="date" class="form-control" name="dateStart" [(ngModel)]="target.dateStart" />
+                </div>
+                <div class="col-md-6">
+                    <label>Целевая дата</label>
+                    <input type="date" class="form-control" name="dateFinish" [(ngModel)]="target.dateFinish" />
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-6">
+                    <label>Текущий вес, кг</label>
+                    <input class="form-control" name="targetBodyWeight" [(ngModel)]="target.currentBodyWeight" value="{{target.currentBodyWeight}}" />
+                </div>
+                <div class="col-md-6">
+                    <label>Целевой вес, кг</label>
+                    <input class="form-control" name="targetBodyWeight" [(ngModel)]="target.targetBodyWeight" value="{{target.targetBodyWeight}}" />
+                </div>
+            </div>
+        </div>
+        <div class="row mt-1">            
+            <div class="col-md-3 offset-9 p-0">
+                <button class="btn btn-info" (click)="onAddTarget()">Добавить</button>
+            </div>
+        </div>
+    </form>
+</div>

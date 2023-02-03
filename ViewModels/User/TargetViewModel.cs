@@ -9,7 +9,8 @@ namespace FoodDiary.ViewModels.User
         public bool relevance { get; set; }
         public DateTime DateStart { get; set; }
 
-        public DateTime DateFinish { get; set; }
+        public DateTime DateFinish { get; set; }        
+        public double CurrentBodyWeight { get; set; }
         public double TargetBodyWeight { get; set; }
 
         public DailyRateViewModel DailyRate { get; set; }       
