@@ -1,5 +1,6 @@
 ﻿using FoodDiary.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace FoodDiary.Data
 {
@@ -14,89 +15,73 @@ namespace FoodDiary.Data
             this.logger = logger;
         }
 
-        public void AddEntity(object model)
+        public async Task AddEntityAsync<T>(T model)
         {
-            context.Add(model);            
+            await context.AddAsync(model);            
         }
-        public void UpdateEntity(object model)
+        public void UpdateEntity<T>(T model)
         {
             context.Update(model);
+
         }
 
-        public bool SaveAll()
+        public async Task<bool> SaveAllAsync()
         {
-            return context.SaveChanges() > 0;
+            return await context.SaveChangesAsync() > 0;            
         }
 
-        public Product FindProductByName(string ProductName)
+        public async Task<Product> FindProductByNameAsync(string ProductName)
         {
-            logger.LogInformation($"{DateTime.UtcNow}: Find product method was started");
-            var product = context.Product
-                .Where(p => p.ProductName == ProductName).FirstOrDefault();
+
+            return await context.Product
+                .Where(p => p.ProductName == ProductName).FirstOrDefaultAsync();
             
-            if (product != null)
-            {
-                logger.LogInformation($"{DateTime.UtcNow}: The roduct was found");
-                return product;
-            }
-            else
-            {
-                logger.LogInformation($"{DateTime.UtcNow}: A product wasn't found");
-                return null;
-            }
+
+           
             
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return context.Product.OrderBy(n => n.ProductName).ToList();
+            return await context.Product.OrderBy(n => n.ProductName).ToListAsync();
         }
 
-        public Dish FindDishByName(string DishName)
+        public async Task<Dish> FindDishByNameAsync(string DishName)
         {
-            logger.LogInformation($"{DateTime.UtcNow}: Find dish method was started");
-            var dish = context.Dish
-                .Where(d => d.DishName== DishName).FirstOrDefault();
-
-            if (dish != null)
-            {
-                logger.LogInformation($"{DateTime.UtcNow}: The dish was found");
-                return dish;
-            }
-            else
-            {
-                logger.LogInformation($"{DateTime.UtcNow}: A dish wasn't found");
-                return null;
-            }
+           
+            return await context.Dish
+                .Where(d => d.DishName== DishName).FirstOrDefaultAsync();
+                        
         }
 
-        public IEnumerable<Dish> GetAllDishes()
+        public async Task<IEnumerable<Dish>> GetAllDishesAsync()
         {
 
-            return context.Dish
+            return await context.Dish
                 .Include(r => r.ResourseSpecification)
                 .ThenInclude(c => c.Composition)
                 .ThenInclude(p => p.Product)
                 .Include(r => r.ResourseSpecification)
                 .ThenInclude(v => v.DishValue)
-                .ToList();
+                .ToListAsync();
                 
         }
 
-        public Dish FindDishById(int dishId)
+        public async Task<Dish> FindDishByIdAsync(int dishId)
         {
-            return context.Dish.Where(d => d.Id == dishId).AsNoTracking().FirstOrDefault();
+            return await context.Dish.Where(d => d.Id == dishId).AsNoTracking().FirstOrDefaultAsync();
         }
 
         public async Task<User> FindUserByNameAsync(string userName)
         {
-            return context.User.Where(n => n.UserName == userName)
+            
+            return await context.User.Where(n => n.UserName == userName)
                 .Include(w => w.WeightConditions.OrderByDescending(d=>d.Date))
                 .Include(t => t.Targets.OrderByDescending(i => i.Id))
                 .ThenInclude(d => d.DailyRate)
                 .Include(m => m.Meals)
                 .ThenInclude(mi => mi.MealItems)
-                .AsNoTracking().FirstOrDefault();
+                .AsNoTracking().FirstOrDefaultAsync();
         }
     }
 }

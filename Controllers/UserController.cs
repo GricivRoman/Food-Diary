@@ -85,7 +85,7 @@ namespace FoodDiary.Controllers
             try
             {
                 repository.UpdateEntity(user);
-                repository.SaveAll();
+                await repository.SaveAllAsync();
             }
             catch (Exception ex)
             {

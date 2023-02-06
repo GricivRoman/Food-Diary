@@ -31,11 +31,11 @@ namespace FoodDiary.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             try
             {
-                var result = repository.GetAllDishes();
+                var result = await repository.GetAllDishesAsync();
 
                 return Ok(mapper.Map<List<DishViewModel>>(result));
             }
@@ -48,9 +48,9 @@ namespace FoodDiary.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]DishViewModel model)
+        public async Task<IActionResult> PostAsync([FromBody]DishViewModel model)
         {
-            if (repository.FindDishByName(model.DishName) != null)
+            if (await repository.FindDishByNameAsync(model.DishName) != null)
             { 
                 return BadRequest("Блюдо с таким именем уже существует");
             }
@@ -59,8 +59,8 @@ namespace FoodDiary.Controllers
                 model.ResourseSpecification.DishValue = dishValueCalculator.CalculateDishValue(model.ResourseSpecification);
                 var dish = mapper.Map<Dish>(model);
 
-                repository.AddEntity(dish);
-                repository.SaveAll();
+                await repository.AddEntityAsync(dish);
+                await repository.SaveAllAsync();
 
                 return Created("", mapper.Map<DishViewModel>(dish));
                 
@@ -68,9 +68,9 @@ namespace FoodDiary.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put([FromBody]DishViewModel model)
+        public async Task<IActionResult> PutAsync([FromBody]DishViewModel model)
         {
-            Dish dishToUpdate = repository.FindDishById(model.Id);
+            Dish dishToUpdate = await repository.FindDishByIdAsync(model.Id);
                         
             model.ResourseSpecification.DishValue = dishValueCalculator.CalculateDishValue(model.ResourseSpecification);
 
@@ -79,7 +79,7 @@ namespace FoodDiary.Controllers
 
 
             repository.UpdateEntity(dishToUpdate);
-            repository.SaveAll();
+            await repository.SaveAllAsync();
 
             return Created("", mapper.Map<DishViewModel>(dishToUpdate));
         }

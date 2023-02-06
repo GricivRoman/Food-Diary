@@ -28,9 +28,9 @@ namespace FoodDiary.Controllers
         }
         
         [HttpPost]
-        public IActionResult Post([FromBody]ProductViewModel model)
+        public async Task<IActionResult> PostAsync([FromBody]ProductViewModel model)
         {
-            if (repository.FindProductByName(model.ProductName) != null)
+            if (await repository.FindProductByNameAsync(model.ProductName) != null)
             {
                 return BadRequest("Продукт с таким именем уже существует");
             }
@@ -38,21 +38,21 @@ namespace FoodDiary.Controllers
             {
                 Product product = mapper.Map<Product>(model);
                 
-                repository.AddEntity(product);
-                repository.SaveAll();
+                await repository.AddEntityAsync(product);
+                await repository.SaveAllAsync();
 
                 return Created("", mapper.Map<ProductViewModel>(product));
             }
         }
 
         [HttpGet]
-        public ActionResult Get()
+        public async Task<ActionResult> Get()
         {
             try
             {
-                var result = repository.GetAllProducts();
-                //return Ok(mapper.Map<List<ProductViewModel>>(result));
-                return Ok(result);
+                var result = await repository.GetAllProductsAsync();
+                return Ok(mapper.Map<List<ProductViewModel>>(result));
+                //return Ok(result);
             }
             catch
             {
