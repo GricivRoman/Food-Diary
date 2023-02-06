@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FoodDiary.Data.Entities;
-using FoodDiary.ViewModels;
+using FoodDiary.ViewModels.Food;
 using FoodDiary.ViewModels.User;
 
 namespace FoodDiary.Data

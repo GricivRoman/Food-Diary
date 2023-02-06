@@ -1,10 +1,9 @@
 import { HttpClient, HttpHeaders} from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
-import { CheckInRequest } from "../shared/CheckInRequest";
-import { LoginRequest, LoginResults } from "../shared/LoginResults";
+import { CheckInRequest } from "../shared/Account/CheckInRequest";
+import { LoginRequest, LoginResults } from "../shared/Account/LoginResults";
 import { User } from "../shared/User/User";
-import { WeightCondition } from "../shared/User/WeightContition";
 
 @Injectable()
 

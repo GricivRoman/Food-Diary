@@ -2,8 +2,8 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { Login } from "../../../services/login.servise";
-import { CheckInRequest } from "../../../shared/CheckInRequest";
-import { LoginRequest } from "../../../shared/LoginResults";
+import { CheckInRequest } from "../../../shared/Account/CheckInRequest";
+import { LoginRequest } from "../../../shared/Account/LoginResults";
 
 
 @Component({

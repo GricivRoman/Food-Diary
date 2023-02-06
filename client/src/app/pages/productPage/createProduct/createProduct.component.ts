@@ -3,7 +3,7 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { LibraryService } from "../../../services/library.service";
 
-import { Product } from "../../../shared/Product";
+import { Product } from "../../../shared/Food/Product";
 
 @Component({
     selector: "product-list",

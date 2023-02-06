@@ -1,4 +1,4 @@
-﻿namespace FoodDiary.ViewModels
+﻿namespace FoodDiary.ViewModels.Food
 {
     public class ProductViewModel
     {

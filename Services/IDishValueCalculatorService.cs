@@ -1,4 +1,4 @@
-﻿using FoodDiary.ViewModels;
+﻿using FoodDiary.ViewModels.Food;
 
 namespace FoodDiary.Services
 {

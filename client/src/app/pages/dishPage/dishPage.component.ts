@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { LibraryService } from "../../services/library.service";
-import { Dish } from "../../shared/Dish";
+import { Dish } from "../../shared/Food/Dish";
 
 
 @Component({

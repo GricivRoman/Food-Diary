@@ -2,7 +2,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Login } from "../../services/login.servise";
-import { LoginRequest } from "../../shared/LoginResults";
+import { LoginRequest } from "../../shared/Account/LoginResults";
 import { Location } from '@angular/common';
 
 @Component({
@@ -37,11 +37,11 @@ export class LoginPage implements OnInit {
                 this.loginService.getUser(this.creds)
                     .subscribe(() => {
                         this.router.navigateByUrl(this.returnUrl);
-                        if (this.returnUrl == "") {
-                            this.location.back();
-                        } else {
-                            this.router.navigateByUrl(this.returnUrl); 
-                        }
+                        //if (this.returnUrl == "") {
+                        //    this.location.back();
+                        //} else {
+                        //    this.router.navigateByUrl(this.returnUrl); 
+                        //}
                         
                     })    
             }, error => {

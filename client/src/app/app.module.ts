@@ -22,11 +22,6 @@ import { UserPage } from './pages/userPage/userPage.component';
 import { AddBodyWeight } from './pages/userPage/addBodyWeight/addBodyWeight.component';
 import { AddTarget } from './pages/userPage/addTarget/addTarget.component';
 
-
-
-
-
-
 @NgModule({
   declarations: [
         AppComponent,
@@ -43,10 +38,6 @@ import { AddTarget } from './pages/userPage/addTarget/addTarget.component';
         UserPage,
         AddBodyWeight,
         AddTarget
-
-
-        
-        
   ],
   imports: [
       BrowserModule,
@@ -59,8 +50,6 @@ import { AddTarget } from './pages/userPage/addTarget/addTarget.component';
       Login,
       AuthActivator,
       LibraryService
-     
-      
     ],
     bootstrap: [AppComponent]
 })

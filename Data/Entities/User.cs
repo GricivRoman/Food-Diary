@@ -9,6 +9,10 @@ namespace FoodDiary.Data.Entities
         public string? Name { get; set; }
         public int? Age { get; set; }
         public string? Gender { get; set; }
+        public Sex? Sex { get; set; }
+        public int? SexId { get; set; }
+        public PhysicalActivity? PhysicalActivity { get; set; }
+        public int? PhysicalActivityId { get; set; }
 
         public ICollection<WeightCondition>? WeightConditions { get; set; } 
 
@@ -20,5 +24,8 @@ namespace FoodDiary.Data.Entities
         
         [ForeignKey(nameof(UserMenu))]
         public int UserMenuId { get; set; }
+
+        public double Height { get; set; }
+        
     }
 }

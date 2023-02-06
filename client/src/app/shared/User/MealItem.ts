@@ -1,4 +1,4 @@
-import { Dish } from "../Dish";
+import { Dish } from "../Food/Dish";
 
 export class MealItem {
     id: number = 0;

@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using FoodDiary.ViewModels;
 using FoodDiary.Data;
 using FoodDiary.Data.Entities;
 using AutoMapper;
 using System.Text.RegularExpressions;
 using FoodDiary.Services;
+using FoodDiary.ViewModels.Food;
 
 namespace FoodDiary.Controllers
 {

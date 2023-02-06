@@ -1,4 +1,5 @@
 ﻿using FoodDiary.Data.Entities;
+using FoodDiary.ViewModels.Food;
 
 namespace FoodDiary.ViewModels.User
 {

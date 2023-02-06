@@ -2,7 +2,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { LibraryService } from "../../../services/library.service";
-import { CompositionItem } from "../../../shared/CompositionItem";
+import { CompositionItem } from "../../../shared/Food/CompositionItem";
 
 @Component({
     selector: "create-dish",

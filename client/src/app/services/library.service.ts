@@ -1,10 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, pipe } from "rxjs";
-import { Product } from "../shared/Product";
+import { Product } from "../shared/Food/Product";
 import { map } from "rxjs/operators";
-import { Dish } from "../shared/Dish";
-import { CompositionItem } from "../shared/CompositionItem";
+import { Dish } from "../shared/Food/Dish";
+import { CompositionItem } from "../shared/Food/CompositionItem";
 
 @Injectable()
 
