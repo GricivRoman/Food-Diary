@@ -1,3 +1,5 @@
+import { PhysicalActivityCatalog } from "../Catalogs/PhysicalActivityCatalog";
+import { SexCatalog } from "../Catalogs/SexCatalog";
 import { Meal } from "./Meal";
 import { Target } from "./Target";
 import { UserMenu } from "./UserMenu";
@@ -15,4 +17,6 @@ export class User {
     targets: Target[] = [];
     meals: Meal[] = [];
     userMenu: UserMenu = new UserMenu();
+    sex: SexCatalog = new SexCatalog();
+    physicalActivity: PhysicalActivityCatalog = new PhysicalActivityCatalog();
 }

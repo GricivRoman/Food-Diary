@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FoodDiary.Data.Entities;
+using FoodDiary.ViewModels.Catalogs;
 using FoodDiary.ViewModels.Food;
 using FoodDiary.ViewModels.User;
 
@@ -41,6 +42,11 @@ namespace FoodDiary.Data
             CreateMap<Meal, MealViewModel>()
                 .ReverseMap();
             CreateMap<MealItem, MealItemViewModel>()
+                .ReverseMap();
+
+            CreateMap<SexCatalog, SexCatalogViewModel>()
+                .ReverseMap();
+            CreateMap<PhysicalActivityCatalog, PhysicalActivityCatalogViewModel>()
                 .ReverseMap();
         }
 

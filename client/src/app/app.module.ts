@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import router from './router';
 import { LoginPage } from './pages/loginPage/loginPage.component';
 import { AuthActivator } from './services/authActivator.servese';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Login } from './services/login.servise';
 import { DiaryPage } from './pages/diaryPage/diaryPage.component';
 import { ProductPage } from './pages/productPage/producPage.component';
@@ -21,6 +21,7 @@ import { CheckInPage } from './pages/loginPage/checkInPage/checkInPage.component
 import { UserPage } from './pages/userPage/userPage.component';
 import { AddBodyWeight } from './pages/userPage/addBodyWeight/addBodyWeight.component';
 import { AddTarget } from './pages/userPage/addTarget/addTarget.component';
+import { CatalogService } from './services/catalog.service';
 
 @NgModule({
   declarations: [
@@ -44,12 +45,14 @@ import { AddTarget } from './pages/userPage/addTarget/addTarget.component';
       HttpClientModule,
       router,
       FormsModule
+      
   ],
     providers: [
       { provide: LocationStrategy, useClass: HashLocationStrategy },
       Login,
       AuthActivator,
-      LibraryService
+      LibraryService,
+      CatalogService
     ],
     bootstrap: [AppComponent]
 })

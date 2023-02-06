@@ -66,7 +66,7 @@ namespace FoodDiary.Controllers
 
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        [Route("setWeightConditiodn")]
+        [Route("updateUser")]
         
         public async Task<IActionResult> UpdateUserAsync([FromBody]UserViewModel model)
         {
@@ -81,6 +81,8 @@ namespace FoodDiary.Controllers
             user.Gender= model.Gender;
             user.WeightConditions = mapper.Map<List<WeightCondition>>(model.WeightConditions);
             user.Targets = userDailyRateCalculator.GetTargetsWithDailyRate(model);
+            user.Sex = mapper.Map<SexCatalog>(model.Sex);
+            user.PhysicalActivity = mapper.Map<PhysicalActivityCatalog>(model.PhysicalActivity);
 
             try
             {

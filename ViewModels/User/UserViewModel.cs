@@ -1,4 +1,5 @@
 ﻿using FoodDiary.Data.Entities;
+using FoodDiary.ViewModels.Catalogs;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodDiary.ViewModels.User
@@ -25,5 +26,9 @@ namespace FoodDiary.ViewModels.User
 
         public ICollection<MealViewModel>? Meals { get; set; }
 
+        public SexCatalogViewModel? Sex { get; set; }
+        public int? SexId { get; set; }
+        public PhysicalActivityCatalogViewModel? PhysicalActivity { get; set; }
+        public int? PhysicalActivityId { get; set; }
     }
 }

@@ -48,7 +48,9 @@ export class Login {
                 this.user.targets = data.targets;
                 this.user.userMenu = data.userMenu;
                 this.user.userName = data.userName;
-                this.user.weightConditions = data.weightConditions;                
+                this.user.weightConditions = data.weightConditions;  
+                this.user.sex = data.sex;
+                this.user.physicalActivity = data.physicalActivity;
             }));
     }
 
@@ -70,13 +72,15 @@ export class Login {
                 this.user.userMenu = data.userMenu;
                 this.user.userName = data.userName;
                 this.user.weightConditions = data.weightConditions;
+                this.user.sex = data.sex;
+                this.user.physicalActivity = data.physicalActivity;
             }));
     }
 
     updateUser() {       
 
         const headers = new HttpHeaders().set("Authorization", `Bearer ${this.token}`);
-        return this.http.post("/api/user/setWeightConditiodn", this.user, {headers:headers});
+        return this.http.post("/api/user/updateUser", this.user, {headers:headers});
         
     }
 

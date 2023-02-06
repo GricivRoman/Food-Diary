@@ -19,5 +19,8 @@ namespace FoodDiary.Data
 
         public DbSet<Dish> Dish { get; set; }
         public DbSet<DishValue> DishValue { get; set; }
+
+        public DbSet<SexCatalog> SexCatalog { get; set; }
+        public DbSet<PhysicalActivityCatalog> PhysicalActivityCatalog { get; set; }
     }
 }

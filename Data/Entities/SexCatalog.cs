@@ -1,6 +1,6 @@
 ﻿namespace FoodDiary.Data.Entities
 {
-    public class Sex
+    public class SexCatalog
     {
         public int Id { get; set; }
         public string Name { get; set; }

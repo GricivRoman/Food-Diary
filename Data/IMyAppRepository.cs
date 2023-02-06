@@ -17,5 +17,8 @@ namespace FoodDiary.Data
         public Task<IEnumerable<Dish>> GetAllDishesAsync();
 
         public Task<User> FindUserByNameAsync(string userName);
+
+        public Task<IEnumerable<SexCatalog>> GetFullSexCatalogAsync();
+        public Task<IEnumerable<PhysicalActivityCatalog>> GetFullPhysicalActivityCatalogAsync();
     }
 }

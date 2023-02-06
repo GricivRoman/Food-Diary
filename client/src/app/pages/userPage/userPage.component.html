@@ -9,10 +9,23 @@
             <div>
                 <label class="fs-5 fw-bold">Возраст</label>
                 <input class="form-control" name="age" [(ngModel)]="loginService.user.age" value="{{loginService.user.age}}" />
-            </div>
+            </div>            
             <div>
-                <label class="fs-5 fw-bold">Гендер</label>
-                <input class="form-control" name="gender" [(ngModel)]="loginService.user.gender" value="{{loginService.user.gender}}" />
+                <label class="fs-5 fw-bold">Пол</label>
+                <select class="form-control" name="sex" [(ngModel)]="loginService.user.sex">
+                    <option [ngValue]="loginService.user.sex" selected>{{loginService.user.sex.name}}</option>
+                    <option *ngFor="let p of catalogService.sexCatalog" [ngValue]="p">{{p.name}}</option>
+                </select>
+            </div>
+
+
+            <div>
+                <label class="fs-5 fw-bold">Уровень физической активности</label>
+
+                <select class="form-control" [(ngModel)]="loginService.user.physicalActivity">
+                    <option [ngValue]="loginService.user.physicalActivity" selected>{{loginService.user.physicalActivity.name}}</option>
+                    <option *ngFor="let p of catalogService.physicalActivityCatalog" [ngValue]="p">{{p.name}}</option>
+                </select>
             </div>
         </div>
         <div class="col-md-6 offset-1 align-items-center">
@@ -79,7 +92,7 @@
                     </div>
                 </div>
                 <a class="btn btn-info" routerLink="addtarget">Добавить цель</a>
-                
+
             </div>
         </div>
         <div class="col-md-4">
@@ -112,6 +125,6 @@
         </div>
     </div>
 </form>
-<div class="col-md-4 offset-4"> 
+<div class="col-md-4 offset-4">
     <a class="btn btn-success mt-1" (click)="setUserParameters()">Сохранить и закрыть</a>
 </div>

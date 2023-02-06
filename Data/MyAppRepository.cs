@@ -81,7 +81,19 @@ namespace FoodDiary.Data
                 .ThenInclude(d => d.DailyRate)
                 .Include(m => m.Meals)
                 .ThenInclude(mi => mi.MealItems)
+                .Include(s => s.Sex)
+                .Include(p => p.PhysicalActivity)
                 .AsNoTracking().FirstOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<SexCatalog>> GetFullSexCatalogAsync()
+        {
+            return await context.SexCatalog.ToListAsync();
+        }
+
+        public async Task<IEnumerable<PhysicalActivityCatalog>> GetFullPhysicalActivityCatalogAsync()
+        {
+            return await context.PhysicalActivityCatalog.ToListAsync();
         }
     }
 }

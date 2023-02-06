@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Login } from "../../services/login.servise";
+
 
 @Component({
     selector: "diary-page",
@@ -7,8 +7,7 @@ import { Login } from "../../services/login.servise";
     styleUrls: []
     })
 export class DiaryPage {
-    constructor(public loginService: Login) {
-    }
+   
         
 
 
