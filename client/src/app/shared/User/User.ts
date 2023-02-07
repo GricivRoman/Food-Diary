@@ -12,6 +12,7 @@ export class User {
 
     name: string = "";
     age: number = 0;
+    height: number = 0;
     gender: string = "";
     weightConditions: WeightCondition[] = [];
     targets: Target[] = [];

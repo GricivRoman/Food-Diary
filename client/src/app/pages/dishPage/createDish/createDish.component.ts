@@ -18,19 +18,14 @@ export class CreateDish{
 
     composition: CompositionItem[] = this.libraryService.dish.resourseSpecification.composition;
 
-    dishName: string = this.libraryService.dish.dishName;
-    outputDishWeightG: number = this.libraryService.dish.resourseSpecification.outputDishWeightG;
-
     errorMessage: string = "";
 
     updateComposition() {
-        this.libraryService.dish.resourseSpecification.composition = this.composition;
-
-        this.libraryService.dish.dishName = this.dishName;
-        this.libraryService.dish.resourseSpecification.outputDishWeightG = this.outputDishWeightG;
+        this.libraryService.dish.resourseSpecification.composition = this.composition;       
     }
 
     onCreate() {
+        
         this.libraryService.createDish()
             .subscribe(() => {
                 this.router.navigate(["dish"]);

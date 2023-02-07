@@ -9,7 +9,11 @@
             <div>
                 <label class="fs-5 fw-bold">Возраст</label>
                 <input class="form-control" name="age" [(ngModel)]="loginService.user.age" value="{{loginService.user.age}}" />
-            </div>            
+            </div>
+            <div>
+                <label class="fs-5 fw-bold">Рост, см.</label>
+                <input class="form-control" name="height" [(ngModel)]="loginService.user.height" value="{{loginService.user.height}}" />
+            </div>
             <div>
                 <label class="fs-5 fw-bold">Пол</label>
                 <select class="form-control" name="sex" [(ngModel)]="loginService.user.sex">

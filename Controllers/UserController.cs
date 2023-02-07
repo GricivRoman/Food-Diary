@@ -79,8 +79,20 @@ namespace FoodDiary.Controllers
             user.Name = model.Name;
             user.Age = model.Age;
             user.Gender= model.Gender;
+            user.Height = model.Height;
             user.WeightConditions = mapper.Map<List<WeightCondition>>(model.WeightConditions);
-            user.Targets = userDailyRateCalculator.GetTargetsWithDailyRate(model);
+
+
+            try
+            {
+                user.Targets = userDailyRateCalculator.GetTargetsWithDailyRate(model);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
+            
             user.Sex = mapper.Map<SexCatalog>(model.Sex);
             user.PhysicalActivity = mapper.Map<PhysicalActivityCatalog>(model.PhysicalActivity);
 

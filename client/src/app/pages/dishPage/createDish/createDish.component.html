@@ -5,12 +5,12 @@
             <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
             <h5>Название блюда</h5>
             <div class="mb-3 col-md-6">
-                <input class="form-control" name="dishName" value="{{dishName}}" [(ngModel)]="dishName" />
+                <input class="form-control" name="dishName" value="{{libraryService.dish.dishName}}" [(ngModel)]="libraryService.dish.dishName" />
             </div>
             <h5>Вес блюда на выходе</h5>
             <div class="mb-3 col-md-6">
 
-                <input class="form-control" type="number" name="outputDishWeightG" value="{{outputDishWeightG}}" [(ngModel)]="outputDishWeightG" />
+                <input class="form-control" type="number" name="outputDishWeightG" value="{{libraryService.dish.resourseSpecification.outputDishWeightG}}" [(ngModel)]="libraryService.dish.resourseSpecification.outputDishWeightG" />
             </div>
             <div>
                 <h3 class="text-center">Состав блюда</h3>

@@ -44,8 +44,7 @@ import { CatalogService } from './services/catalog.service';
       BrowserModule,
       HttpClientModule,
       router,
-      FormsModule
-      
+      FormsModule      
   ],
     providers: [
       { provide: LocationStrategy, useClass: HashLocationStrategy },

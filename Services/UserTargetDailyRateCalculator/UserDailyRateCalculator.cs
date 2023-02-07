@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using FoodDiary.Data.Entities;
+using FoodDiary.Services.UserTargetDailyRateCalculator.BodyType;
+using FoodDiary.Services.UserTargetDailyRateCalculator.BodyTypeFactoryBuilder;
 using FoodDiary.ViewModels.User;
 
 namespace FoodDiary.Services.UserTargetDailyRateCalculator
@@ -7,15 +9,16 @@ namespace FoodDiary.Services.UserTargetDailyRateCalculator
     public class UserDailyRateCalculator : IUserDailyRateCalculator
     {
         private readonly IMapper mapper;
+        private readonly IBodyTypeBuilder bodyTypeBuilder;
 
-        public UserDailyRateCalculator(IMapper mapper)
+        public UserDailyRateCalculator(IMapper mapper,
+            IBodyTypeBuilder bodyTypeBuilder)
         {
             this.mapper = mapper;
+            this.bodyTypeBuilder = bodyTypeBuilder;
         }
         
-        //to do Метод, который основываясь на данных пользователя создает класс с видом пользователя.
-        //Создать интерфейс с видами пользователей, который имеет в себе метод расчитать дневные нормы
-        // для каждого класса, реализующего интерфейс с видами пользователей определить метод расчета дневной нормы.
+        
 
         public List<Target> GetTargetsWithDailyRate(UserViewModel user)
         {
@@ -27,21 +30,14 @@ namespace FoodDiary.Services.UserTargetDailyRateCalculator
                 if (i== user.Targets.Count-1)
                 {
                     targets[i].relevance = true;
+                    
+                    targets[i].DailyRate = bodyTypeBuilder.GetBodyType(user, targets[i]).CalculateDailyRate();    
                 }
                 else
                 {
                     targets[i].relevance = false;
                 }
-
-                targets[i].DailyRate = new DailyRate
-                {
-                    CaloriesRate = 1715,
-                    ProteinRate = 160,
-                    FatRate = 75,
-                    CarbohydrateRate = 100
-                };
             }
-
             return targets;
         }
     }

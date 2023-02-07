@@ -51,6 +51,7 @@ export class Login {
                 this.user.weightConditions = data.weightConditions;  
                 this.user.sex = data.sex;
                 this.user.physicalActivity = data.physicalActivity;
+                this.user.height = data.height;
             }));
     }
 
@@ -74,6 +75,7 @@ export class Login {
                 this.user.weightConditions = data.weightConditions;
                 this.user.sex = data.sex;
                 this.user.physicalActivity = data.physicalActivity;
+                this.user.height = data.height;
             }));
     }
 
