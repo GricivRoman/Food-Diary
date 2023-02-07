@@ -10,6 +10,7 @@ using System.Text;
 using FoodDiary.Services;
 using FoodDiary.Services.UserTargetDailyRateCalculator;
 using FoodDiary.Services.UserTargetDailyRateCalculator.BodyTypeFactoryBuilder;
+using FoodDiary.Middlewares;
 
 namespace FoodDiary
 {
@@ -81,7 +82,8 @@ namespace FoodDiary
                         
 
             app.UseStaticFiles();
-            
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
