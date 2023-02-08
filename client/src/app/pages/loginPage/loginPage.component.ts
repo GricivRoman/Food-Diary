@@ -37,12 +37,7 @@ export class LoginPage implements OnInit {
                 this.loginService.getUser(this.creds)
                     .subscribe(() => {
                         this.router.navigateByUrl(this.returnUrl);
-                        //if (this.returnUrl == "") {
-                        //    this.location.back();
-                        //} else {
-                        //    this.router.navigateByUrl(this.returnUrl); 
-                        //}
-                        
+                                                
                     })    
             }, error => {
                 console.log(error);

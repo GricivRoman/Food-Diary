@@ -81,6 +81,7 @@ namespace FoodDiary.Controllers
             user.Gender= model.Gender;
             user.Height = model.Height;
             user.WeightConditions = mapper.Map<List<WeightCondition>>(model.WeightConditions);
+            user.UserMenu = mapper.Map<UserMenu>(model.UserMenu);
 
 
             try

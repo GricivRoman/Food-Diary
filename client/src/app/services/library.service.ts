@@ -5,6 +5,8 @@ import { Product } from "../shared/Food/Product";
 import { map } from "rxjs/operators";
 import { Dish } from "../shared/Food/Dish";
 import { CompositionItem } from "../shared/Food/CompositionItem";
+import { Meal } from "../shared/User/Meal";
+
 
 @Injectable()
 
@@ -18,7 +20,9 @@ export class LibraryService {
     dish: Dish = new Dish();
     dishToUpdate: Dish = new Dish();
 
-   
+
+    personalDishes: Dish[] = []; 
+    meals: Meal[] = [];
 
     createProduct(product: Product) {
         return this.http.post("/api/product", product);
@@ -75,7 +79,4 @@ export class LibraryService {
                 this.dishToUpdate = new Dish();
             }));
     }
-
-   
-    
 }

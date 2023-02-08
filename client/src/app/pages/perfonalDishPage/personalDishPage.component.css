@@ -1,0 +1,27 @@
+#prodName {
+	text-align: center;
+	vertical-align: central;
+}
+
+h4 {
+	text-align: left;
+}
+
+hr {
+	margin: 0px;
+}
+
+p {
+	margin: 0px;
+}
+
+
+
+#addButton {
+	margin-top: 5px;
+}
+
+
+#dishConteiner {
+	cursor: pointer;
+}

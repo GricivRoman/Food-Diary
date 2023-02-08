@@ -35,7 +35,7 @@
                         <a class="nav-link" routerLink="dish">Библиотека блюд</a>
                     </li>
                     <li class="nav-item">
-                        <a *ngIf="loginService.token; else loggOut" class="nav-link" (click)="loginService.logOut()">Выйти</a>
+                        <a *ngIf="loginService.token; else loggOut" class="nav-link btn" (click)="loginService.logOut()">Выйти</a>
                         <ng-template #loggOut>
                             <a class="nav-link btn" routerLink="login">Войти</a>
                         </ng-template>
@@ -61,7 +61,7 @@
                             <a class="nav-link">Моя статистика</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link">Мои блюда</a>
+                            <a class="nav-link" routerLink="personalDish">Мои блюда</a>
                         </li>
 
                     </ul>

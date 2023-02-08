@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Login } from "../../services/login.servise";
 
 
 @Component({
@@ -8,7 +9,10 @@ import { Component } from "@angular/core";
     })
 export class DiaryPage {
    
-        
+    constructor(public loginService: Login) {
 
+    }
+
+    
 
 }

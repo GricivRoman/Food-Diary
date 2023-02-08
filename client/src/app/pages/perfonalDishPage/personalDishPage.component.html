@@ -1,7 +1,9 @@
+﻿
 <div class="row">
     <div class="col-md-8">
+        <h3 class="mb-3 text-center">Персональная библиотека блюд</h3>
         <div class="row align-items-center">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <h4>Продукт</h4>
             </div>
             <div class="col-md-2">
@@ -18,9 +20,9 @@
             </div>
         </div>
         <hr />
-        <div *ngFor="let p of libraryService.dishes; let index = index">
-            <div id="dishConteiner" class="row align-items-center" (click)="getDishToUpdate(index)" routerLink="update">
-                <div class="col-md-4">
+        <div *ngFor="let p of libraryService.personalDishes ; let index = index">
+            <div id="dishConteiner" class="row align-items-center">
+                <div class="col-md-3">
                     <p>{{p.dishName}}</p>
                 </div>
                 <div class="col-md-2">
@@ -35,13 +37,23 @@
                 <div class="col-md-2">
                     <p>{{p.resourseSpecification.dishValue.carbohydrate}}</p>
                 </div>
+                <div class="col-md-1">
+                    <a class="btn btn-danger" (click)="deleteComponent(index)"><i class="fas fa-trash"></i></a>
+                </div>
             </div>
             <hr />
         </div>
     </div>
     <div class="row">
-        <div class="col-md-3 offset-6">
-            <a id="addButton" class="btn btn-success" (click)="setEmptyDish()" routerLink="create">Добавить блюдо</a>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-3 offset-7">
+                    <a id="addButton" class="btn btn-info" (click)="navigateDish()">Добавить блюдо</a>
+                </div>
+                <div class="col-md-2">
+                    <a id="addButton" class="btn btn-success" (click)="onSave()">Сохранить</a>
+                </div>
+            </div>
         </div>
     </div>
 

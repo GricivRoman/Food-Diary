@@ -4,15 +4,15 @@ using FoodDiary.ViewModels.User;
 
 namespace FoodDiary.Services.UserTargetDailyRateCalculator.BydeTypeFactory
 {
-    public class OldFemaleBodyDryingFactory : BodyTypeFactory
+    public class OldFemaleBodyTypeDryingFactory : BodyTypeFactory
     {
-        public OldFemaleBodyDryingFactory(UserViewModel user, Target target) : base(user, target)
+        public OldFemaleBodyTypeDryingFactory(UserViewModel user, Target target) : base(user, target)
         {
         }
 
         public override IBodyType GetBodyType()
         {
-            return new OldFemaleBodyDrying(user, target);
+            return new OldFemaleBodyTypeDrying(user, target);
         }
     }
 }

@@ -4,9 +4,6 @@
     {
         public int Id { get; set; }
         public User User { get; set; }
-
-
-
         public ICollection<Dish>? Dishes { get; set; }
     }
 }

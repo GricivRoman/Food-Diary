@@ -14,6 +14,7 @@ import { CheckInPage } from "../pages/loginPage/checkInPage/checkInPage.componen
 import { UserPage } from "../pages/userPage/userPage.component";
 import { AddBodyWeight } from "../pages/userPage/addBodyWeight/addBodyWeight.component";
 import { AddTarget } from "../pages/userPage/addTarget/addTarget.component";
+import { PersonalDishPage } from "../pages/perfonalDishPage/personalDishPage.component";
 
 const routes = [
     { path: "", component: DiaryPage}, 
@@ -29,6 +30,7 @@ const routes = [
     { path: "user", component: UserPage, canActivate: [AuthActivator] },
     { path: "user/addbodyweight", component: AddBodyWeight, canActivate: [AuthActivator] },
     { path: "user/addtarget", component: AddTarget, canActivate: [AuthActivator] },
+    { path: "personalDish", component: PersonalDishPage, canActivate: [AuthActivator] },
     { path: "**", redirectTo: "/"}
 ];
 

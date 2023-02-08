@@ -3,17 +3,17 @@ using FoodDiary.ViewModels.User;
 
 namespace FoodDiary.Services.UserTargetDailyRateCalculator.BodyType
 {
-    public class OldMaleBodyTypeDrying : BodyType
+    public class OldFemaleBodyTypeDrying : BodyType
     {
-        public OldMaleBodyTypeDrying(UserViewModel user, Target target) : base(user, target)
+        public OldFemaleBodyTypeDrying(UserViewModel user, Target target) : base(user, target)
         {
         }
 
-        protected override double ProteinMultiplier => 1.75;
+        protected override double ProteinMultiplier => 1;
 
-        protected override double FatMultiplier => 1.2;
+        protected override double FatMultiplier => 1.5;
 
-        protected override double NormalBodyMassIndex => 25;
+        protected override double NormalBodyMassIndex => 22;
 
         protected override double VeightDeltaValue => 7.7;
 

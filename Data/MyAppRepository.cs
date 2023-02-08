@@ -83,6 +83,9 @@ namespace FoodDiary.Data
                 .ThenInclude(mi => mi.MealItems)
                 .Include(s => s.Sex)
                 .Include(p => p.PhysicalActivity)
+                .Include(m => m.UserMenu)
+                .ThenInclude(d => d.Dishes)
+                .ThenInclude(v => v.ResourseSpecification.DishValue)
                 .AsNoTracking().FirstOrDefaultAsync();
         }
 

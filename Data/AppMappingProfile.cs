@@ -39,6 +39,8 @@ namespace FoodDiary.Data
                 .ReverseMap();
             CreateMap<DailyRate, DailyRateViewModel>()
                 .ReverseMap();
+            CreateMap<UserMenu, UserMenuViewModel>()
+                .ReverseMap();
             CreateMap<Meal, MealViewModel>()
                 .ReverseMap();
             CreateMap<MealItem, MealItemViewModel>()

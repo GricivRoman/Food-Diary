@@ -22,6 +22,8 @@ import { UserPage } from './pages/userPage/userPage.component';
 import { AddBodyWeight } from './pages/userPage/addBodyWeight/addBodyWeight.component';
 import { AddTarget } from './pages/userPage/addTarget/addTarget.component';
 import { CatalogService } from './services/catalog.service';
+import { PersonalDishPage } from './pages/perfonalDishPage/personalDishPage.component';
+
 
 @NgModule({
   declarations: [
@@ -38,20 +40,22 @@ import { CatalogService } from './services/catalog.service';
         CheckInPage,
         UserPage,
         AddBodyWeight,
-        AddTarget
+        AddTarget,
+        PersonalDishPage
   ],
   imports: [
       BrowserModule,
       HttpClientModule,
       router,
-      FormsModule      
+      FormsModule
+      
   ],
     providers: [
       { provide: LocationStrategy, useClass: HashLocationStrategy },
       Login,
       AuthActivator,
       LibraryService,
-      CatalogService
+      CatalogService      
     ],
     bootstrap: [AppComponent]
 })

@@ -4,12 +4,13 @@ import { map } from "rxjs/operators";
 import { CheckInRequest } from "../shared/Account/CheckInRequest";
 import { LoginRequest, LoginResults } from "../shared/Account/LoginResults";
 import { User } from "../shared/User/User";
+import { LibraryService } from "./library.service";
 
 @Injectable()
 
 export class Login {
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private libraryService: LibraryService) {
 
     }
        
@@ -52,7 +53,10 @@ export class Login {
                 this.user.sex = data.sex;
                 this.user.physicalActivity = data.physicalActivity;
                 this.user.height = data.height;
+                this.libraryService.personalDishes = data.userMenu.dishes;
+                this.libraryService.meals = data.meals;
             }));
+        
     }
 
     checkIn(checkInCreds: CheckInRequest) {
@@ -76,6 +80,8 @@ export class Login {
                 this.user.sex = data.sex;
                 this.user.physicalActivity = data.physicalActivity;
                 this.user.height = data.height;
+                this.libraryService.personalDishes = data.userMenu.dishes;
+                this.libraryService.meals = data.meals;
             }));
     }
 

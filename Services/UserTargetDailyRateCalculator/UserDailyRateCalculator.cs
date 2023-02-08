@@ -30,7 +30,8 @@ namespace FoodDiary.Services.UserTargetDailyRateCalculator
                 if (i== user.Targets.Count-1)
                 {
                     targets[i].relevance = true;
-                    
+
+                    var a = bodyTypeBuilder.GetBodyType(user, targets[i]);
                     targets[i].DailyRate = bodyTypeBuilder.GetBodyType(user, targets[i]).CalculateDailyRate();    
                 }
                 else

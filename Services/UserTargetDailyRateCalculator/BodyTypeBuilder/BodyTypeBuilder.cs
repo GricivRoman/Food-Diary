@@ -23,22 +23,54 @@ namespace FoodDiary.Services.UserTargetDailyRateCalculator.BodyTypeFactoryBuilde
             {
                 if (user.Age < 30)
                 {
-                    return new YoungMaleBodyTypeDryingFactory(user, target);
+                    if (target.TargetBodyWeight < target.CurrentBodyWeight)
+                    {
+                        return new YoungMaleBodyTypeDryingFactory(user, target);
+                    }
+                    else
+                    {
+                        return new YoungMaleBodyTypeBulkingFactory(user, target);
+                    }
+                    
                 }
                 else
                 {
-                    return new OldMaleBodyTypeDryingFactory(user, target);
+                    if (target.TargetBodyWeight < target.CurrentBodyWeight)
+                    {
+                        return new OldMaleBodyTypeDryingFactory(user, target);
+                    }
+                    else
+                    {
+                        return new OldMaleBodyTypeBulkingFactory(user, target);
+                    }
+                    
                 }
             }
             else if (user.Sex.Name == "Женщина")
             {
                 if (user.Age < 30)
                 {
-                    return new YoungFemaleBodyTypeDryingFactory(user, target);
+                    if (target.TargetBodyWeight < target.CurrentBodyWeight)
+                    {
+                        return new YoungFemaleBodyTypeDryingFactory(user, target);
+                    }
+                    else
+                    {
+                        return new YoungFemaleBodyTypeBulkingFactory(user, target);
+                    }
+                    
                 }
                 else
                 {
-                    return new OldFemaleBodyDryingFactory(user, target);
+                    if (target.TargetBodyWeight < target.CurrentBodyWeight)
+                    {
+                        return new OldFemaleBodyTypeDryingFactory(user, target);
+                    }
+                    else
+                    {
+                        return new OldFemaleBodyTypeBulkingFactory(user, target);
+                    }
+                    
                 }
             }
 

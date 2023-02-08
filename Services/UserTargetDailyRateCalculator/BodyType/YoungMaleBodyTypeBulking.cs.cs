@@ -3,19 +3,19 @@ using FoodDiary.ViewModels.User;
 
 namespace FoodDiary.Services.UserTargetDailyRateCalculator.BodyType
 {
-    public class OldMaleBodyTypeDrying : BodyType
+    public class YoungMaleBodyTypeBulking : BodyType
     {
-        public OldMaleBodyTypeDrying(UserViewModel user, Target target) : base(user, target)
+        public YoungMaleBodyTypeBulking(UserViewModel user, Target target) : base(user, target)
         {
         }
 
-        protected override double ProteinMultiplier => 1.75;
+        protected override double ProteinMultiplier => 2;
 
-        protected override double FatMultiplier => 1.2;
+        protected override double FatMultiplier => 1.1;
 
-        protected override double NormalBodyMassIndex => 25;
+        protected override double NormalBodyMassIndex => 24;
 
-        protected override double VeightDeltaValue => 7.7;
+        protected override double VeightDeltaValue => 25;
 
         protected override double CalculateBasalMetabolicRate()
         {
