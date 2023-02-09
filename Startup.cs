@@ -11,6 +11,7 @@ using FoodDiary.Services;
 using FoodDiary.Services.UserTargetDailyRateCalculator;
 using FoodDiary.Services.UserTargetDailyRateCalculator.BodyTypeFactoryBuilder;
 using FoodDiary.Middlewares;
+using FoodDiary.Services.EnergyValueCalculator;
 
 namespace FoodDiary
 {
@@ -59,7 +60,7 @@ namespace FoodDiary
 
             services.AddScoped<IMyAppRepository, MyAppRepository>();
 
-            services.AddTransient<IDishValueCalculatorService, DishValueCalculatorService>();
+            services.AddTransient<IEnergyValueCalculatorService, EnergyValueCalculatorService>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation().AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddRazorPages();

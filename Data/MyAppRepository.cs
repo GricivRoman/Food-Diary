@@ -43,14 +43,14 @@ namespace FoodDiary.Data
 
         public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return await context.Product.OrderBy(n => n.ProductName).ToListAsync();
+            return await context.Product.OrderBy(n => n.ProductName).AsNoTracking().ToListAsync();
         }
 
         public async Task<Dish> FindDishByNameAsync(string DishName)
         {
            
             return await context.Dish
-                .Where(d => d.DishName== DishName).FirstOrDefaultAsync();
+                .Where(d => d.DishName== DishName).AsNoTracking().FirstOrDefaultAsync();
                         
         }
 
@@ -58,11 +58,13 @@ namespace FoodDiary.Data
         {
 
             return await context.Dish
+                .AsNoTracking()
                 .Include(r => r.ResourseSpecification)
                 .ThenInclude(c => c.Composition)
                 .ThenInclude(p => p.Product)
                 .Include(r => r.ResourseSpecification)
                 .ThenInclude(v => v.DishValue)
+                .AsNoTracking()
                 .ToListAsync();
                 
         }
@@ -74,19 +76,29 @@ namespace FoodDiary.Data
 
         public async Task<User> FindUserByNameAsync(string userName)
         {
-            
+
             return await context.User.Where(n => n.UserName == userName)
-                .Include(w => w.WeightConditions.OrderByDescending(d=>d.Date))
+                .Include(w => w.WeightConditions.OrderByDescending(d => d.Date))
                 .Include(t => t.Targets.OrderByDescending(i => i.Id))
                 .ThenInclude(d => d.DailyRate)
                 .Include(m => m.Meals)
-                .ThenInclude(mi => mi.MealItems)
+                .ThenInclude(mi => mi.MealItems)                
                 .Include(s => s.Sex)
                 .Include(p => p.PhysicalActivity)
                 .Include(m => m.UserMenu)
                 .ThenInclude(d => d.Dishes)
                 .ThenInclude(v => v.ResourseSpecification.DishValue)
-                .AsNoTracking().FirstOrDefaultAsync();
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
+        }       
+
+        public async Task<User> FindUserMealsByNameAsync(string userName)
+        {
+
+            return await context.User.Where(n => n.UserName == userName)
+                .Include(m=> m.Meals)                
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<SexCatalog>> GetFullSexCatalogAsync()

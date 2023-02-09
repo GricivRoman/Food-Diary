@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
 import { CheckInRequest } from "../shared/Account/CheckInRequest";
 import { LoginRequest, LoginResults } from "../shared/Account/LoginResults";
+import { Meal } from "../shared/User/Meal";
 import { User } from "../shared/User/User";
 import { LibraryService } from "./library.service";
 
@@ -18,6 +19,7 @@ export class Login {
     public expiration = new Date();
 
     public user: User = new User();
+    meal: Meal = new Meal();   
 
 
     
@@ -54,7 +56,7 @@ export class Login {
                 this.user.physicalActivity = data.physicalActivity;
                 this.user.height = data.height;
                 this.libraryService.personalDishes = data.userMenu.dishes;
-                this.libraryService.meals = data.meals;
+                
             }));
         
     }
@@ -81,7 +83,7 @@ export class Login {
                 this.user.physicalActivity = data.physicalActivity;
                 this.user.height = data.height;
                 this.libraryService.personalDishes = data.userMenu.dishes;
-                this.libraryService.meals = data.meals;
+                
             }));
     }
 
@@ -90,6 +92,13 @@ export class Login {
         const headers = new HttpHeaders().set("Authorization", `Bearer ${this.token}`);
         return this.http.post("/api/user/updateUser", this.user, {headers:headers});
         
+    }
+
+    updateUserMeals() {
+
+        const headers = new HttpHeaders().set("Authorization", `Bearer ${this.token}`);
+        return this.http.post("/api/user/updateUserMeals", this.user, { headers: headers });
+
     }
 
     

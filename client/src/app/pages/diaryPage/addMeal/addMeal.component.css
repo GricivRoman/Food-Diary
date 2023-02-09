@@ -1,0 +1,17 @@
+hr {
+	margin: 2px 0px 2px 0px;
+}
+
+#productNameContainer {
+	vertical-align: central;
+	margin: 5px 0px 0px 0px;
+}
+
+	#productNameContainer p {
+		vertical-align: central;
+		margin: 0px 0px 0px 0px;
+	}
+
+input {
+	margin: 1px 0px 0px 0px;
+}

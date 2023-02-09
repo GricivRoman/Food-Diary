@@ -4,8 +4,8 @@ using FoodDiary.Data;
 using FoodDiary.Data.Entities;
 using AutoMapper;
 using System.Text.RegularExpressions;
-using FoodDiary.Services;
 using FoodDiary.ViewModels.Food;
+using FoodDiary.Services.EnergyValueCalculator;
 
 namespace FoodDiary.Controllers
 {
@@ -17,12 +17,12 @@ namespace FoodDiary.Controllers
         private readonly IMyAppRepository repository;
         private readonly ILogger<DishController> logger;
         private readonly IMapper mapper;
-        private readonly IDishValueCalculatorService dishValueCalculator;
+        private readonly IEnergyValueCalculatorService dishValueCalculator;
 
         public DishController(IMyAppRepository repository, 
             ILogger<DishController> logger,
             IMapper mapper,
-            IDishValueCalculatorService dishValueCalculator)
+            IEnergyValueCalculatorService dishValueCalculator)
         {
             this.repository = repository;
             this.logger = logger;

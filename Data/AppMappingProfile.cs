@@ -32,7 +32,7 @@ namespace FoodDiary.Data
             CreateMap<User, UserViewModel>()
                 .ForMember(m=> m.Password, opt => opt.Ignore())
                 .ReverseMap();
-
+            
             CreateMap<WeightCondition, WeightConditionViewModel>()
                 .ReverseMap();
             CreateMap<Target, TargetViewModel>()
@@ -42,9 +42,13 @@ namespace FoodDiary.Data
             CreateMap<UserMenu, UserMenuViewModel>()
                 .ReverseMap();
             CreateMap<Meal, MealViewModel>()
+                .ForMember(m => m.MealValue, opt => opt.Ignore())
                 .ReverseMap();
-            CreateMap<MealItem, MealItemViewModel>()
-                .ReverseMap();
+
+            CreateMap<MealItem, MealItemViewModel>()                
+                .ReverseMap()
+                .ForMember(m => m.Dish, opt => opt.Ignore());
+               
 
             CreateMap<SexCatalog, SexCatalogViewModel>()
                 .ReverseMap();

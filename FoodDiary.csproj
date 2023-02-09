@@ -36,7 +36,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="client\src\app\pages\diaryPage\" />
     <Folder Include="client\src\app\pages\dishPage\createDish\addCompositionItem\" />
     <Folder Include="client\src\app\shared\Catalogs\" />
     <Folder Include="wwwroot\img\" />

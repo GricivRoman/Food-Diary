@@ -23,6 +23,7 @@ import { AddBodyWeight } from './pages/userPage/addBodyWeight/addBodyWeight.comp
 import { AddTarget } from './pages/userPage/addTarget/addTarget.component';
 import { CatalogService } from './services/catalog.service';
 import { PersonalDishPage } from './pages/perfonalDishPage/personalDishPage.component';
+import { AddMeal } from './pages/diaryPage/addMeal/addMeal.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { PersonalDishPage } from './pages/perfonalDishPage/personalDishPage.comp
         UserPage,
         AddBodyWeight,
         AddTarget,
-        PersonalDishPage
+        PersonalDishPage,
+        AddMeal
   ],
   imports: [
       BrowserModule,

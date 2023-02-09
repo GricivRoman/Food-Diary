@@ -15,9 +15,11 @@ import { UserPage } from "../pages/userPage/userPage.component";
 import { AddBodyWeight } from "../pages/userPage/addBodyWeight/addBodyWeight.component";
 import { AddTarget } from "../pages/userPage/addTarget/addTarget.component";
 import { PersonalDishPage } from "../pages/perfonalDishPage/personalDishPage.component";
+import { AddMeal } from "../pages/diaryPage/addMeal/addMeal.component";
 
 const routes = [
-    { path: "", component: DiaryPage}, 
+    { path: "", component: DiaryPage, canActivate: [AuthActivator] },
+    { path: "addmeal", component: AddMeal, canActivate: [AuthActivator] },
     { path: "product", component: ProductPage },
     { path: "product/create", component: CreateProduct },
     { path: "dish", component: DishPage },

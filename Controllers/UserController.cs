@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using FoodDiary.Data;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using FoodDiary.Services.UserTargetDailyRateCalculator;
+using FoodDiary.Services.EnergyValueCalculator;
 
 namespace FoodDiary.Controllers
 {
@@ -22,12 +23,14 @@ namespace FoodDiary.Controllers
         private readonly IMyAppRepository repository;
         private readonly ILogger<UserController> logger;
         private readonly IUserDailyRateCalculator userDailyRateCalculator;
+        private readonly IEnergyValueCalculatorService energyValueCalculator;
 
         public UserController(UserManager<User> userManager,
             IMapper mapper,
             IMyAppRepository repository,
             ILogger<UserController> logger,
-            IUserDailyRateCalculator userDailyRateCalculator
+            IUserDailyRateCalculator userDailyRateCalculator,
+            IEnergyValueCalculatorService energyValueCalculator
             )
         {
             this.userManager = userManager;
@@ -35,6 +38,7 @@ namespace FoodDiary.Controllers
             this.repository = repository;
             this.logger = logger;
             this.userDailyRateCalculator = userDailyRateCalculator;
+            this.energyValueCalculator = energyValueCalculator;
         }
 
         [HttpPost]
@@ -44,14 +48,15 @@ namespace FoodDiary.Controllers
             if (ModelState.IsValid)
             {
                 var user = await repository.FindUserByNameAsync(model.UserName);
-                
-                
-                               
 
-                return Ok(mapper.Map<UserViewModel>(user));
+                var returningUser = mapper.Map<UserViewModel>(user);               
+
+                returningUser.Meals = await energyValueCalculator.GetMealsWithValueAsync(returningUser.Meals);
+
+                return Ok(returningUser);
             }
 
-            return BadRequest("Not found");
+            return BadRequest("User not found");
         }
         
         [HttpGet]
@@ -60,9 +65,13 @@ namespace FoodDiary.Controllers
         public async Task<IActionResult> GetUserWithIdentityAsync()
         {
             var user = await repository.FindUserByNameAsync(User.Identity.Name);
-            return Ok(mapper.Map<UserViewModel>(user));
-        }
 
+            var returningUser = mapper.Map<UserViewModel>(user);
+
+            returningUser.Meals = await energyValueCalculator.GetMealsWithValueAsync(returningUser.Meals);
+
+            return Ok(returningUser);
+        }
 
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -70,7 +79,6 @@ namespace FoodDiary.Controllers
         
         public async Task<IActionResult> UpdateUserAsync([FromBody]UserViewModel model)
         {
-            
             var user = await repository.FindUserByNameAsync(User.Identity.Name);
                       
 
@@ -80,9 +88,8 @@ namespace FoodDiary.Controllers
             user.Age = model.Age;
             user.Gender= model.Gender;
             user.Height = model.Height;
-            user.WeightConditions = mapper.Map<List<WeightCondition>>(model.WeightConditions);
+            user.WeightConditions = mapper.Map<List<WeightCondition>>(model.WeightConditions);            
             user.UserMenu = mapper.Map<UserMenu>(model.UserMenu);
-
 
             try
             {
@@ -109,6 +116,30 @@ namespace FoodDiary.Controllers
             }
             
             
+            return Ok();
+
+        }
+
+        [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("updateUserMeals")]
+        public async Task<IActionResult> UpdateUserMealsAsync([FromBody] UserViewModel model)
+        {
+            var user = await repository.FindUserMealsByNameAsync(User.Identity.Name);
+                                  
+
+            user.Meals = mapper.Map<List<Meal>>(model.Meals);
+
+            try
+            {
+                repository.UpdateEntity(user);
+                await repository.SaveAllAsync();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"{DateTime.UtcNow} : {ex}");
+
+            }
             return Ok();
 
         }

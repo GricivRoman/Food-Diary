@@ -5,7 +5,7 @@ import { Product } from "../shared/Food/Product";
 import { map } from "rxjs/operators";
 import { Dish } from "../shared/Food/Dish";
 import { CompositionItem } from "../shared/Food/CompositionItem";
-import { Meal } from "../shared/User/Meal";
+
 
 
 @Injectable()
@@ -22,8 +22,7 @@ export class LibraryService {
 
 
     personalDishes: Dish[] = []; 
-    meals: Meal[] = [];
-
+    
     createProduct(product: Product) {
         return this.http.post("/api/product", product);
     }

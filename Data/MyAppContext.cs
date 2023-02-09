@@ -22,5 +22,6 @@ namespace FoodDiary.Data
 
         public DbSet<SexCatalog> SexCatalog { get; set; }
         public DbSet<PhysicalActivityCatalog> PhysicalActivityCatalog { get; set; }
+        public DbSet<Meal> Meal { get; set; }
     }
 }
