@@ -80,6 +80,5 @@ namespace FoodDiary.Services.EnergyValueCalculator
 
             return meals;
         }
-
     }
 }

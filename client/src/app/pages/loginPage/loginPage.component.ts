@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Login } from "../../services/login.servise";
+import { UserService } from "../../services/user.servise";
 import { LoginRequest } from "../../shared/Account/LoginResults";
 import { Location } from '@angular/common';
 
@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 })
 
 export class LoginPage implements OnInit {
-    constructor(private loginService: Login,
+    constructor(private userService: UserService,
         private router: Router,
         private route: ActivatedRoute,
         private location:Location ) {
@@ -32,9 +32,9 @@ export class LoginPage implements OnInit {
     }
 
     onLogin() {
-        this.loginService.login(this.creds)
+        this.userService.login(this.creds)
             .subscribe(() => {
-                this.loginService.getUser(this.creds)
+                this.userService.getUser(this.creds)
                     .subscribe(() => {
                         this.router.navigateByUrl(this.returnUrl);
                                                 

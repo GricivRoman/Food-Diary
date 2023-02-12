@@ -2,7 +2,6 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { LibraryService } from "../../../services/library.service";
-
 import { Product } from "../../../shared/Food/Product";
 
 @Component({

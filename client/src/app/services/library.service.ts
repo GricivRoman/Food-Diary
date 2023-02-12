@@ -6,8 +6,6 @@ import { map } from "rxjs/operators";
 import { Dish } from "../shared/Food/Dish";
 import { CompositionItem } from "../shared/Food/CompositionItem";
 
-
-
 @Injectable()
 
 export class LibraryService {

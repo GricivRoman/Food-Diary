@@ -4,20 +4,20 @@
         <div class="col-md-4">
             <div>
                 <label class="fs-5 fw-bold">Имя</label>
-                <input class="form-control" name="name" [(ngModel)]="loginService.user.name" value="{{loginService.user.name}}" />
+                <input class="form-control" name="name" [(ngModel)]="userService.user.name" value="{{userService.user.name}}" />
             </div>
             <div>
                 <label class="fs-5 fw-bold">Возраст</label>
-                <input class="form-control" name="age" [(ngModel)]="loginService.user.age" value="{{loginService.user.age}}" />
+                <input class="form-control" name="age" [(ngModel)]="userService.user.age" value="{{userService.user.age}}" />
             </div>
             <div>
                 <label class="fs-5 fw-bold">Рост, см.</label>
-                <input class="form-control" name="height" [(ngModel)]="loginService.user.height" value="{{loginService.user.height}}" />
+                <input class="form-control" name="height" [(ngModel)]="userService.user.height" value="{{userService.user.height}}" />
             </div>
             <div>
                 <label class="fs-5 fw-bold">Пол</label>
-                <select class="form-control" name="sex" [(ngModel)]="loginService.user.sex">
-                    <option [ngValue]="loginService.user.sex" selected>{{loginService.user.sex.name}}</option>
+                <select class="form-control" name="sex" [(ngModel)]="userService.user.sex">
+                    <option [ngValue]="userService.user.sex" selected>{{userService.user.sex.name}}</option>
                     <option *ngFor="let p of catalogService.sexCatalog" [ngValue]="p">{{p.name}}</option>
                 </select>
             </div>
@@ -26,8 +26,8 @@
             <div>
                 <label class="fs-5 fw-bold">Уровень физической активности</label>
 
-                <select class="form-control" [(ngModel)]="loginService.user.physicalActivity">
-                    <option [ngValue]="loginService.user.physicalActivity" selected>{{loginService.user.physicalActivity.name}}</option>
+                <select class="form-control" [(ngModel)]="userService.user.physicalActivity">
+                    <option [ngValue]="userService.user.physicalActivity" selected>{{userService.user.physicalActivity.name}}</option>
                     <option *ngFor="let p of catalogService.physicalActivityCatalog" [ngValue]="p">{{p.name}}</option>
                 </select>
             </div>
@@ -78,7 +78,7 @@
                     <hr />
                 </div>
 
-                <div *ngFor="let p of loginService.user.targets; let index = index">
+                <div *ngFor="let p of userService.user.targets; let index = index">
                     <div class="row align-items-center">
                         <div class="col-md-2">
                             <p class="text-center m-0 mb-1">{{p.dateStart | date:'dd.MM.YY'}}</p>
@@ -112,7 +112,7 @@
                     <hr />
                 </div>
 
-                <div *ngFor="let p of loginService.user.weightConditions; let index = index">
+                <div *ngFor="let p of userService.user.weightConditions; let index = index">
                     <div class="row">
                         <div class="col-md-6">
                             <p class="text-center m-0 mb-1">{{p.date | date:'dd.MM.YY'}}</p>

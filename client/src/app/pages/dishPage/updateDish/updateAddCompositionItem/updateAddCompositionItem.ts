@@ -1,12 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-
 import { LibraryService } from "../../../../services/library.service";
-
-
-
-
-
 @Component({
     selector: "update-add-composition-item",
     templateUrl: "updateAddCompositionItem.html",

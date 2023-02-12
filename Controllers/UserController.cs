@@ -98,8 +98,7 @@ namespace FoodDiary.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
-            }
-            
+            }            
             
             user.Sex = mapper.Map<SexCatalog>(model.Sex);
             user.PhysicalActivity = mapper.Map<PhysicalActivityCatalog>(model.PhysicalActivity);
@@ -111,10 +110,8 @@ namespace FoodDiary.Controllers
             }
             catch (Exception ex)
             {
-                logger.LogError($"{DateTime.UtcNow} : {ex}");
-                
-            }
-            
+                logger.LogError($"{DateTime.UtcNow} : {ex}");                
+            }           
             
             return Ok();
 
@@ -154,7 +151,5 @@ namespace FoodDiary.Controllers
             await repository.SaveAllAsync();
             return Ok();
         }
-
-
     }
 }

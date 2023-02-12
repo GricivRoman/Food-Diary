@@ -2,12 +2,8 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { CatalogService } from "../../services/catalog.service";
-import { Login } from "../../services/login.servise";
-import { PhysicalActivityCatalog } from "../../shared/Catalogs/PhysicalActivityCatalog";
-import { SexCatalog } from "../../shared/Catalogs/SexCatalog";
+import { UserService } from "../../services/user.servise";
 import { Target } from "../../shared/User/Target";
-import { User } from "../../shared/User/User";
-
 
 @Component({
     selector: "user-page",
@@ -16,7 +12,7 @@ import { User } from "../../shared/User/User";
 })
 
 export class UserPage implements OnInit {
-    constructor(public loginService: Login,
+    constructor(public userService: UserService,
         private router: Router,
         public catalogService: CatalogService) {
     }
@@ -31,23 +27,16 @@ export class UserPage implements OnInit {
             });
     }
 
-/*    user: User = this.loginService.user;*/
-
-    target: Target = this.loginService.user.targets.find(f => f.relevance == true) as Target;
-      
+    target: Target = this.userService.user.targets.find(f => f.relevance == true) as Target;      
     
     sexIndex: number = 0;
 
     errorMessage: string = "";
 
     setUserParameters() {
-        
-        /*this.loginService.user = this.user*/
-
-
-        this.loginService.updateUser()
+        this.userService.updateUser()
             .subscribe(() => {
-                this.loginService.getUserWithIdentity()
+                this.userService.getUserWithIdentity()
                     .subscribe(() => {
                         this.router.navigate(["/"]);
                     });
@@ -55,7 +44,6 @@ export class UserPage implements OnInit {
                 console.log(error);
                 this.errorMessage = `${(error as HttpErrorResponse).error}`;;
             });
-
     }
 
     

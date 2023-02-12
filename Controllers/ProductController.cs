@@ -19,8 +19,7 @@ namespace FoodDiary.Controllers
         public ProductController(IMyAppRepository repository, 
             ILogger<ProductController> logger, 
             IMapper mapper)
-        {
-            
+        {            
             this.repository = repository;
             this.logger = logger;
             this.mapper = mapper;

@@ -1,7 +1,7 @@
 
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { Login } from "../../../services/login.servise";
+import { UserService } from "../../../services/user.servise";
 import { Target } from "../../../shared/User/Target";
 import { WeightCondition } from "../../../shared/User/WeightContition";
 
@@ -12,21 +12,21 @@ import { WeightCondition } from "../../../shared/User/WeightContition";
     })
 export class AddTarget {
 
-    constructor(public loginService: Login, private router: Router) {
+    constructor(private userService: UserService, private router: Router) {
     }
 
     target: Target = new Target();
 
     onAddTarget() {
-        this.loginService.user.targets.push(this.target);
+        this.userService.user.targets.push(this.target);
 
         const weightCondition = new WeightCondition();
         weightCondition.bodyWeight = this.target.currentBodyWeight;
-        this.loginService.user.weightConditions.push(weightCondition);
+        this.userService.user.weightConditions.push(weightCondition);
 
-        this.loginService.updateUser()
+        this.userService.updateUser()
             .subscribe(() => {
-                this.loginService.getUserWithIdentity()
+                this.userService.getUserWithIdentity()
                     .subscribe(() => {
                         this.router.navigate(["user"]);
                     })

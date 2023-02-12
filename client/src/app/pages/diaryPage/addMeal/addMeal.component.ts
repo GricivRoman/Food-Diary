@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Login } from "../../../services/login.servise";
+import { UserService } from "../../../services/user.servise";
 
 
 @Component({
@@ -11,7 +11,7 @@ import { Login } from "../../../services/login.servise";
     })
 export class AddMeal implements OnInit {
 
-    constructor(public loginService: Login, private router:Router, private activatedRoute:ActivatedRoute) {
+    constructor(public userService: UserService, private router:Router, private activatedRoute:ActivatedRoute) {
     }
 
     errorMessage: string = "";   
@@ -26,7 +26,7 @@ export class AddMeal implements OnInit {
     }
    
     addMeal() {
-        this.loginService.user.meals.push(this.loginService.meal);       
+        this.userService.user.meals.push(this.userService.meal);       
     }
 
 
@@ -36,23 +36,23 @@ export class AddMeal implements OnInit {
     }
 
     deleteComponent(index: number) {        
-        this.loginService.meal.mealItems.splice(index, 1);
+        this.userService.meal.mealItems.splice(index, 1);
     }
 
     saveMeal() {
         if (this.queryMessage == "update") {
 
             const index = this.queryMessageIndex as unknown as number;
-            this.loginService.user.meals[index] = this.loginService.meal;           
+            this.userService.user.meals[index] = this.userService.meal;           
             
         } else {
             
-            this.loginService.user.meals.push(this.loginService.meal);
+            this.userService.user.meals.push(this.userService.meal);
         }
 
-        this.loginService.updateUserMeals()
+        this.userService.updateUserMeals()
             .subscribe(() => {
-                this.loginService.getUserWithIdentity()
+                this.userService.getUserWithIdentity()
                     .subscribe(() => {
                         this.router.navigateByUrl("");
                     });

@@ -15,12 +15,12 @@
                         </div>
                         <hr />
                     </div>
-                    <div class="row  align-items-center" *ngFor="let p of loginService.meal.mealItems; let index = index;">
+                    <div class="row  align-items-center" *ngFor="let p of userService.meal.mealItems; let index = index;">
                         <div id="productNameContainer" class="col-md-6">
                             <p>{{p.dish.dishName}}</p>
                         </div>
                         <div class="col-md-4">
-                            <input class="form-control d-inline" type="number" value="{{p.dishWeightG}}" name="a{{index}}" [(ngModel)]="loginService.meal.mealItems[index].dishWeightG" />
+                            <input class="form-control d-inline" type="number" value="{{p.dishWeightG}}" name="a{{index}}" [(ngModel)]="userService.meal.mealItems[index].dishWeightG" />
                         </div>
                         <div class="col-md-1">
                             <a class="btn btn-danger"><i class="fas fa-trash" (click)="deleteComponent(index)"></i></a>

@@ -19,6 +19,7 @@ namespace FoodDiary.Controllers
             this.repository = repository;
             this.mapper = mapper;
         }
+
         [HttpGet]
         [Route("getsexcatalog")]
         public async Task<IActionResult> GetSexCatalogAsync()
@@ -27,6 +28,7 @@ namespace FoodDiary.Controllers
             return Ok(mapper.Map<List<SexCatalogViewModel>>(result));
             
         }
+
         [HttpGet]
         [Route("getphysicalactivitycatalog")]
         public async Task<IActionResult> GetPhysicalActivityCatalogAsync()

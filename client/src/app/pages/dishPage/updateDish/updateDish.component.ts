@@ -3,9 +3,6 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { LibraryService } from "../../../services/library.service";
 import { CompositionItem } from "../../../shared/Food/CompositionItem";
-
-
-
 @Component({
     selector: "update-dish",
     templateUrl: "updateDish.component.html",

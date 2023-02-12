@@ -44,7 +44,6 @@ namespace FoodDiary.Controllers
 
                 return BadRequest();
             }
-
         }
 
         [HttpPost]
@@ -65,10 +64,7 @@ namespace FoodDiary.Controllers
                 await repository.SaveAllAsync();
 
                 return Created("", mapper.Map<DishViewModel>(dish));
-            }
-                       
-            
-
+            }    
         }
 
         [HttpPut]
@@ -78,16 +74,12 @@ namespace FoodDiary.Controllers
                         
             model.ResourseSpecification.DishValue = dishValueCalculator.CalculateDishValue(model.ResourseSpecification);
 
-
             dishToUpdate = mapper.Map<Dish>(model);
-
 
             repository.UpdateEntity(dishToUpdate);
             await repository.SaveAllAsync();
 
             return Created("", mapper.Map<DishViewModel>(dishToUpdate));
-        }
-
-       
+        }       
     }
 }

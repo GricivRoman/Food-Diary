@@ -1,11 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router} from "@angular/router";
 import { LibraryService } from "../../services/library.service";
-import { Login } from "../../services/login.servise";
-import { Dish } from "../../shared/Food/Dish";
+import { UserService } from "../../services/user.servise";
 import { MealItem } from "../../shared/User/MealItem";
-
-
 
 @Component({
     selector: "perfonal-dish-page",
@@ -15,7 +12,7 @@ import { MealItem } from "../../shared/User/MealItem";
 export class PersonalDishPage implements OnInit {
 
     constructor(public libraryService: LibraryService,
-        public loginService: Login,
+        private userService: UserService,
         private router: Router,
         private activatedRoute: ActivatedRoute) {
     }
@@ -31,15 +28,15 @@ export class PersonalDishPage implements OnInit {
     }
 
     onSave() {
-        this.loginService.user.userMenu.dishes = this.libraryService.personalDishes;
-        this.loginService.updateUser()
+        this.userService.user.userMenu.dishes = this.libraryService.personalDishes;
+        this.userService.updateUser()
             .subscribe(() => {
                 this.router.navigateByUrl("");
             });
     }
 
     deleteComponent(index: number) {
-        this.loginService.user.userMenu.dishes.splice(index, 1);        
+        this.userService.user.userMenu.dishes.splice(index, 1);        
     }
 
 
@@ -48,9 +45,9 @@ export class PersonalDishPage implements OnInit {
         if (this.returnUrl = "addmeal") {
 
             const mealItem: MealItem = new MealItem();
-            mealItem.dish = this.loginService.user.userMenu.dishes[index];
-            mealItem.dishId = this.loginService.user.userMenu.dishes[index].id;
-            this.loginService.meal.mealItems.push(mealItem);
+            mealItem.dish = this.userService.user.userMenu.dishes[index];
+            mealItem.dishId = this.userService.user.userMenu.dishes[index].id;
+            this.userService.meal.mealItems.push(mealItem);
                         
             this.router.navigateByUrl(this.returnUrl);
         }        

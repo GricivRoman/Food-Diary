@@ -7,7 +7,7 @@ import router from './router';
 import { LoginPage } from './pages/loginPage/loginPage.component';
 import { AuthActivator } from './services/authActivator.servese';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Login } from './services/login.servise';
+import { UserService } from './services/user.servise';
 import { DiaryPage } from './pages/diaryPage/diaryPage.component';
 import { ProductPage } from './pages/productPage/producPage.component';
 import { LibraryService } from './services/library.service';
@@ -54,7 +54,7 @@ import { AddMeal } from './pages/diaryPage/addMeal/addMeal.component';
   ],
     providers: [
       { provide: LocationStrategy, useClass: HashLocationStrategy },
-      Login,
+      UserService,
       AuthActivator,
       LibraryService,
       CatalogService      

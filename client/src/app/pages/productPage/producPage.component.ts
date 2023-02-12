@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { LibraryService } from "../../services/library.service";
 
-
 @Component({
     selector: "product-list",
     templateUrl: "productPage.component.html",

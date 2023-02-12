@@ -9,7 +9,7 @@ import { LibraryService } from "./library.service";
 
 @Injectable()
 
-export class Login {
+export class UserService {
 
     constructor(private http: HttpClient, private libraryService: LibraryService) {
 

@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { Login } from "../../services/login.servise";
+import { UserService } from "../../services/user.servise";
 import { Meal } from "../../shared/User/Meal";
 
 
@@ -11,29 +11,29 @@ import { Meal } from "../../shared/User/Meal";
     })
 export class DiaryPage {
    
-    constructor(public loginService: Login,
+    constructor(public userService: UserService,
     private router:Router) {
 
     }
 
     addMeal() {
-        this.loginService.meal = new Meal();
+        this.userService.meal = new Meal();
         this.router.navigate(["addmeal"]);
     }
 
     updateMeal(index: number) {
-        this.loginService.meal = this.loginService.user.meals[index];
+        this.userService.meal = this.userService.user.meals[index];
         this.router.navigate(["addmeal"], { queryParams: { "queryMessageIndex": `${index}`, "queryMessage": "update" } });
     }
 
     deleteMeal(index: number) {
-        this.loginService.mealToDelete = this.loginService.user.meals[index];
+        this.userService.mealToDelete = this.userService.user.meals[index];
 
-        this.loginService.deleteUserMeals()
+        this.userService.deleteUserMeals()
             .subscribe(() => {
-                this.loginService.getUserWithIdentity().
+                this.userService.getUserWithIdentity().
                     subscribe(() => {
-                        this.loginService.mealToDelete = new Meal();
+                        this.userService.mealToDelete = new Meal();
                     });
             });
     }

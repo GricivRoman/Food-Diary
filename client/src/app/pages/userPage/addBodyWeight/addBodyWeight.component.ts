@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { Login } from "../../../services/login.servise";
+import { UserService } from "../../../services/user.servise";
 import { WeightCondition } from "../../../shared/User/WeightContition";
 
 @Component({
@@ -9,16 +9,16 @@ import { WeightCondition } from "../../../shared/User/WeightContition";
     styles: []
     })
 export class AddBodyWeight {
-    constructor(public loginService:Login, private router:Router) {
+    constructor(private userService:UserService, private router:Router) {
     }
 
     weightCondidion: WeightCondition = new WeightCondition();
 
     onAddWeightCondition() {
-        this.loginService.user.weightConditions.push(this.weightCondidion);
-        this.loginService.updateUser()
+        this.userService.user.weightConditions.push(this.weightCondidion);
+        this.userService.updateUser()
             .subscribe(() => {
-                this.loginService.getUserWithIdentity()
+                this.userService.getUserWithIdentity()
                     .subscribe(() => {
                         this.router.navigate(["user"]);
                     })

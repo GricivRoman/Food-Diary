@@ -9,6 +9,5 @@ namespace FoodDiary.Services.EnergyValueCalculator
         
         Task<ICollection<MealViewModel>> GetMealsWithValueAsync(ICollection<MealViewModel> meals);
 
-
     }
 }

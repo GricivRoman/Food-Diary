@@ -1,17 +1,16 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { Login } from "../../../services/login.servise";
+import { UserService } from "../../../services/user.servise";
 import { CheckInRequest } from "../../../shared/Account/CheckInRequest";
 import { LoginRequest } from "../../../shared/Account/LoginResults";
-
 
 @Component({
     selector: "check-in",
     templateUrl: "checkInPage.component.html"
     })
 export class CheckInPage {
-    constructor(private loginService:Login,private router: Router) {
+    constructor(private userService:UserService,private router: Router) {
 
     }
     public checkInCreds: CheckInRequest =  {
@@ -19,8 +18,6 @@ export class CheckInPage {
         email: "",
         password: ""
     }
-
-    
 
     public errorMessage: string = "";
 
@@ -31,11 +28,11 @@ export class CheckInPage {
             password: this.checkInCreds.password
         }
         
-        this.loginService.checkIn(this.checkInCreds)
+        this.userService.checkIn(this.checkInCreds)
             .subscribe(() => {
-                this.loginService.login(loginCreds)
+                this.userService.login(loginCreds)
                     .subscribe(() => {
-                        this.loginService.getUserWithIdentity()
+                        this.userService.getUserWithIdentity()
                             .subscribe(() => {
                                 this.router.navigate([""])
                                 })

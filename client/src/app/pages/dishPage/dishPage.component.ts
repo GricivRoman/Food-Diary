@@ -3,7 +3,6 @@ import { ActivatedRoute, Router} from "@angular/router";
 import { LibraryService } from "../../services/library.service";
 import { Dish } from "../../shared/Food/Dish";
 
-
 @Component({
     selector: "dish-list",
     templateUrl: "dishPage.component.html",
@@ -15,9 +14,6 @@ export class DishPage implements OnInit  {
     constructor(public libraryService: LibraryService, private router: Router, private activatedRoute:ActivatedRoute) {
 
     }
-
-   
-
     public returnUrl: string = "";
 
     ngOnInit(): void {

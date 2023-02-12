@@ -11,8 +11,6 @@ using System.Text;
 
 namespace FoodDiary.Controllers
 {
-
-    
     public class AccountController : Controller
     {
         private readonly ILogger<AccountController> _logger;
@@ -62,9 +60,7 @@ namespace FoodDiary.Controllers
                 {
                     var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);                    
                     if (result.Succeeded) 
-                    {
-                        //Create the token
-
+                    {                       
                         var claims = new[]
                         {
                             new Claim(JwtRegisteredClaimNames.Sub, user.Email),
@@ -93,7 +89,6 @@ namespace FoodDiary.Controllers
 
             return BadRequest("Неправильный логин или пароль");
         }
-
         
     }
 }
