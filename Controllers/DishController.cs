@@ -50,11 +50,13 @@ namespace FoodDiary.Controllers
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody]DishViewModel model)
         {
-            if (await repository.FindDishByNameAsync(model.DishName) != null)
-            { 
+            try
+            {
+                await repository.FindDishByNameAsync(model.DishName);
                 return BadRequest("Блюдо с таким именем уже существует");
+
             }
-            else
+            catch
             {
                 model.ResourseSpecification.DishValue = dishValueCalculator.CalculateDishValue(model.ResourseSpecification);
                 var dish = mapper.Map<Dish>(model);
@@ -63,8 +65,10 @@ namespace FoodDiary.Controllers
                 await repository.SaveAllAsync();
 
                 return Created("", mapper.Map<DishViewModel>(dish));
-                
             }
+                       
+            
+
         }
 
         [HttpPut]

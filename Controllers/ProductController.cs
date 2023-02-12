@@ -11,8 +11,7 @@ namespace FoodDiary.Controllers
     [ApiController]
     [Produces("application/json")]
     public class ProductController : Controller
-    {
-       
+    {       
         private readonly IMyAppRepository repository;
         private readonly ILogger<ProductController> logger;
         private readonly IMapper mapper;
@@ -30,19 +29,20 @@ namespace FoodDiary.Controllers
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody]ProductViewModel model)
         {
-            if (await repository.FindProductByNameAsync(model.ProductName) != null)
+            try
             {
+                await repository.FindProductByNameAsync(model.ProductName);
                 return BadRequest("Продукт с таким именем уже существует");
             }
-            else
+            catch
             {
                 Product product = mapper.Map<Product>(model);
-                
+
                 await repository.AddEntityAsync(product);
                 await repository.SaveAllAsync();
 
                 return Created("", mapper.Map<ProductViewModel>(product));
-            }
+            }   
         }
 
         [HttpGet]
@@ -51,14 +51,12 @@ namespace FoodDiary.Controllers
             try
             {
                 var result = await repository.GetAllProductsAsync();
-                return Ok(mapper.Map<List<ProductViewModel>>(result));
-                //return Ok(result);
+                return Ok(mapper.Map<List<ProductViewModel>>(result));                
             }
             catch
             {
                 return BadRequest();
             }
-            
         }
     }
 }

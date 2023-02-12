@@ -32,32 +32,53 @@ namespace FoodDiary.Data
 
         public async Task<Product> FindProductByNameAsync(string ProductName)
         {
+            var result = await context.Product
+               .Where(p => p.ProductName == ProductName).FirstOrDefaultAsync();
 
-            return await context.Product
-                .Where(p => p.ProductName == ProductName).FirstOrDefaultAsync();
-            
-
-           
+            if (result == null)
+            {
+                throw new NullReferenceException("Product was not found");
+            }
+            else
+            {
+                return result;
+            }
             
         }
 
         public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return await context.Product.OrderBy(n => n.ProductName).AsNoTracking().ToListAsync();
+            var result = await context.Product.OrderBy(n => n.ProductName).AsNoTracking().ToListAsync();
+            
+            if (result == null)
+            {
+                throw new NullReferenceException("Products were not found");
+            }
+            else
+            {
+                return result;
+            }
         }
 
         public async Task<Dish> FindDishByNameAsync(string DishName)
         {
-           
-            return await context.Dish
-                .Where(d => d.DishName== DishName).AsNoTracking().FirstOrDefaultAsync();
-                        
+           var result = await context.Dish
+                .Where(d => d.DishName == DishName).AsNoTracking().FirstOrDefaultAsync();
+
+            if (result == null)
+            {
+                throw new NullReferenceException("Dish was not found");
+            }
+            else
+            {
+                return result;
+            }
+
         }
 
         public async Task<IEnumerable<Dish>> GetAllDishesAsync()
         {
-
-            return await context.Dish
+            var result = await context.Dish
                 .AsNoTracking()
                 .Include(r => r.ResourseSpecification)
                 .ThenInclude(c => c.Composition)
@@ -66,23 +87,41 @@ namespace FoodDiary.Data
                 .ThenInclude(v => v.DishValue)
                 .AsNoTracking()
                 .ToListAsync();
-                
+
+            if (result == null)
+            {
+                throw new NullReferenceException("Dishes were not found");
+            }
+            else
+            {
+                return result;
+            }
+
+
         }
 
         public async Task<Dish> FindDishByIdAsync(int dishId)
         {
-            return await context.Dish.Where(d => d.Id == dishId).AsNoTracking().FirstOrDefaultAsync();
+            var result = await context.Dish.Where(d => d.Id == dishId).AsNoTracking().FirstOrDefaultAsync();
+           
+            if (result == null)
+            {
+                throw new NullReferenceException("Dish was not found");
+            }
+            else
+            {
+                return result;
+            }
         }
 
         public async Task<User> FindUserByNameAsync(string userName)
         {
-
-            return await context.User.Where(n => n.UserName == userName)
+            var result = await context.User.Where(n => n.UserName == userName)
                 .Include(w => w.WeightConditions.OrderByDescending(d => d.Date))
                 .Include(t => t.Targets.OrderByDescending(i => i.Id))
                 .ThenInclude(d => d.DailyRate)
                 .Include(m => m.Meals)
-                .ThenInclude(mi => mi.MealItems)                
+                .ThenInclude(mi => mi.MealItems)
                 .Include(s => s.Sex)
                 .Include(p => p.PhysicalActivity)
                 .Include(m => m.UserMenu)
@@ -90,25 +129,60 @@ namespace FoodDiary.Data
                 .ThenInclude(v => v.ResourseSpecification.DishValue)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
+
+            if (result == null)
+            {
+                throw new NullReferenceException("User was not found");
+            }
+            else
+            {
+                return result;
+            }
         }       
 
         public async Task<User> FindUserMealsByNameAsync(string userName)
         {
-
-            return await context.User.Where(n => n.UserName == userName)
-                .Include(m=> m.Meals)                
+            var result = await context.User.Where(n => n.UserName == userName)
+                .Include(m => m.Meals)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
+            
+            if (result == null)
+            {
+                throw new NullReferenceException("FindUserMeals was not found by user name");
+            }
+            else
+            {
+                return result;
+            }
         }
 
         public async Task<IEnumerable<SexCatalog>> GetFullSexCatalogAsync()
         {
-            return await context.SexCatalog.ToListAsync();
+            var result = await context.SexCatalog.ToListAsync();
+            
+            if (result == null)
+            {
+                throw new NullReferenceException("SexCatalog was not found");
+            }
+            else
+            {
+                return result;
+            }
         }
 
         public async Task<IEnumerable<PhysicalActivityCatalog>> GetFullPhysicalActivityCatalogAsync()
         {
-            return await context.PhysicalActivityCatalog.ToListAsync();
+            var result = await context.PhysicalActivityCatalog.ToListAsync();
+            
+            if (result == null)
+            {
+                throw new NullReferenceException("PhysicalActivityCatalog was not found");
+            }
+            else
+            {
+                return result;
+            }
         }
     }
 }
