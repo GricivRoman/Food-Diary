@@ -21,33 +21,33 @@
             <div class="col-md-2">
                 <h4 class="text-center">Углеводы</h4>
             </div>
-            <hr class="m-0" />
+            <hr style="width:85%; text-align:left" class="m-0" />
         </div>
         
-        <div *ngFor="let p of loginService.user.meals ; let index = index" (click)="updateMeal(index)">
+        <div *ngFor="let p of loginService.user.meals ; let index = index">
             <div class="row align-items-center mt-0 mb-0" id="mealConteiner">
-                <div class="col-md-1">
+                <div class="col-md-1" (click)="updateMeal(index)">
                     <p class="mb-0">{{p.mealTime | date:"dd.MM.YY"}}</p>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-1" (click)="updateMeal(index)">
                     <p class="mb-0 text-center">{{p.mealTime | date:"hh:mm"}}</p>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2" (click)="updateMeal(index)">
                     <p class="mb-0 text-center">{{p.mealValue.calories}}</p>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2" (click)="updateMeal(index)">
                     <p class="mb-0 text-center">{{p.mealValue.protein}}</p>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2" (click)="updateMeal(index)">
                     <p class="mb-0 text-center">{{p.mealValue.fat}}</p>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2" (click)="updateMeal(index)">
                     <p class="mb-0 text-center">{{p.mealValue.carbohydrate}}</p>
                 </div>
                 <div class="col-md-1">
                     <a class="btn btn-danger" (click)="deleteMeal(index)"><i class="fas fa-trash"></i></a>
                 </div>
-                <hr class="m-0" />
+                <hr style="width:85%; text-align:left" class="m-0" />
             </div>
                         
         </div>

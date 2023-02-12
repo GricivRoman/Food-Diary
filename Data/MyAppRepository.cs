@@ -24,6 +24,10 @@ namespace FoodDiary.Data
             context.Update(model);
 
         }
+        public void DeleteEntity<T>(T model)
+        {
+            context.Remove(model);
+        }
 
         public async Task<bool> SaveAllAsync()
         {
@@ -184,5 +188,32 @@ namespace FoodDiary.Data
                 return result;
             }
         }
+
+        public async Task<Meal> FindMealByIdAsync(int id)
+        {
+            try
+            {
+                var result = await context.Meal.Where(m => m.Id == id).AsNoTracking().FirstOrDefaultAsync();
+                if (result == null)
+                {
+                    throw new NullReferenceException("Meal was not found");
+                }
+                else
+                {
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                logger.LogError($"{ex}");
+                throw;
+            }
+           
+            
+            
+        }
+
+        
     }
 }

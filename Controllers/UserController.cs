@@ -144,5 +144,17 @@ namespace FoodDiary.Controllers
 
         }
 
+        [HttpDelete]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("daleteUserMeal")]
+        public async Task<IActionResult> DeleteUserMeal([FromBody] MealViewModel model)
+        {            
+            var mealToDelete = await repository.FindMealByIdAsync(model.Id);            
+            repository.DeleteEntity(mealToDelete);           
+            await repository.SaveAllAsync();
+            return Ok();
+        }
+
+
     }
 }

@@ -27,10 +27,14 @@ export class DiaryPage {
     }
 
     deleteMeal(index: number) {
-        this.loginService.user.meals.splice(index, 1);
-        this.loginService.updateUserMeals()
+        this.loginService.mealToDelete = this.loginService.user.meals[index];
+
+        this.loginService.deleteUserMeals()
             .subscribe(() => {
-                this.loginService.getUserWithIdentity()
+                this.loginService.getUserWithIdentity().
+                    subscribe(() => {
+                        this.loginService.mealToDelete = new Meal();
+                    });
             });
     }
 

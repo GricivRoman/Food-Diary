@@ -21,6 +21,8 @@ export class Login {
     public user: User = new User();
     meal: Meal = new Meal();   
 
+    mealToDelete: Meal = new Meal();
+
 
     
     get loginRequired(): boolean {
@@ -99,6 +101,12 @@ export class Login {
         const headers = new HttpHeaders().set("Authorization", `Bearer ${this.token}`);
         return this.http.post("/api/user/updateUserMeals", this.user, { headers: headers });
 
+    }
+
+    deleteUserMeals() {
+
+        const headers = new HttpHeaders().set("Authorization", `Bearer ${this.token}`);
+        return this.http.delete("/api/user/daleteUserMeal", { headers: headers, body: this.mealToDelete });
     }
 
     
