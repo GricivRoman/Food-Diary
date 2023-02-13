@@ -27,6 +27,7 @@ namespace FoodDiary
         {
            
             services.AddDbContext<MyAppContext>(options => options.UseSqlServer(_config["ConnectionStrings:MyAppContextDb"]));
+
             services.AddTransient<IUserCreaterService, UserCreaterService>();
 
             services.AddIdentity<User, IdentityRole>(cfg =>
@@ -48,8 +49,6 @@ namespace FoodDiary
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Token:Key"]))
                     };
                 });
-
-
             
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
@@ -57,13 +56,14 @@ namespace FoodDiary
 
             services.AddTransient<IMailService, NullMailService>();
 
-
             services.AddScoped<IMyAppRepository, MyAppRepository>();
 
             services.AddTransient<IEnergyValueCalculatorService, EnergyValueCalculatorService>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation().AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+
             services.AddRazorPages();
+
             services.AddTransient<IUserDailyRateCalculator, UserDailyRateCalculator>();
 
             services.AddTransient<IBodyTypeBuilder, BodyTypeBuilder>();

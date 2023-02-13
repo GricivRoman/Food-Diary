@@ -1,34 +1,5 @@
-﻿
-<!--<div class="row">
-    <div class="col-md-6">
-        <div >
-           
-            <table class="table">
-                <thead>
-                    <tr>
-                        <td>Продукт</td>
-                        <td>Каллорийность</td>
-                        <td>Белки</td>
-                        <td>Жиры</td>
-                        <td>Углеводы</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let p of productService.products">
-                        <td id="prodName">{{p.productName}}</td>
-                        <td>{{p.calories}}</td>
-                        <td>{{p.protein}}</td>
-                        <td>{{p.fat}}</td>
-                        <td>{{p.carbohydrate}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>-->
-
-<div class="row align-items-center">
-    <div class="col-md-8">
+﻿<div class="row align-items-center">
+    <div class="col-md-12">
         <div class="row">
             <div class="col-md-4">
                 <h4>Продукт</h4>
@@ -70,7 +41,7 @@
         </div>
     </div>
     <div  class="row">
-        <div class="col-md-3 offset-6">
+        <div class="col-md-3 offset-9">
             <a id="addButton" class="btn btn-success" routerLink="create">Добавить продукт</a>
         </div>
     </div>

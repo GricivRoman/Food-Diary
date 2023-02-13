@@ -1,7 +1,7 @@
 
-<form class="card card-body col-md-10">
+<form class="card card-body col-md-12">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div>
                 <label class="fs-5 fw-bold">Имя</label>
                 <input class="form-control" name="name" [(ngModel)]="userService.user.name" value="{{userService.user.name}}" />
@@ -24,7 +24,7 @@
 
 
             <div>
-                <label class="fs-5 fw-bold">Уровень физической активности</label>
+                <label class="fs-5 fw-bold">Уровень физ. активности</label>
 
                 <select class="form-control" [(ngModel)]="userService.user.physicalActivity">
                     <option [ngValue]="userService.user.physicalActivity" selected>{{userService.user.physicalActivity.name}}</option>
@@ -32,7 +32,7 @@
                 </select>
             </div>
         </div>
-        <div class="col-md-6 offset-1 align-items-center">
+        <div class="col-md-7 align-items-center">
             <h3 class="text-center">Текущая дневная норма</h3>
             <div class="card card-body row p-2">
                 <div class="row pe-0 ps-4 me-0">
