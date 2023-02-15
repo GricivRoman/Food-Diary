@@ -1,0 +1,3 @@
+[submodule "FoodDiaryTests"]
+	path = FoodDiaryTests
+	url = https://github.com/GricivRoman/FoodDiaryTests.git
