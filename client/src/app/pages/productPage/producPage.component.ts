@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { LibraryService } from "../../services/library.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "product-list",
@@ -9,9 +10,11 @@ import { LibraryService } from "../../services/library.service";
 
 export class ProductPage implements OnInit{
 
-    constructor(public libraryService: LibraryService) {
+    constructor(public libraryService: LibraryService, private router:Router) {
 
     }
+
+
 
     ngOnInit(): void {
         this.libraryService.loadProducts()
@@ -19,5 +22,19 @@ export class ProductPage implements OnInit{
     }
 
     prod = this.libraryService.products;
+
     
+    file: any;
+
+    onFileChange(ev:any) {
+        this.file = ev.target.files[0];        
+    }
+
+    uploadProducts() {        
+        this.libraryService.createProducts(this.file)
+            .subscribe(() => {
+                this.router.navigateByUrl("product");
+            });
+                    
+    }
 }

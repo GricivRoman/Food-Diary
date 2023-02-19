@@ -40,12 +40,20 @@
             <hr />
         </div>
     </div>
-    <div  class="row">
+    <div class="row">
         <div class="col-md-3 offset-9">
             <a id="addButton" class="btn btn-success" routerLink="create">Добавить продукт</a>
         </div>
     </div>
 
+    <form enctype="multipart/form-data">
+        <input type="file"   (change)="onFileChange($event)" />
+        <a id="download" class="btn btn-success" (click)="uploadProducts()">Загрузить файл</a>
+    </form>   
+
+
 </div>
+
+
 
 

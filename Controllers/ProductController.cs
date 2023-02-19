@@ -4,6 +4,9 @@ using FoodDiary.Data;
 using FoodDiary.Data.Entities;
 using AutoMapper;
 using FoodDiary.ViewModels.Food;
+using Newtonsoft.Json;
+using System.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace FoodDiary.Controllers
 {
@@ -26,6 +29,7 @@ namespace FoodDiary.Controllers
         }
         
         [HttpPost]
+        [Route("product")]
         public async Task<IActionResult> PostAsync([FromBody]ProductViewModel model)
         {
             try
@@ -43,6 +47,14 @@ namespace FoodDiary.Controllers
                 return Created("", mapper.Map<ProductViewModel>(product));
             }   
         }
+        [HttpPost]
+        [Route("productList")]
+        public async Task<IActionResult> PostProductListAsync([FromForm(Name = "")] IFormFile file)
+        {
+           
+            return Ok();
+        }
+
 
         [HttpGet]
         public async Task<ActionResult> Get()

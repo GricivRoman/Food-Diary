@@ -1,10 +1,11 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, pipe } from "rxjs";
 import { Product } from "../shared/Food/Product";
 import { map } from "rxjs/operators";
 import { Dish } from "../shared/Food/Dish";
 import { CompositionItem } from "../shared/Food/CompositionItem";
+
 
 @Injectable()
 
@@ -18,11 +19,22 @@ export class LibraryService {
     dish: Dish = new Dish();
     dishToUpdate: Dish = new Dish();
 
+   
 
     personalDishes: Dish[] = []; 
     
     createProduct(product: Product) {
-        return this.http.post("/api/product", product);
+        return this.http.post("/api/product/product", product);
+    }
+
+    
+
+    createProducts(file:any) {
+        let formData: FormData = new FormData();
+        formData.append('', file, file.name);
+
+        const headers = new HttpHeaders().append('Content-Disposition', 'multipart/form-data');
+        return this.http.post("/api/product/productList", formData, { headers: headers });
     }
 
     loadProducts() :Observable<void>{
